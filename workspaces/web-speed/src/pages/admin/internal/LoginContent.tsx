@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import { useId } from 'react';
 import * as yup from 'yup';
 
-import { useLogin } from '../../../features/auth/hooks/useLogin';
+import { useLogin } from '../../../admin/features/auth/hooks/useLogin';
 
 export const LoginContent: React.FC = () => {
   const login = useLogin();

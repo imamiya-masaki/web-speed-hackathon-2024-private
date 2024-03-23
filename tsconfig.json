@@ -10,5 +10,5 @@
   },
   "exclude": ["**/dist"],
   "extends": "@3846masa/configs/tsconfig.json",
-  "include": ["workspaces"]
+  "include": ["workspaces", "web-speed-wip"]
 }
