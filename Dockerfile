@@ -10,8 +10,7 @@ RUN apk --no-cache add jemalloc
 ENV LD_PRELOAD=/usr/lib/libjemalloc.so.2
 
 COPY . .
-# RUN corepack enable pnpm
-RUN npm install -g pnpm@8.15.4
+RUN corepack enable pnpm
 RUN pnpm install
 RUN pnpm build
 
