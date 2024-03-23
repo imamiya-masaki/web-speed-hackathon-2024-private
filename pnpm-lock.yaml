@@ -37,7 +37,7 @@ importers:
         version: 2.8.0
       '@wsh-2024/web-speed':
         specifier: workspace:*
-        version: link:../web-speed
+        version: link:../next-app-router
       core-js:
         specifier: 3.36.0
         version: 3.36.0
@@ -259,6 +259,9 @@ importers:
         specifier: 4.5.2
         version: 4.5.2(@types/react@18.2.0)(react@18.2.0)
     devDependencies:
+      '@swc/plugin-styled-components':
+        specifier: 1.5.119
+        version: 1.5.119
       '@types/jquery':
         specifier: 3.5.29
         version: 3.5.29
@@ -333,7 +336,7 @@ importers:
         version: link:../schema
       '@wsh-2024/web-speed':
         specifier: workspace:*
-        version: link:../web-speed
+        version: link:../next-app-router
       bcryptjs:
         specifier: 2.4.3
         version: 2.4.3
@@ -3686,11 +3689,21 @@ packages:
     engines: {node: '>=18'}
     dev: false
 
+  /@swc/counter@0.1.3:
+    resolution: {integrity: sha512-e2BR4lsJkkRlKZ/qCHPw9ZaSxc0MVUd7gtbtaB7aMvHeJVYe8sOB8DBZkP2DtISHGSku9sCK6T6cnY0CtXrOCQ==}
+    dev: true
+
   /@swc/helpers@0.5.2:
     resolution: {integrity: sha512-E4KcWTpoLHqwPHLxidpOqQbcrZVgi0rsmmZXUle1jXmJfuIf/UWpczUJ7MZZ5tlxytgJXyp0w4PGkkeLiuIdZw==}
     dependencies:
       tslib: 2.6.2
     dev: false
+
+  /@swc/plugin-styled-components@1.5.119:
+    resolution: {integrity: sha512-rlKh9t+BszPW+CkY119A8f3XygxA+F/4k8gF/rFLU1Q00r0LmxMrzUr7bz7UcBjPXIhKZPKt2XKQms9CkG2oQg==}
+    dependencies:
+      '@swc/counter': 0.1.3
+    dev: true
 
   /@swiftcarrot/color-fns@3.2.0:
     resolution: {integrity: sha512-6SCpc4LwmGGqWHpBY9WaBzJwPF4nfgvFfejOX7Ub0kTehJysFkLUAvGID8zEx39n0pGlfr9pTiQE/7/buC7X5w==}

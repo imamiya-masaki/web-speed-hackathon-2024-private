@@ -1,39 +1,6 @@
-'use client'
-
 import type * as CSS from 'csstype';
-import styled from 'styled-components';
 
 import { addUnitIfNeeded } from '../../lib/css/addUnitIfNeeded';
-
-const _Flex = styled.div<{
-  $align?: string;
-  $direction?: string;
-  $flexGrow?: CSS.Property.FlexGrow;
-  $flexShrink?: CSS.Property.FlexShrink;
-  $gap?: number;
-  $justify?: string;
-  $p?: number;
-  $pb?: number;
-  $pl?: number;
-  $position?: string;
-  $pr?: number;
-  $pt?: number;
-  $px?: number;
-  $py?: number;
-}>`
-  align-items: ${({ $align }) => $align};
-  display: flex;
-  flex-direction: ${({ $direction }) => $direction};
-  flex-grow: ${({ $flexGrow }) => $flexGrow};
-  flex-shrink: ${({ $flexShrink }) => $flexShrink};
-  gap: ${({ $gap = 0 }) => $gap}px;
-  justify-content: ${({ $justify }) => $justify};
-  padding-bottom: ${({ $pb, $py }) => addUnitIfNeeded($py ?? $pb)};
-  padding-left: ${({ $pl, $px }) => addUnitIfNeeded($px ?? $pl)};
-  padding-right: ${({ $pr, $px }) => addUnitIfNeeded($px ?? $pr)};
-  padding-top: ${({ $pt, $py }) => addUnitIfNeeded($py ?? $pt)};
-  padding: ${({ $p }) => addUnitIfNeeded($p)};
-`;
 
 type Props = {
   align: CSS.Property.AlignItems;
@@ -54,43 +21,30 @@ type Props = {
   py?: number;
 };
 
-export const Flex: React.FC<Props> = ({
-  align,
-  as,
-  children,
-  direction,
-  flexGrow,
-  flexShrink,
-  gap,
-  justify,
-  p,
-  pb,
-  pl,
-  position,
-  pr,
-  pt,
-  px,
-  py,
-}) => {
+export const Flex: React.FC<Props> = (val) => {
+  const children = val.children
+  const as = val["as"]
+  const styles: React.CSSProperties = {
+    "alignItems": val.align,
+    "display": "flex",
+    "flexDirection": val.direction,
+    "flexGrow": val.flexGrow,
+    "flexShrink": val.flexShrink,
+    "gap": `${val.gap ?? 0}px`,
+    "justifyContent": val.justify,
+    "paddingBottom": addUnitIfNeeded(val.py ?? val.pb),
+    "paddingLeft": addUnitIfNeeded(val.px ?? val.pl),
+    "paddingRight": addUnitIfNeeded(val.px ?? val.pr),
+    "paddingTop": addUnitIfNeeded(val.py ?? val.pt),
+    "padding": val.p ? addUnitIfNeeded(val.p) : undefined,
+  };
+
+  const Component = as ?? "div"
   return (
-    <_Flex
-      $align={align}
-      $direction={direction}
-      $flexGrow={flexGrow}
-      $flexShrink={flexShrink}
-      $gap={gap}
-      $justify={justify}
-      $p={p}
-      $pb={pb}
-      $pl={pl}
-      $position={position}
-      $pr={pr}
-      $pt={pt}
-      $px={px}
-      $py={py}
-      as={as}
+    <Component
+    style={styles}
     >
       {children}
-    </_Flex>
+    </Component>
   );
 };

@@ -1,5 +1,4 @@
 'use client'
-
 import { Suspense } from 'react';
 import { styled } from 'styled-components';
 
@@ -38,8 +37,9 @@ type Props = {
   bookId: string;
 };
 
-const BookCard: React.FC<Props> = ({ bookId }) => {
-  const { data: book } = useBook({ params: { bookId } });
+// @ts-ignore
+const BookCard: React.FC<Props>= async({ bookId }) => {
+  const { data: book } = await useBook({ params: { bookId } });
 
   const imageUrl = useImage({ height: 128, imageId: book.image.id, width: 192 });
   const authorImageUrl = useImage({ height: 32, imageId: book.author.image.id, width: 32 });

@@ -1,4 +1,5 @@
 
+import "./globals.css"
 import { type ReactNode } from 'react';
 interface LayoutProps {
   children?: ReactNode; // ReactNode型を使用して、childrenの型を指定します。
@@ -44,7 +45,7 @@ ucaInit();
 //   </Suspense>)
 // }
 
-import { Dialog } from '../_components/src/foundation/components/Dialog';
+// import { Dialog } from '../_components/src/foundation/components/Dialog';
 import { GlobalStyle } from '../_components/src/foundation/styles/GlobalStyle';
 // import { usePathname } from "next/navigation";
 
@@ -61,11 +62,14 @@ import { GlobalStyle } from '../_components/src/foundation/styles/GlobalStyle';
 
 export default function RootLayout({ children }: {children: React.ReactNode}) {
   // const path = usePathname();
-  return     (<>
-  <GlobalStyle />
-  <Dialog />
+  return     (
+  <html lang="ja">
+  <body>
+  {/* <GlobalStyle /> */}
+  {/* <Dialog /> */}
   {children}
-  </>)
+  </body>
+    </html>)
   // return <ClientSetUpComponent><Component {...pageProps} /></ClientSetUpComponent>
   // if (path.includes('/admin')) {
   //   return <AdminSetUpComponent><Component {...pageProps} /></AdminSetUpComponent>;

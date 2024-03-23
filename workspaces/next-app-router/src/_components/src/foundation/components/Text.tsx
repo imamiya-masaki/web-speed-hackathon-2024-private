@@ -1,24 +1,23 @@
-'use client'
 
 import type * as CSS from 'csstype';
 import React from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 
 import type { Color, Typography } from '../styles/variables';
 
-const _Text = styled.span<{
-  $color: string;
-  $flexGrow?: CSS.Property.FlexGrow;
-  $flexShrink?: CSS.Property.FlexShrink;
-  $typography: string;
-  $weight: string;
-}>`
-  ${({ $typography }) => $typography};
-  color: ${({ $color }) => $color};
-  flex-grow: ${({ $flexGrow }) => $flexGrow};
-  flex-shrink: ${({ $flexShrink }) => $flexShrink};
-  font-weight: ${({ $weight }) => $weight};
-`;
+// const _Text = styled.span<{
+//   $color: string;
+//   $flexGrow?: CSS.Property.FlexGrow;
+//   $flexShrink?: CSS.Property.FlexShrink;
+//   $typography: string;
+//   $weight: string;
+// }>`
+//   ${({ $typography }) => $typography};
+//   color: ${({ $color }) => $color};
+//   flex-grow: ${({ $flexGrow }) => $flexGrow};
+//   flex-shrink: ${({ $flexShrink }) => $flexShrink};
+//   font-weight: ${({ $weight }) => $weight};
+// `;
 
 type Props = {
   as?: keyof JSX.IntrinsicElements;
@@ -41,17 +40,23 @@ export const Text: React.FC<Props> = ({
   typography,
   weight = 'normal',
 }) => {
+  const styles: React.CSSProperties = {
+    color,
+    flexGrow,
+    flexShrink,
+    fontWeight: weight,
+    ...typography
+  }
+  const asDom = as
+  const Component = asDom ?? "span"
   return (
-    <_Text
-      $color={color}
-      $flexGrow={flexGrow}
-      $flexShrink={flexShrink}
-      $typography={typography}
-      $weight={weight}
-      as={as}
+    <Component
+      style= {
+        styles
+      }
       id={id}
     >
       {children}
-    </_Text>
+    </Component>
   );
 };

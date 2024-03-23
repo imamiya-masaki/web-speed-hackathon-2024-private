@@ -5,7 +5,7 @@ import { EpisodeDetailEditor } from '../../../../../../_components/src/admin/fea
 import { useEpisode } from '../../../../../../_components/src/admin/features/episodes/hooks/useEpisode';
 import { CommonLayout } from '../../../../../../_components/src/admin/foundation/layouts/CommonLayout';
 
-export default function EpisodeDetailPage (props: {bookId: string, episodeId: string}) {
+export default function Page (props: {bookId: string, episodeId: string}) {
   const query = props;
   const bookId = typeof query.bookId === "string" ? query.bookId : ''
   const episodeId = typeof query.episodeId === "string" ? query.episodeId : ''

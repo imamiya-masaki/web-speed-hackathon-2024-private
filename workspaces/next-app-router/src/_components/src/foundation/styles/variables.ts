@@ -48,13 +48,14 @@ const TextHeight = {
 type TextHeight = (typeof TextHeight)[keyof typeof TextHeight];
 
 export const Typography = {
-  NORMAL12: `font-size: ${TextSize[12]}; letter-spacing: 0; line-height: ${TextHeight.NORMAL};`,
-  NORMAL14: `font-size: ${TextSize[14]}; letter-spacing: 0; line-height: ${TextHeight.NORMAL};`,
-  NORMAL16: `font-size: ${TextSize[16]}; letter-spacing: 0; line-height: ${TextHeight.NORMAL};`,
-  NORMAL20: `font-size: ${TextSize[20]}; letter-spacing: 0; line-height: ${TextHeight.NORMAL};`,
-  NORMAL24: `font-size: ${TextSize[24]}; letter-spacing: 0; line-height: ${TextHeight.NORMAL};`,
-  NORMAL32: `font-size: ${TextSize[32]}; letter-spacing: 0; line-height: ${TextHeight.NORMAL};`,
-} as const;
+  NORMAL12: { fontSize: TextSize[12], letterSpacing: "0", lineHeight: TextHeight.NORMAL },
+  NORMAL14: { fontSize: TextSize[14], letterSpacing: "0", lineHeight: TextHeight.NORMAL },
+  NORMAL16: { fontSize: TextSize[16], letterSpacing: "0", lineHeight: TextHeight.NORMAL },
+  NORMAL20: { fontSize: TextSize[20], letterSpacing: "0", lineHeight: TextHeight.NORMAL },
+  NORMAL24: { fontSize: TextSize[24], letterSpacing: "0", lineHeight: TextHeight.NORMAL },
+  NORMAL32: { fontSize: TextSize[32], letterSpacing: "0", lineHeight: TextHeight.NORMAL },
+};
+
 export type Typography = (typeof Typography)[keyof typeof Typography];
 
 export const Radius = {
