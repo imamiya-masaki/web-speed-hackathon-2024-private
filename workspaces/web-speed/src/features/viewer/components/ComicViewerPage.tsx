@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { useAsync } from 'react-use';
 import styled from 'styled-components';
 
-import { decrypt } from '@wsh-2024/image-encrypt/src/decrypt';
+import { decrypt } from '../../../image-encrypt/src/decrypt';
 
 import { getImageUrl } from '../../../lib/image/getImageUrl';
 

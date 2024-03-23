@@ -7,7 +7,6 @@ import { Link } from '../../../foundation/components/Link';
 import { Text } from '../../../foundation/components/Text';
 import { useImage } from '../../../foundation/hooks/useImage';
 import { Color, Radius, Space, Typography } from '../../../foundation/styles/variables';
-import { useBook } from '../../book/hooks/useBook';
 
 const _Wrapper = styled(Link)`
   display: grid;
@@ -47,13 +46,32 @@ type Props = {
   bookId: string;
 };
 
-const FeatureCard: React.FC<Props> = ({ bookId }) => {
-  const { data: book } = useBook({ params: { bookId } });
+import { bookApiClient } from '../../../features/book/apiClient/bookApiClient';
+import type { GetServerSideProps } from 'next';
+
+
+type serversideParameter = { bookData: Awaited<ReturnType<(typeof bookApiClient.fetch)>>, bookId: string}
+
+export const getServerSideProps =  (async(context) =>{
+   // ここでauthorApiClient.fetchを使用してデータをフェッチします。
+  // optionsは、必要に応じてcontextから抽出またはハードコーディングされた値を使用します。
+  const { bookId } = context.params!;
+  const options = {bookId} as {bookId: string}; // 必要に応じてオプションを設定
+  const data = await bookApiClient.fetch({params: options});
+
+  // props経由でページにデータを渡します。
+  return { props: { bookData: data, bookId: options.bookId } };
+}) satisfies GetServerSideProps<serversideParameter>
+
+
+export default function Page({ bookData, bookId }: serversideParameter) {
+  const book = bookData
 
   const imageUrl = useImage({ height: 96, imageId: book.image.id, width: 96 });
   const authorImageUrl = useImage({ height: 32, imageId: book.author.image.id, width: 32 });
 
   return (
+    <Suspense>
     <_Wrapper href={`/books/${bookId}`}>
       {imageUrl != null && (
         <_ImgWrapper>
@@ -81,15 +99,6 @@ const FeatureCard: React.FC<Props> = ({ bookId }) => {
         </Flex>
       </_ContentWrapper>
     </_Wrapper>
-  );
-};
-
-const FeatureCardWithSuspense: React.FC<Props> = (props) => {
-  return (
-    <Suspense fallback={null}>
-      <FeatureCard {...props} />
     </Suspense>
   );
 };
-
-export { FeatureCardWithSuspense as FeatureCard };

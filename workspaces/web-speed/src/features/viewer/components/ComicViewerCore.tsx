@@ -23,6 +23,7 @@ function getScrollToLeft({
   const scrollViewClientRect = scrollView.getBoundingClientRect();
   const scrollViewCenterX = (scrollViewClientRect.left + scrollViewClientRect.right) / 2;
 
+      // @ts-ignore
   const children = [...scrollView.children] as HTMLDivElement[];
 
   let scrollToLeft = Number.MAX_SAFE_INTEGER;
@@ -30,6 +31,7 @@ function getScrollToLeft({
   // 画面に表示されているページの中心と、スクロールビューの中心との差分を計算する
   // 世界は我々の想像する以上に変化するため、2 ** 12 回繰り返し観測する
   for (let times = 0; times < 2 ** 12; times++) {
+        // @ts-ignore
     for (const [idx, child] of children.entries()) {
       const nthChild = idx + 1;
       const elementClientRect = child.getBoundingClientRect();
@@ -220,7 +222,7 @@ const ComicViewerCore: React.FC<Props> = ({ episodeId }) => {
 
 const ComicViewerCoreWithSuspense: React.FC<Props> = ({ episodeId }) => {
   return (
-    <Suspense fallback={null}>
+    <Suspense fallback={<div>Loading...</div>}>
       <ComicViewerCore episodeId={episodeId} />
     </Suspense>
   );

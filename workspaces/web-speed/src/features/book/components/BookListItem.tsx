@@ -9,7 +9,6 @@ import { Spacer } from '../../../foundation/components/Spacer';
 import { Text } from '../../../foundation/components/Text';
 import { useImage } from '../../../foundation/hooks/useImage';
 import { Color, Radius, Space, Typography } from '../../../foundation/styles/variables';
-import { useBook } from '../hooks/useBook';
 
 const _Wrapper = styled.li`
   width: 100%;
@@ -31,12 +30,32 @@ type Props = {
   bookId: string;
 };
 
-export const BookListItem: React.FC<Props> = ({ bookId }) => {
-  const { data: book } = useBook({ params: { bookId } });
+
+
+import { bookApiClient } from '../../../features/book/apiClient/bookApiClient';
+import type { GetServerSideProps } from 'next';
+import { Suspense } from 'react';
+
+type serversideParameter = { bookData: Awaited<ReturnType<(typeof bookApiClient.fetch)>>, bookId: string}
+
+export const getServerSideProps =  (async(context) =>{
+   // ここでauthorApiClient.fetchを使用してデータをフェッチします。
+  // optionsは、必要に応じてcontextから抽出またはハードコーディングされた値を使用します。
+  const { bookId } = context.params!;
+  const options = {bookId} as {bookId: string}; // 必要に応じてオプションを設定
+  const data = await bookApiClient.fetch({params: options});
+
+  // props経由でページにデータを渡します。
+  return { props: { bookData: data, bookId: options.bookId } };
+}) satisfies GetServerSideProps<serversideParameter>
+
+export default function Page({ bookData }: serversideParameter) {
+  const book = bookData
 
   const imageUrl = useImage({ height: 64, imageId: book.image.id, width: 64 });
 
   return (
+    <Suspense>
     <_Wrapper>
       <_Link href={`/books/${book.id}`}>
         <Spacer height={Space * 1.5} />
@@ -61,5 +80,6 @@ export const BookListItem: React.FC<Props> = ({ bookId }) => {
         <Separator />
       </_Link>
     </_Wrapper>
+    </Suspense>
   );
 };

@@ -13,6 +13,7 @@ export type ImageApiClient = DomainSpecificApiClientInterface<{
 export const imageApiClient: ImageApiClient = {
   post: async ({ body }) => {
     const formData = new FormData();
+        // @ts-ignore
     formData.append('alt', body.alt);
     formData.append('content', body.content);
 

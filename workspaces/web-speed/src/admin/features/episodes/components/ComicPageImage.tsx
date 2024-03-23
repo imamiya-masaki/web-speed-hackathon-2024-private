@@ -2,7 +2,7 @@ import { Image as ChakraImage } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 
-import { decrypt } from '@wsh-2024/image-encrypt/src/decrypt';
+import { decrypt } from '../../../../image-encrypt/src/decrypt';
 
 import { getImageUrl } from '../../../lib/image/getImageUrl';
 

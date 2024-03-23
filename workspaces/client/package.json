@@ -10,8 +10,7 @@
   "dependencies": {
     "@jsquash/jxl": "1.1.0",
     "@webcomponents/webcomponentsjs": "2.8.0",
-    "@wsh-2024/admin": "workspace:*",
-    "@wsh-2024/app": "workspace:*",
+    "@wsh-2024/web-speed": "workspace:*",
     "core-js": "3.36.0",
     "es5-shim": "4.6.7",
     "es6-shim": "0.35.8",

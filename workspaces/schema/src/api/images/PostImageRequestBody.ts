@@ -8,8 +8,9 @@ export const PostImageRequestBodySchema = createInsertSchema(image)
     alt: true,
   })
   .extend({
-    content: z
-      .custom<File>((data) => data instanceof File)
+    content: (z)
+      .custom<File>((data) => (data instanceof File))
+      // @ts-ignore
       .openapi({
         format: 'binary',
         type: 'string',
