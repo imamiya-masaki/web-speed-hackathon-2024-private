@@ -13,7 +13,7 @@
 // };
 
 
-const baseURL = 'https://webspeed.anpan-playground.com'
+const baseURL = 'https://webspeed-api.anpan-playground.com'
 
 const wraperApiClient = {
   get: async <T>(url: string, query?: Record<string, unknown>):Promise<{data: T}>=> {
@@ -39,7 +39,7 @@ const wraperApiClient = {
     })
     let data;
     try {
-    data = await fetched.json()
+    data = await fetched?.json()
     //@ts-ignore
     console.log('zot確認', data.error, urlL, query )
     } catch (e) {
