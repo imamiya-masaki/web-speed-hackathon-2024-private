@@ -16,7 +16,7 @@ import {
   Thead,
   Tr,
 } from '@chakra-ui/react';
-import { Link } from '@tanstack/react-router';
+import Link from 'next/link'
 import { useToggle } from '@uidotdev/usehooks';
 
 import { useBook } from '../../../../src/admin/features/books/hooks/useBook';
@@ -75,7 +75,7 @@ export const BookDetailModal: React.FC<Props> = ({ bookId, isOpen, onClose }) =>
                                 as={Link}
                                 colorScheme="teal"
                                 role="button"
-                                to={`/admin/books/${bookId}/episodes/${episode.id}`}
+                                href={`/admin/books/${bookId}/episodes/${episode.id}`}
                                 variant="solid"
                               >
                                 編集
@@ -107,7 +107,7 @@ export const BookDetailModal: React.FC<Props> = ({ bookId, isOpen, onClose }) =>
               colorScheme="teal"
               mt={4}
               role="button"
-              to={`/admin/books/${bookId}/episodes/new`}
+              href={`/admin/books/${bookId}/episodes/new`}
               variant="solid"
             >
               エピソードを追加

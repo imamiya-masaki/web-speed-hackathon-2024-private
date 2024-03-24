@@ -5,7 +5,6 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { SWRConfig } from 'swr';
 
-import { AdminApp } from '@wsh-2024/web-speed/src/index';
 import { ClientApp } from '@wsh-2024/web-speed/src/index';
 
 import { preloadImages } from './utils/preloadImages';
@@ -16,7 +15,7 @@ const main = async () => {
   // await preloadImages();
 
   $(document).ready(() => {
-    if (window.location.pathname.startsWith('/admin')) {
+    if (window?.location.pathname.startsWith('/admin')) {
       ReactDOM.createRoot($('#root').get(0)!).render(<AdminApp />);
     } else {
       ReactDOM.hydrateRoot(

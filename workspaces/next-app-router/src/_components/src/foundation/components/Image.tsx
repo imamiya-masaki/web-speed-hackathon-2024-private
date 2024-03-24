@@ -13,7 +13,7 @@ import { useEffect, useMemo, useState } from 'react';
 
 const useImage = ({ height, imageId, width }: { height: number; imageId: string; width: number }) => {
   const { value } = useAsync(async () => {
-    const dpr = window.devicePixelRatio;
+    const dpr = window?.devicePixelRatio;
 
     const img = new Image();
     img.src = getImageUrl({
@@ -91,8 +91,8 @@ export const ImageRender: React.FC<Props> = ({ height, loading = 'eager', object
   const [dpr, setDpr] = useState<number>(1)
 
   useEffect(() => {
-    setDpr(window.devicePixelRatio)
-  },[window.devicePixelRatio])
+    setDpr(window?.devicePixelRatio)
+  },[window?.devicePixelRatio])
 
   const {height: canvasHeight, imageId: canvasImageId, width:canvasWidth} = canvas!
   // useEffect(()=>{(async () => {

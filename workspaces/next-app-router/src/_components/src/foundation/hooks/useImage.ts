@@ -4,7 +4,7 @@ import { getImageUrl } from '../../lib/image/getImageUrl';
 
 export const useImage = ({ height, imageId, width }: { height: number; imageId: string; width: number }) => {
   const { value } = useAsync(async () => {
-    const dpr = window.devicePixelRatio;
+    const dpr = window?.devicePixelRatio ?? 1;
 
     const img = new Image();
     img.src = getImageUrl({

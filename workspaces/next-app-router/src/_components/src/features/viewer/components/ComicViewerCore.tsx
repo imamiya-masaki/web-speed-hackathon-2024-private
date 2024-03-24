@@ -181,14 +181,14 @@ export default function ComicViewerCore ({ episodeId }: {episodeId: string}) {
     };
 
     let scrollEndTimer = -1;
-    abortController.signal.addEventListener('abort', () => window.clearTimeout(scrollEndTimer), { once: true });
+    abortController.signal.addEventListener('abort', () => window?.clearTimeout(scrollEndTimer), { once: true });
 
     const handleScrollEnd = (ev: Pick<Event, 'currentTarget'>) => {
       const scrollView = ev.currentTarget as HTMLDivElement;
 
       // マウスが離されるまではスクロール中とみなす
       if (isPressed) {
-        scrollEndTimer = window.setTimeout(() => handleScrollEnd({ currentTarget: scrollView }), 0);
+        scrollEndTimer = window?.setTimeout(() => handleScrollEnd({ currentTarget: scrollView }), 0);
         return;
       } else {
         scrollView.scrollBy({

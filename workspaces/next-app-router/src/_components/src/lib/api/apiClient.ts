@@ -1,18 +1,3 @@
-// import { apiClient } from './../../admin/lib/api/apiClient';
-// import axios from 'axios';
-
-// const createAxiosInstance = () => {
-//   const instance = axios.create({
-//     baseURL: process.env['API_URL'] || '/',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//   });
-
-//   return instance;
-// };
-
-
 const baseURL = 'https://webspeed-api.anpan-playground.com'
 
 const wraperApiClient = {
@@ -53,5 +38,4 @@ const wraperApiClient = {
   }
 }
 
-// export const apiClient = createAxiosInstance();
 export const apiClient = wraperApiClient;

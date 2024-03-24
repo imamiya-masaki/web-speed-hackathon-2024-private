@@ -7,7 +7,7 @@ interface LayoutProps {
 
 
 import { ChakraProvider, useToast } from '@chakra-ui/react';
-import { queryClient } from '../../_components/src/admin/lib/api/queryClient';
+import { queryClient } from '../workspaces/next-app-router/src/_components/src/admin/lib/api/queryClient';
 import { QueryClientProvider } from '@tanstack/react-query';
  
  
@@ -31,10 +31,10 @@ import { QueryClientProvider } from '@tanstack/react-query';
     return () => {
       queryClient.getMutationCache().config.onError = onError;
     };
-  }, [toast]);
+  }, []);
   return (<Suspense fallback={<div>Loading...</div>}>
     <QueryClientProvider client={queryClient}>
-      <ChakraProvider>
+      <ChakraProvider  cssVarsRoot="body">
         {children}
       </ChakraProvider>
     </QueryClientProvider>
