@@ -1,3 +1,5 @@
+'use client'
+
 import { useAsync } from 'react-use';
 
 import { getImageUrl } from '../../lib/image/getImageUrl';
