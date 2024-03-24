@@ -28,8 +28,8 @@ import { useAuthorList } from '../../../_components/src/admin/features/authors/h
 import { CommonLayout } from '../../../_components/src/admin/foundation/layouts/CommonLayout';
 import { isContains } from '../../../_components/src/admin/lib/filter/isContains';
 
-import { AuthorDetailModal } from './internal/AuthorDetailModal';
-import { CreateAuthorModal } from './internal/CreateAuthorModal';
+import { AuthorDetailModal } from '../../../_components/admin/authors/internal/AuthorDetailModal';
+import { CreateAuthorModal } from '../../../_components/admin/authors/internal/CreateAuthorModal';
 
 
 const AuthorSearchKind = {

@@ -14,7 +14,7 @@ import { Text } from '../_components/src/foundation/components/Text';
 import { Color, Space, Typography } from '../_components/src/foundation/styles/variables';
 import { getDayOfWeekStr } from '../_components/src/lib/date/getDayOfWeekStr';
 
-import { CoverSection } from './internal/CoverSection';
+import { CoverSection } from '../_components/internal/CoverSection';
 import { CommonLayout } from '../_components/src/foundation/layouts/CommonLayout';
 
 export default async function Page() {

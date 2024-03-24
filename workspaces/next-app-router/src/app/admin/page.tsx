@@ -4,8 +4,8 @@ import { Flex } from '@chakra-ui/react';
 import { useAuthUser } from '../../_components/src/admin/features/auth/hooks/useAuthUser';
 import { CommonLayout } from '../../_components/src/admin/foundation/layouts/CommonLayout';
 
-import { LoginContent } from './internal/LoginContent';
-import { LogoutContent } from './internal/LogoutContent';
+import { LoginContent } from '../../_components/admin/internal/LoginContent';
+import { LogoutContent } from '../../_components/admin/internal/LogoutContent';
 
 export default async function Page(){
   const { data: user } = await useAuthUser();

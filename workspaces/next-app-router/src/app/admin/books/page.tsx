@@ -28,8 +28,8 @@ import { useBookList } from '../../../_components/src/admin/features/books/hooks
 import { CommonLayout } from '../../../_components/src/admin/foundation/layouts/CommonLayout';
 import { isContains } from '../../../_components/src/admin/lib/filter/isContains';
 
-import { BookDetailModal } from './internal/BookDetailModal';
-import { CreateBookModal } from './internal/CreateBookModal';
+import { BookDetailModal } from '../../../_components/admin/books/internal/BookDetailModal';
+import { CreateBookModal } from '../../../_components/admin/books/internal/CreateBookModal';
 
 const BookSearchKind = {
   AuthorId: 'AuthorId',

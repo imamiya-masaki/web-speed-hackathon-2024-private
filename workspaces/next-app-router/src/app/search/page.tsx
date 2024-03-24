@@ -7,8 +7,8 @@ import { Box } from '../../_components/src/foundation/components/Box';
 import { Text } from '../../_components/src/foundation/components/Text';
 import { Color, Space, Typography } from '../../_components/src/foundation/styles/variables';
 
-import { Input } from './internal/Input';
-import { SearchResult } from './internal/SearchResult';
+import { Input } from '../../_components/search/internal/Input';
+import { SearchResult } from '../../_components/search/internal/SearchResult';
 import { ActionLayout } from '@/_components/src/foundation/layouts/ActionLayout';
 export default async function Page () {
   const books = await useBookList({ query: {} });

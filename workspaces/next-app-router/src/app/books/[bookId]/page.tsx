@@ -14,7 +14,7 @@ import { Spacer } from '../../../_components/src/foundation/components/Spacer';
 import { Text } from '../../../_components/src/foundation/components/Text';
 import { Color, Space, Typography } from '../../../_components/src/foundation/styles/variables';
 
-import { BottomNavigator } from './internal/BottomNavigator';
+import { BottomNavigator } from '../../../_components/books/internal/BottomNavigator';
 import { ActionLayout } from '../../../_components/src/foundation/layouts/ActionLayout';
 
 const headingWrapperStyle = {
