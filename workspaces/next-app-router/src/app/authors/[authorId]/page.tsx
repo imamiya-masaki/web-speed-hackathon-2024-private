@@ -7,11 +7,10 @@ import { useAuthor } from '../../../_components/src/features/author/hooks/useAut
 import  BookListItem from '../../../_components/src/features/book/components/BookListItem';
 import { Box } from '../../../_components/src/foundation/components/Box';
 import { Flex } from '../../../_components/src/foundation/components/Flex';
-import { Image } from '../../../_components/src/foundation/components/Image';
+import { ImageRender } from '../../../_components/src/foundation/components/Image';
 import { Separator } from '../../../_components/src/foundation/components/Separator';
 import { Spacer } from '../../../_components/src/foundation/components/Spacer';
 import { Text } from '../../../_components/src/foundation/components/Text';
-import { useImage } from '../../../_components/src/foundation/hooks/useImage';
 import { Color, Space, Typography } from '../../../_components/src/foundation/styles/variables';
 
 
@@ -39,18 +38,15 @@ export default async function Page ({ params: {authorId} }: {params: { authorId:
 
   const { data: author } = await useAuthor({ params: { authorId } });
 
-  const imageUrl = useImage({ height: 128, imageId: author.image.id, width: 128 });
   const bookListA11yId = `bookListA11yId`;
 
   return (
     <Suspense fallback={null}>
     <Box height="100%" px={Space * 2}>
       <HeadingWrapper aria-label="作者情報">
-        {imageUrl != null && (
           <AuthorImageWrapper>
-            <Image key={author.id} alt={author.name} height={128} objectFit="cover" src={imageUrl} width={128} />
+            <ImageRender key={author.id} alt={author.name} height={128} objectFit="cover" width={128} canvas={{ height: 128, imageId: author.image.id, width: 128 }}/>
           </AuthorImageWrapper>
-        )}
 
         <Flex align="flex-start" direction="column" gap={Space * 1} justify="flex-start">
           <Text color={Color.MONO_100} typography={Typography.NORMAL20} weight="bold">

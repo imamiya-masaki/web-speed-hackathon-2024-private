@@ -2,14 +2,14 @@ import './booklist.css'
 
 import { Box } from '../../../foundation/components/Box';
 import { Flex } from '../../../foundation/components/Flex';
-import { Image } from '../../../foundation/components/Image';
+import { ImageRender } from '../../../foundation/components/Image';
 import { Link } from '../../../foundation/components/Link';
 import { Separator } from '../../../foundation/components/Separator';
 import { Spacer } from '../../../foundation/components/Spacer';
 import { Text } from '../../../foundation/components/Text';
-import { useImage } from '../../../foundation/hooks/useImage';
 import { Color, Space, Typography } from '../../../foundation/styles/variables';
 import { useBook } from '../hooks/useBook';
+import { useMemo, useState } from 'react';
 
 
 const WrapperComponent: React.FC<{children: React.ReactNode}> = ({ children }) => (
@@ -30,26 +30,18 @@ const ImgWrapperComponent: React.FC<{children: React.ReactNode}> = ({ children }
   </div>
 );
 
-type Props = {
-  bookId: string;
-};
-
-// 
 export default async function BookListItem({ bookId }: {bookId: string}) {
   const { data: book } = await useBook({ params: { bookId } });
 
-  const imageUrl = useImage({ height: 64, imageId: book.image.id, width: 64 });
 
   return (
     <WrapperComponent>
       <LinkComponent to={`/books/${book.id}`}>
         <Spacer height={Space * 1.5} />
         <Flex align="flex-start" gap={Space * 2.5} justify="flex-start">
-          {imageUrl != null && (
-            <ImgWrapperComponent>
-              <Image alt={book.name} height={64} objectFit="cover" src={imageUrl} width={64} />
+        <ImgWrapperComponent>
+              <ImageRender alt={book.name} height={64} objectFit="cover" width={64} canvas={{ height: 64, imageId: book.image.id, width: 64 }}/>
             </ImgWrapperComponent>
-          )}
           <Box width="100%">
             <Flex align="flex-start" direction="column" gap={Space * 1} justify="flex-start">
               <Text color={Color.MONO_100} typography={Typography.NORMAL16} weight="bold">

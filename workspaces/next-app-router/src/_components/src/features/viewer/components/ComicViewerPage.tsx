@@ -1,4 +1,7 @@
-import { useRef } from 'react';
+
+'use client'
+
+import { useMemo, useRef } from 'react';
 import { useAsync } from 'react-use';
 
 import { decrypt } from '../../../image-encrypt/src/decrypt';
@@ -24,7 +27,7 @@ type Props = {
 export const ComicViewerPage = ({ pageImageId }: Props) => {
   const ref = useRef<HTMLCanvasElement>(null);
 
-  useAsync(async () => {
+  useMemo(async () => {
     const image = new Image();
     image.src = getImageUrl({
       format: 'jxl',

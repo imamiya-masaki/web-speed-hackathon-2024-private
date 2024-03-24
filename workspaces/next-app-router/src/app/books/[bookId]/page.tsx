@@ -10,12 +10,11 @@ import  EpisodeListItem from '../../../_components/src/features/episode/componen
 import { useEpisodeList } from '../../../_components/src/features/episode/hooks/useEpisodeList';
 import { Box } from '../../../_components/src/foundation/components/Box';
 import { Flex } from '../../../_components/src/foundation/components/Flex';
-import { Image } from '../../../_components/src/foundation/components/Image';
+import { ImageRender } from '../../../_components/src/foundation/components/Image';
 import { Link } from '../../../_components/src/foundation/components/Link';
 import { Separator } from '../../../_components/src/foundation/components/Separator';
 import { Spacer } from '../../../_components/src/foundation/components/Spacer';
 import { Text } from '../../../_components/src/foundation/components/Text';
-import { useImage } from '../../../_components/src/foundation/hooks/useImage';
 import { Color, Space, Typography } from '../../../_components/src/foundation/styles/variables';
 
 import { BottomNavigator } from './internal/BottomNavigator';
@@ -64,9 +63,6 @@ export default async function Page ({params}: {params: {bookId: string}}){
 
   const [isFavorite, toggleFavorite] = useAtom(FavoriteBookAtomFamily(bookId));
 
-  const bookImageUrl = useImage({ height: 256, imageId: book.image.id, width: 192 });
-  const auhtorImageUrl = useImage({ height: 32, imageId: book.author.image.id, width: 32 });
-
   const handleFavClick = useCallback(() => {
     toggleFavorite();
   }, [toggleFavorite]);
@@ -78,9 +74,7 @@ export default async function Page ({params}: {params: {bookId: string}}){
     <Suspense fallback={<div>Loading...</div>}>
     <Box height="100%" position="relative" px={Space * 2}>
       <HeadingWrapper aria-label="作品情報">
-        {bookImageUrl != null && (
-          <Image alt={book.name} height={256} objectFit="cover" src={bookImageUrl} width={192} />
-        )}
+          <ImageRender alt={book.name} height={256} objectFit="cover" width={192} canvas={{ height: 256, imageId: book.image.id, width: 192 }}/>
         <Flex align="flex-start" direction="column" gap={Space * 1} justify="flex-end">
           <Box>
             <Text color={Color.MONO_100} typography={Typography.NORMAL20} weight="bold">
@@ -95,11 +89,9 @@ export default async function Page ({params}: {params: {bookId: string}}){
           <Spacer height={Space * 1} />
 
           <AuthorWrapper to={`/authors/${book.author.id}`}>
-            {auhtorImageUrl != null && (
               <AvatarWrapper>
-                <Image alt={book.author.name} height={32} objectFit="cover" src={auhtorImageUrl} width={32} />
+                <ImageRender alt={book.author.name} height={32} objectFit="cover" width={32} canvas={{ height: 32, imageId: book.author.image.id, width: 32 }}/>
               </AvatarWrapper>
-            )}
             <Text color={Color.MONO_100} typography={Typography.NORMAL14}>
               {book.author.name}
             </Text>

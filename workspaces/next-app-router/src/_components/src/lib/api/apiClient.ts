@@ -13,7 +13,7 @@
 // };
 
 
-const baseURL = 'http://localhost:8000'
+const baseURL = 'https://webspeed.anpan-playground.com'
 
 const wraperApiClient = {
   get: async <T>(url: string, query?: Record<string, unknown>):Promise<{data: T}>=> {
@@ -27,19 +27,22 @@ const wraperApiClient = {
     if (searchParams.toString()) {
       targetURL = targetURL + '?' + searchParams.toString()
     }
-    const fetched = await fetch((baseURL ?? '') + targetURL, {
+    const urlL = (baseURL ?? '') + targetURL
+    const fetched = await fetch(urlL, {
       headers: {
         'Content-Type': 'application/json'
       }
     })
+    // @ts-ignore
+    .catch((e:any) => {
+      console.log('e', e)
+    })
     let data;
-    console.log('url', targetURL)
     try {
     data = await fetched.json()
-    console.log('data', data)
     } catch (e) {
       // const fetch = await fetched.text()
-      console.error(fetch)
+      console.error('error', e, )
     }
     if (!data) {
       data = {}

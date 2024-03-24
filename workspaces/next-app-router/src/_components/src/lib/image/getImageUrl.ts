@@ -6,7 +6,7 @@ type Params = {
 };
 
 export function getImageUrl({ format, height, imageId, width }: Params): string {
-  const url = new URL(`/images/${imageId}`, location.href);
+  const url = new URL(`https://webspeed.anpan-playground.com/images/${imageId}`);
 
   url.searchParams.set('format', format);
   if (width != null) {

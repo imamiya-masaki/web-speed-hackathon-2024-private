@@ -2,14 +2,14 @@ import './episodelistitem.css'
 
 import { Box } from '../../../foundation/components/Box';
 import { Flex } from '../../../foundation/components/Flex';
-import { Image } from '../../../foundation/components/Image';
+import { ImageRender } from '../../../foundation/components/Image';
 import { Link } from '../../../foundation/components/Link';
 import { Separator } from '../../../foundation/components/Separator';
 import { Spacer } from '../../../foundation/components/Spacer';
 import { Text } from '../../../foundation/components/Text';
-import { useImage } from '../../../foundation/hooks/useImage';
 import { Color, Space, Typography } from '../../../foundation/styles/variables';
 import { useEpisode } from '../hooks/useEpisode';
+import { useMemo, useState } from 'react';
 
 const WrapperComponent: React.FC<{children: React.ReactNode}> = ({ children }) => (
   <li style={{ width: '100%' }}>
@@ -37,18 +37,14 @@ type Props = {
 export default async function EpisodeListItem ({ bookId, episodeId }: {bookId: string, episodeId: string})  {
   const episode  = await useEpisode({ params: { episodeId } });
 
-  const imageUrl = useImage({ height: 96, imageId: episode.image.id, width: 96 });
-
   return (
     <WrapperComponent>
       <LinkComponent to={`/books/${bookId}/episodes/${episode.id}`}>
         <Spacer height={Space * 1.5} />
         <Flex align="flex-start" gap={Space * 2.5} justify="flex-start">
-          {imageUrl != null && (
-            <ImgWrapperComponent>
-              <Image alt={episode.name} height={96} objectFit="cover" src={imageUrl} width={96} />
-            </ImgWrapperComponent>
-          )}
+          <ImgWrapperComponent>
+            <ImageRender alt={episode.name} height={96} objectFit="cover" width={96} canvas={{ height: 96, imageId: episode.image.id, width: 96 }}/>
+          </ImgWrapperComponent>
           <Box width="100%">
             <Flex align="flex-start" direction="column" gap={Space * 1} justify="flex-start">
               <Flex align="center" justify="flex-start">
