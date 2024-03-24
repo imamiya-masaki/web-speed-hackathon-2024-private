@@ -25,8 +25,8 @@ type AuthorApiClient = DomainSpecificApiClientInterface<{
 
 export const authorApiClient: AuthorApiClient = {
   delete: async ({ params }) => {
-    const response = await apiClient.delete(inject('api/v1/authors/:authorId', params)).json<DeleteAuthorResponse>();
-    return response;
+    const response = await apiClient.delete<DeleteAuthorResponse>(inject('api/v1/authors/:authorId', params));
+    return response.data;
   },
   delete$$key: (options) => [
     {
@@ -36,8 +36,8 @@ export const authorApiClient: AuthorApiClient = {
     options,
   ],
   fetch: async ({ params }) => {
-    const response = await apiClient.get(inject('api/v1/authors/:authorId', params)).json<GetAuthorResponse>();
-    return response;
+    const response = await apiClient.get<GetAuthorResponse>(inject('api/v1/authors/:authorId', params));
+    return response.data;
   },
   fetch$$key: (options) => [
     {
@@ -48,9 +48,8 @@ export const authorApiClient: AuthorApiClient = {
   ],
   fetchList: async ({ query }) => {
     const response = await apiClient
-      .get(inject('api/v1/authors', {}), { searchParams: query })
-      .json<GetAuthorListResponse>();
-    return response;
+      .get<GetAuthorListResponse>(inject('api/v1/authors', {}), { searchParams: query })
+    return response.data;
   },
   fetchList$$key: (options) => [
     {
@@ -60,8 +59,8 @@ export const authorApiClient: AuthorApiClient = {
     options,
   ],
   post: async ({ body }) => {
-    const response = await apiClient.post(inject('api/v1/authors', {}), { json: body }).json<PostAuthorResponse>();
-    return response;
+    const response = await apiClient.post<PostAuthorResponse>(inject('api/v1/authors', {}), body );
+    return response.data;
   },
   post$$key: (options) => [
     {
@@ -72,9 +71,8 @@ export const authorApiClient: AuthorApiClient = {
   ],
   update: async ({ body, params }) => {
     const response = await apiClient
-      .patch(inject('api/v1/authors/:authorId', params), { json: body })
-      .json<PatchAuthorResponse>();
-    return response;
+      .patch<PatchAuthorResponse>(inject('api/v1/authors/:authorId', params), { json: body });
+    return response.data;
   },
   update$$key: (options) => [
     {

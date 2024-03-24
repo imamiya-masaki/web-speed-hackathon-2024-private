@@ -26,9 +26,8 @@ type EpisodePageApiClient = DomainSpecificApiClientInterface<{
 export const episodePageApiClient: EpisodePageApiClient = {
   delete: async ({ params }) => {
     const response = await apiClient
-      .delete(inject('api/v1/episodePages/:episodePageId', params))
-      .json<DeleteEpisodePageResponse>();
-    return response;
+      .delete<DeleteEpisodePageResponse>(inject('api/v1/episodePages/:episodePageId', params));
+    return response.data;
   },
   delete$$key: (options) => [
     {
@@ -38,10 +37,8 @@ export const episodePageApiClient: EpisodePageApiClient = {
     options,
   ],
   fetch: async ({ params }) => {
-    const response = await apiClient
-      .get(inject('api/v1/episodePages/:episodePageId', params))
-      .json<GetEpisodePageResponse>();
-    return response;
+    const response = await apiClient.get<GetEpisodePageResponse>(inject('api/v1/episodePages/:episodePageId', params));
+    return response.data;
   },
   fetch$$key: (options) => [
     {
@@ -52,9 +49,8 @@ export const episodePageApiClient: EpisodePageApiClient = {
   ],
   fetchList: async ({ query }) => {
     const response = await apiClient
-      .get(inject('api/v1/episodePages', {}), { searchParams: query })
-      .json<GetEpisodePageListResponse>();
-    return response;
+      .get<GetEpisodePageListResponse>(inject('api/v1/episodePages', {}), { searchParams: query })
+    return response.data;
   },
   fetchList$$key: (options) => [
     {
@@ -65,9 +61,8 @@ export const episodePageApiClient: EpisodePageApiClient = {
   ],
   post: async ({ body }) => {
     const response = await apiClient
-      .post(inject('api/v1/episodePages', {}), { json: body })
-      .json<PostEpisodePageResponse>();
-    return response;
+      .post<PostEpisodePageResponse>(inject('api/v1/episodePages', {}),body );
+    return response.data;
   },
   post$$key: (options) => [
     {
@@ -78,9 +73,8 @@ export const episodePageApiClient: EpisodePageApiClient = {
   ],
   update: async ({ body, params }) => {
     const response = await apiClient
-      .patch(inject('api/v1/episodePages/:episodePageId', params), { json: body })
-      .json<PatchEpisodePageResponse>();
-    return response;
+      .patch<PatchEpisodePageResponse>(inject('api/v1/episodePages/:episodePageId', params),  body );
+    return response.data;
   },
   update$$key: (options) => [
     {

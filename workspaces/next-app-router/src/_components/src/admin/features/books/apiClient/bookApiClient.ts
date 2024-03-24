@@ -25,8 +25,8 @@ type BookApiClient = DomainSpecificApiClientInterface<{
 
 export const bookApiClient: BookApiClient = {
   delete: async ({ params }) => {
-    const response = await apiClient.delete(inject('api/v1/books/:bookId', params)).json<DeleteBookResponse>();
-    return response;
+    const response = await apiClient.delete<DeleteBookResponse>(inject('api/v1/books/:bookId', params));
+    return response.data;
   },
   delete$$key: (options) => [
     {
@@ -36,8 +36,8 @@ export const bookApiClient: BookApiClient = {
     options,
   ],
   fetch: async ({ params }) => {
-    const response = await apiClient.get(inject('api/v1/books/:bookId', params)).json<GetBookResponse>();
-    return response;
+    const response = await apiClient.get<GetBookResponse>(inject('api/v1/books/:bookId', params));
+    return response.data;
   },
   fetch$$key: (options) => [
     {
@@ -48,9 +48,8 @@ export const bookApiClient: BookApiClient = {
   ],
   fetchList: async ({ query }) => {
     const response = await apiClient
-      .get(inject('api/v1/books', {}), { searchParams: query })
-      .json<GetBookListResponse>();
-    return response;
+      .get<GetBookListResponse>(inject('api/v1/books', {}), { searchParams: query })
+    return response.data;
   },
   fetchList$$key: (options) => [
     {
@@ -60,8 +59,8 @@ export const bookApiClient: BookApiClient = {
     options,
   ],
   post: async ({ body }) => {
-    const response = await apiClient.post(inject('api/v1/books', {}), { json: body }).json<PostBookResponse>();
-    return response;
+    const response = await apiClient.post<PostBookResponse>(inject('api/v1/books', {}), body );
+    return response.data;
   },
   post$$key: (options) => [
     {
@@ -72,9 +71,8 @@ export const bookApiClient: BookApiClient = {
   ],
   update: async ({ body, params }) => {
     const response = await apiClient
-      .patch(inject('api/v1/books/:bookId', params), { json: body })
-      .json<PatchBookResponse>();
-    return response;
+      .patch<PatchBookResponse>(inject('api/v1/books/:bookId', params), { json: body })
+    return response.data;
   },
   update$$key: (options) => [
     {

@@ -25,7 +25,7 @@ type EpisodeApiClient = DomainSpecificApiClientInterface<{
 
 export const episodeApiClient: EpisodeApiClient = {
   delete: async ({ params }) => {
-    const response = await apiClient.delete(inject('api/v1/episodes/:episodeId', params)).json<DeleteEpisodeResponse>();
+    const response = await apiClient.delete<DeleteEpisodeResponse>(inject('api/v1/episodes/:episodeId', params));
     return response;
   },
   delete$$key: (options) => [
@@ -36,8 +36,8 @@ export const episodeApiClient: EpisodeApiClient = {
     options,
   ],
   fetch: async ({ params }) => {
-    const response = await apiClient.get(inject('api/v1/episodes/:episodeId', params)).json<GetEpisodeResponse>();
-    return response;
+    const response = await apiClient.get<GetEpisodeResponse>(inject('api/v1/episodes/:episodeId', params));
+    return response.data;
   },
   fetch$$key: (options) => [
     {
@@ -48,9 +48,8 @@ export const episodeApiClient: EpisodeApiClient = {
   ],
   fetchList: async ({ query }) => {
     const response = await apiClient
-      .get(inject('api/v1/episodes', {}), { searchParams: query })
-      .json<GetEpisodeListResponse>();
-    return response;
+      .get<GetEpisodeListResponse>(inject('api/v1/episodes', {}), { searchParams: query })
+    return response.data;
   },
   fetchList$$key: (options) => [
     {
@@ -60,8 +59,8 @@ export const episodeApiClient: EpisodeApiClient = {
     options,
   ],
   post: async ({ body }) => {
-    const response = await apiClient.post(inject('api/v1/episodes', {}), { json: body }).json<PostEpisodeResponse>();
-    return response;
+    const response = await apiClient.post<PostEpisodeResponse>(inject('api/v1/episodes', {}), body );
+    return response.data;
   },
   post$$key: (options) => [
     {
@@ -72,9 +71,8 @@ export const episodeApiClient: EpisodeApiClient = {
   ],
   update: async ({ body, params }) => {
     const response = await apiClient
-      .patch(inject('api/v1/episodes/:episodeId', params), { json: body })
-      .json<PatchEpisodeResponse>();
-    return response;
+      .patch<PatchEpisodeResponse>(inject('api/v1/episodes/:episodeId', params), body );
+    return response.data;
   },
   update$$key: (options) => [
     {

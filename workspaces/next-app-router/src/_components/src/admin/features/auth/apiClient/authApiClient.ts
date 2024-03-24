@@ -16,8 +16,8 @@ type AuthApiClient = DomainSpecificApiClientInterface<{
 
 export const authApiClient: AuthApiClient = {
   fetchAuthUser: async () => {
-    const response = await apiClient.get(inject('api/v1/admin/me', {})).json<UserResponse>();
-    return response;
+    const response = await apiClient.get<UserResponse>(inject('api/v1/admin/me', {}));
+    return response.data;
   },
   fetchAuthUser$$key: () => [
     {
@@ -27,11 +27,8 @@ export const authApiClient: AuthApiClient = {
   ],
   login: async ({ body }) => {
     const response = await apiClient
-      .post(inject('api/v1/admin/login', {}), {
-        json: body,
-      })
-      .json<LoginResponse>();
-    return response;
+      .post<LoginResponse>(inject('api/v1/admin/login', {}), body);
+    return response.data;
   },
   login$$key: (options) => [
     {
@@ -41,8 +38,8 @@ export const authApiClient: AuthApiClient = {
     options,
   ],
   logout: async () => {
-    const response = await apiClient.post(inject('api/v1/admin/logout', {})).json<LogoutResponse>();
-    return response;
+    const response = await apiClient.post<LogoutResponse>(inject('api/v1/admin/logout', {}), {});
+    return response.data;
   },
   logout$$key: () => [
     {

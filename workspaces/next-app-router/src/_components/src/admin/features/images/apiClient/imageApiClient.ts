@@ -18,11 +18,10 @@ export const imageApiClient: ImageApiClient = {
     formData.append('content', body.content);
 
     const response = await apiClient
-      .post(inject('api/v1/images', {}), {
-        body: formData,
-      })
-      .json<PostImageResponse>();
-    return response;
+      .post<PostImageResponse>(inject('api/v1/images', {}), 
+        formData,
+      );
+    return response.data;
   },
   post$$key: (options) => [
     {

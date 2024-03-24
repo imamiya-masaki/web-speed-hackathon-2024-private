@@ -1,5 +1,6 @@
 'use client'
 
+import NextImage from 'next/image'
 import { Image as ChakraImage } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
@@ -59,6 +60,6 @@ export const ComicPageImage: React.FC<Props> = ({ pageImageId }) => {
   }, [blob]);
 
   return (
-    <ChakraImage alt={blobUrl != null ? pageImageId : ''} height={304} objectFit="cover" src={blobUrl} width={216} />
+    <NextImage alt={blobUrl != null ? pageImageId : ''} height={304} objectFit="cover" src={blobUrl ?? ''} width={216} />
   );
 };
