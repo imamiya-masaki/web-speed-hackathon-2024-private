@@ -1,3 +1,5 @@
+'use client'
+
 import { animated, useSpring } from '@react-spring/web';
 import { useCallback } from 'react';
 
@@ -5,6 +7,8 @@ import { Link } from '../../../../_components/src/foundation/components/Link';
 import { Color, Radius, Space } from '../../../../_components/src/foundation/styles/variables';
 
 import { FavButton } from './FavButton';
+import { FavoriteBookAtomFamily } from '@/_components/src/features/book/atoms/FavoriteBookAtomFamily';
+import { useAtom } from 'jotai';
 
 // コンポーネントの定義
 const Wrapper: React.FC<{children: React.ReactNode}> = ({ children }) => (
@@ -50,20 +54,20 @@ const ReadLink: React.FC<{to: string, children: React.ReactNode}> = ({ to, child
 
 type Props = {
   bookId: string;
-  isFavorite: boolean;
   latestEpisodeId: string;
-  onClickFav: () => void;
 };
 
-export const BottomNavigator: React.FC<Props> = ({ bookId, isFavorite, latestEpisodeId, onClickFav }) => {
+export const BottomNavigator: React.FC<Props> = ({ bookId, latestEpisodeId }) => {
   const props = useSpring({
     from: { transform: 'translateY(100%)' },
     to: { transform: 'translateY(0)' },
   });
 
+  const [isFavorite, toggleFavorite] = useAtom(FavoriteBookAtomFamily(bookId));
+
   const handleFavClick = useCallback(() => {
-    onClickFav();
-  }, [onClickFav]);
+    toggleFavorite();
+  }, [toggleFavorite]);
 
   return (
     <Wrapper>

@@ -40,6 +40,8 @@ const wraperApiClient = {
     let data;
     try {
     data = await fetched.json()
+    //@ts-ignore
+    console.log('zot確認', data.error, urlL, query )
     } catch (e) {
       // const fetch = await fetched.text()
       console.error('error', e, )

@@ -1,10 +1,7 @@
-'use client'
 import "./books-bookid.css"
-import { useAtom } from 'jotai/react';
-import { Suspense, useCallback } from 'react';
+import { Suspense } from 'react';
 import invariant from 'tiny-invariant';
 
-import { FavoriteBookAtomFamily } from '../../../_components/src/features/book/atoms/FavoriteBookAtomFamily';
 import { useBook } from '../../../_components/src/features/book/hooks/useBook';
 import  EpisodeListItem from '../../../_components/src/features/episode/components/EpisodeListItem';
 import { useEpisodeList } from '../../../_components/src/features/episode/hooks/useEpisodeList';
@@ -56,17 +53,13 @@ const AvatarWrapper: React.FC<{children: React.ReactNode}> = ({ children }) => (
 
 export default async function Page ({params}: {params: {bookId: string}}){
   const { bookId } = params
+  console.log('bookId', bookId)
   invariant(bookId);
 
   const { data: book } = await useBook({ params: { bookId } });
   const  episodeList  = await useEpisodeList({ query: { bookId } });
 
-  const [isFavorite, toggleFavorite] = useAtom(FavoriteBookAtomFamily(bookId));
-
-  const handleFavClick = useCallback(() => {
-    toggleFavorite();
-  }, [toggleFavorite]);
-
+  console.log({episodeList})
   const latestEpisode = episodeList?.find((episode) => episode.chapter === 1);
 
   return (
@@ -101,9 +94,7 @@ export default async function Page ({params}: {params: {bookId: string}}){
 
       <BottomNavigator
         bookId={bookId}
-        isFavorite={isFavorite}
         latestEpisodeId={latestEpisode?.id ?? ''}
-        onClickFav={handleFavClick}
       />
 
       <Separator />

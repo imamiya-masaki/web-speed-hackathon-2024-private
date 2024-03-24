@@ -56,10 +56,14 @@ export const Separator: React.FC = () => {
 
     setImgUrl(canvas.toDataURL('image/png'));
   }, []);
-
-  return (
-    <Wrapper ref={wrapperRef}>
-      {imgUrl != null ? <SeparatorComponent ariaHidden={true} height={1} src={imgUrl} width="100%" /> : null}
-    </Wrapper>
-  );
+  if (wrapperRef.current) {
+    return (
+   
+      <Wrapper ref={wrapperRef}>
+        {imgUrl != null ? <SeparatorComponent ariaHidden={true} height={1} src={imgUrl} width="100%" /> : null}
+      </Wrapper>
+    );
+  } else {
+    return <></>
+  }
 };

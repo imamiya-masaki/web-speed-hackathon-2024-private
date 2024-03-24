@@ -5,6 +5,7 @@ type Props = {
 
 export const Link: React.FC<Props> = ({ children, to, ...rest }) => {
   return (
+    
     <a href={to} {...rest}>
       {children}
     </a>

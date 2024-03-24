@@ -1,6 +1,7 @@
+'use client'
 import "./comicviewercore.css"
 
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useMemo, useState } from 'react';
 import { useInterval, useUpdate } from 'react-use';
 
 import { addUnitIfNeeded } from '../../../lib/css/addUnitIfNeeded';
@@ -110,12 +111,18 @@ type Props = {
   episodeId: string;
 };
 
-export default async function ComicViewerCore ({ episodeId }: {episodeId: string}) {
+export default function ComicViewerCore ({ episodeId }: {episodeId: string}) {
   // 画面のリサイズに合わせて再描画する
   const rerender = useUpdate();
   useInterval(rerender, 0);
+  const [episode, setEpisode] = useState<Awaited<ReturnType<typeof useEpisode>> | undefined>(undefined);
 
-  const episode = await useEpisode({ params: { episodeId } });
+  useMemo(async() => {
+    const ep = await useEpisode({ params: { episodeId } });
+    setEpisode(ep)
+  }, [])
+  
+
 
   const [container, containerRef] = useState<HTMLDivElement | null>(null);
   const [scrollView, scrollViewRef] = useState<HTMLDivElement | null>(null);
@@ -223,9 +230,9 @@ export default async function ComicViewerCore ({ episodeId }: {episodeId: string
     <Suspense fallback={<div>Loading...</div>}>
     <ContainerComponent ref={containerRef}>
       <WrapperComponent ref={scrollViewRef} $paddingInline={viewerPaddingInline} $pageWidth={pageWidth}>
-        {episode.pages.map((page) => {
+        {episode ? episode.pages.map((page) => {
           return <ComicViewerPage key={page.id} pageImageId={page.image.id} />;
-        })}
+        }) : null}
       </WrapperComponent>
     </ContainerComponent>
     </Suspense>

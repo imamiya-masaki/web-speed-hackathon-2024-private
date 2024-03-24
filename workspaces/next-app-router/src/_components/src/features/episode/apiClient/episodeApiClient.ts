@@ -24,8 +24,9 @@ export const episodeApiClient: EpisodeApiClient = {
   }),
   fetchList: async ({ query }) => {
     const response = await apiClient.get<GetEpisodeListResponse>(inject('/api/v1/episodes', {}), {
-      params: query,
+     ...query,
     });
+    console.log('response', response.data)
     return response.data;
   },
   fetchList$$key: (options) => ({
