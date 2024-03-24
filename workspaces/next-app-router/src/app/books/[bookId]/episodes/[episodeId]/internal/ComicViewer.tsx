@@ -59,7 +59,7 @@ export const ComicViewer: React.FC<Props> = ({ episodeId }) => {
   return (
     <Container ref={ref}>
       <Wrapper $maxHeight={viewerHeight}>
-        {/*//@ts-expect-error */}
+        {/*/ //@ts-expect-error */}
         <ComicViewerCore episodeId={episodeId} />
       </Wrapper>
     </Container>
