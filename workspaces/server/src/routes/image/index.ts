@@ -126,6 +126,7 @@ app.get(
     });
 
     c.header('Content-Type', IMAGE_MIME_TYPE[resImgFormat]);
+    c.header('Cross-Origin-Resource-Policy', 'cross-origin')
     return c.body(resBinary);
   },
 );
