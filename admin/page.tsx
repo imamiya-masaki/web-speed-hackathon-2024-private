@@ -6,8 +6,8 @@ import { Flex } from '@chakra-ui/react';
 import { useAuthUser } from '../workspaces/next-app-router/src/_components/src/admin/features/auth/hooks/useAuthUser';
 import { CommonLayout } from '../workspaces/next-app-router/src/_components/src/admin/foundation/layouts/CommonLayout';
 
-import { LoginContent } from '../workspaces/next-app-router/src/_components/admin/internal/LoginContent';
-import { LogoutContent } from '../workspaces/next-app-router/src/_components/admin/internal/LogoutContent';
+import { LoginContent } from '../trash/admin/internal/LoginContent';
+import { LogoutContent } from '../trash/admin/internal/LogoutContent';
 
 export default async function Page(){
   const { data: user } = await useAuthUser();

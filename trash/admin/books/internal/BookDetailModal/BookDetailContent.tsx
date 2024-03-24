@@ -3,9 +3,9 @@ import { useCallback } from 'react';
 
 import type { GetBookResponse } from '@wsh-2024/schema/src/api/books/GetBookResponse';
 
-import { useBookList } from '../../../../src/admin/features/books/hooks/useBookList';
-import { useDeleteBook } from '../../../../src/admin/features/books/hooks/useDeleteBook';
-import { getImageUrl } from '../../../../src/admin/lib/image/getImageUrl';
+import { useBookList } from '../../../../../workspaces/next-app-router/src/_components/src/admin/features/books/hooks/useBookList';
+import { useDeleteBook } from '../../../../../workspaces/next-app-router/src/_components/src/admin/features/books/hooks/useDeleteBook';
+import { getImageUrl } from '../../../../../workspaces/next-app-router/src/_components/src/admin/lib/image/getImageUrl';
 
 type BookDetailContentProps = {
   book: GetBookResponse;

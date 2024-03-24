@@ -2,7 +2,7 @@ import { Box, Button, FormControl, FormErrorMessage, FormLabel, Heading, Input, 
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
-import { useLogin } from '../../src/admin/features/auth/hooks/useLogin';
+import { useLogin } from '../../../workspaces/next-app-router/src/_components/src/admin/features/auth/hooks/useLogin';
 
 export const LoginContent: React.FC = () => {
   const login = useLogin();

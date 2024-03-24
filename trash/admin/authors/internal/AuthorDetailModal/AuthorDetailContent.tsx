@@ -3,8 +3,8 @@ import { useCallback } from 'react';
 
 import type { GetAuthorResponse } from '@wsh-2024/schema/src/api/authors/GetAuthorResponse';
 
-import { useDeleteAuthor } from '../../../../src/admin/features/authors/hooks/useDeleteAuthor';
-import { getImageUrl } from '../../../../src/admin/lib/image/getImageUrl';
+import { useDeleteAuthor } from '../../../../../workspaces/next-app-router/src/_components/src/admin/features/authors/hooks/useDeleteAuthor';
+import { getImageUrl } from '../../../../../workspaces/next-app-router/src/_components/src/admin/lib/image/getImageUrl';
 
 type AuthorDetailContentProps = {
   author: GetAuthorResponse;

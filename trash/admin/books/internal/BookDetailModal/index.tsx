@@ -19,8 +19,8 @@ import {
 import Link from 'next/link'
 import { useToggle } from '@uidotdev/usehooks';
 
-import { useBook } from '../../../../src/admin/features/books/hooks/useBook';
-import { useEpisodeList } from '../../../../src/admin/features/episodes/hooks/useEpisodeList';
+import { useBook } from '../../../../../workspaces/next-app-router/src/_components/src/admin/features/books/hooks/useBook';
+import { useEpisodeList } from '../../../../../workspaces/next-app-router/src/_components/src/admin/features/episodes/hooks/useEpisodeList';
 
 import { BookDetailContent } from './BookDetailContent';
 import { BookEditContent } from './BookEditContent';
