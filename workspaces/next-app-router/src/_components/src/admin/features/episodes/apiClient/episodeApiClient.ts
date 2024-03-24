@@ -26,7 +26,7 @@ type EpisodeApiClient = DomainSpecificApiClientInterface<{
 export const episodeApiClient: EpisodeApiClient = {
   delete: async ({ params }) => {
     const response = await apiClient.delete<DeleteEpisodeResponse>(inject('api/v1/episodes/:episodeId', params));
-    return response;
+    return response.data;
   },
   delete$$key: (options) => [
     {

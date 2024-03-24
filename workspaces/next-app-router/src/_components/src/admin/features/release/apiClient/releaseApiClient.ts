@@ -11,8 +11,8 @@ type ReleaseApiClient = DomainSpecificApiClientInterface<{
 
 export const releaseApiClient: ReleaseApiClient = {
   fetchList: async () => {
-    const response = await apiClient.get(inject('api/v1/releases', {})).json<GetReleaseListResponse>();
-    return response;
+    const response = await apiClient.get<GetReleaseListResponse>(inject('api/v1/releases', {}));
+    return response.data;
   },
   fetchList$$key: () => [
     {
