@@ -1,3 +1,5 @@
+'use client'
+
 import * as Icons from '@mui/icons-material';
 
 type Props = {

@@ -1,22 +1,32 @@
-'use client'
-
-import styled from 'styled-components';
-
 import { SvgIcon } from '../../../../_components/src/features/icons/components/SvgIcon'
 import { Color, Space } from '../../../../_components/src/foundation/styles/variables';
+interface ButtonProps {
+  $outlined: boolean;
+  children: React.ReactNode;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void; // クリックイベントハンドラーも追加可能
+}
 
-const _Button = styled.button<{ $outlined: boolean }>`
-  border-radius: 50%;
-  background-color: ${({ $outlined }) => ($outlined ? `${Color.MONO_0}` : `${Color.SubFavorite}`)};
-  border: none;
-  padding: ${Space * 1}px;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-`;
+const Button: React.FC<ButtonProps> = ({ $outlined, children, onClick }) => {
+
+  const style = {
+    borderRadius: '50%',
+    backgroundColor: $outlined ? Color.MONO_0 : Color.SubFavorite,
+    border: 'none',
+    padding: `${Space * 1}px`,
+    width: '48px',
+    height: '48px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    cursor: 'pointer',
+  }
+  return (
+    <button style={style} onClick={onClick}>
+      {children}
+    </button>
+  );
+};
+
 
 type Props = {
   enabled?: boolean;
@@ -25,7 +35,7 @@ type Props = {
 
 export const FavButton: React.FC<Props> = ({ enabled, onClick }) => {
   return (
-    <_Button
+    <Button
       $outlined={!enabled}
       aria-label={enabled ? 'お気に入りを解除する' : 'お気に入りに追加する'}
       onClick={onClick}
@@ -36,6 +46,6 @@ export const FavButton: React.FC<Props> = ({ enabled, onClick }) => {
         type={enabled ? 'Favorite' : 'FavoriteBorder'}
         width={24}
       />
-    </_Button>
+    </Button>
   );
 };

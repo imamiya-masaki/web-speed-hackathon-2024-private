@@ -24,10 +24,10 @@ import { useFormik } from 'formik';
 import { useEffect, useRef, useState } from 'react';
 import * as yup from 'yup';
 
-import { useAuthorList } from '../../../../../admin/features/authors/hooks/useAuthorList';
-import { useCreateBook } from '../../../../../admin/features/books/hooks/useCreateBook';
-import { useReleaseList } from '../../../../../admin/features/release/hooks/useReleaseList';
-import { isSupportedImage } from '../../../../../admin/lib/image/isSupportedImage';
+import { useAuthorList } from '../../../../../_components/src/admin/features/authors/hooks/useAuthorList';
+import { useCreateBook } from '../../../../../_components/src/admin/features/books/hooks/useCreateBook';
+import { useReleaseList } from '../../../../../_components/src/admin/features/release/hooks/useReleaseList';
+import { isSupportedImage } from '../../../../../_components/src/admin/lib/image/isSupportedImage';
 
 type Props = {
   isOpen: boolean;

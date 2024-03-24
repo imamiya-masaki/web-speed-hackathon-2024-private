@@ -1,18 +1,33 @@
 'use client'
+
 import { useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
 
 import { Color } from '../styles/variables';
 
-const _Wrapper = styled.div`
-  width: 100%;
-`;
+const Wrapper: React.FC<{ children: React.ReactNode, ref:any }> = ({ children, ref }) => (
+  <div style={{ width: '100%' }} ref={ref}>
+    {children}
+  </div>
+);
 
-const _Separator = styled.img`
-  display: block;
-  width: 100%;
-  height: 1px;
-`;
+const SeparatorComponent: React.FC<{ src: string; alt?: string, ariaHidden: any, height: any, width:any }> = ({ src, alt, ariaHidden, height, width }) => (
+  <img 
+    src={src} 
+    alt={alt} 
+    style={{ 
+      display: 'block', 
+      width: '100%', 
+      height: '1px' 
+    }}
+    aria-hidden={ariaHidden}
+    height={
+      height
+    }
+    width={
+      width
+    }
+  />
+);
 
 export const Separator: React.FC = () => {
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -43,8 +58,8 @@ export const Separator: React.FC = () => {
   }, []);
 
   return (
-    <_Wrapper ref={wrapperRef}>
-      {imgUrl != null ? <_Separator aria-hidden={true} height={1} src={imgUrl} width="100%" /> : null}
-    </_Wrapper>
+    <Wrapper ref={wrapperRef}>
+      {imgUrl != null ? <SeparatorComponent ariaHidden={true} height={1} src={imgUrl} width="100%" /> : null}
+    </Wrapper>
   );
 };

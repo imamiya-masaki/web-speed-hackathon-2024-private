@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import './booklist.css'
 
 import { Box } from '../../../foundation/components/Box';
 import { Flex } from '../../../foundation/components/Flex';
@@ -8,43 +8,47 @@ import { Separator } from '../../../foundation/components/Separator';
 import { Spacer } from '../../../foundation/components/Spacer';
 import { Text } from '../../../foundation/components/Text';
 import { useImage } from '../../../foundation/hooks/useImage';
-import { Color, Radius, Space, Typography } from '../../../foundation/styles/variables';
+import { Color, Space, Typography } from '../../../foundation/styles/variables';
 import { useBook } from '../hooks/useBook';
 
-const _Wrapper = styled.li`
-  width: 100%;
-`;
 
-const _Link = styled(Link)`
-  width: 100%;
-`;
+const WrapperComponent: React.FC<{children: React.ReactNode}> = ({ children }) => (
+  <li style={{ width: '100%' }}>
+    {children}
+  </li>
+);
 
-const _ImgWrapper = styled.div`
-  width: 64px;
-  height: 64px;
-  > img {
-    border-radius: ${Radius.SMALL};
-  }
-`;
+const LinkComponent: React.FC<{to: string; children: React.ReactNode}> = ({ to, children }) => (
+  <Link to={to} style={{ width: '100%' }}>
+    {children}
+  </Link>
+);
+
+const ImgWrapperComponent: React.FC<{children: React.ReactNode}> = ({ children }) => (
+  <div className="booklistitemImgWrapper" style={{ width: '64px', height: '64px' }}>
+    {children}
+  </div>
+);
 
 type Props = {
   bookId: string;
 };
 
-export const BookListItem: React.FC<Props> = ({ bookId }) => {
-  const { data: book } = useBook({ params: { bookId } });
+// 
+export default async function BookListItem({ bookId }: {bookId: string}) {
+  const { data: book } = await useBook({ params: { bookId } });
 
   const imageUrl = useImage({ height: 64, imageId: book.image.id, width: 64 });
 
   return (
-    <_Wrapper>
-      <_Link href={`/books/${book.id}`}>
+    <WrapperComponent>
+      <LinkComponent to={`/books/${book.id}`}>
         <Spacer height={Space * 1.5} />
         <Flex align="flex-start" gap={Space * 2.5} justify="flex-start">
           {imageUrl != null && (
-            <_ImgWrapper>
+            <ImgWrapperComponent>
               <Image alt={book.name} height={64} objectFit="cover" src={imageUrl} width={64} />
-            </_ImgWrapper>
+            </ImgWrapperComponent>
           )}
           <Box width="100%">
             <Flex align="flex-start" direction="column" gap={Space * 1} justify="flex-start">
@@ -59,7 +63,7 @@ export const BookListItem: React.FC<Props> = ({ bookId }) => {
         </Flex>
         <Spacer height={Space * 1.5} />
         <Separator />
-      </_Link>
-    </_Wrapper>
+      </LinkComponent>
+    </WrapperComponent>
   );
 };

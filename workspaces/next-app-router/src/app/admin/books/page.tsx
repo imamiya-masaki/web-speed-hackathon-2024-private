@@ -1,3 +1,5 @@
+'use client'
+
 import {
   Button,
   Divider,
@@ -22,9 +24,9 @@ import { useId, useMemo, useState } from 'react';
 import _ from 'underscore';
 import { create } from 'zustand';
 
-import { useBookList } from '../../../admin/features/books/hooks/useBookList';
-import { CommonLayout } from '../../../admin/foundation/layouts/CommonLayout';
-import { isContains } from '../../../admin/lib/filter/isContains';
+import { useBookList } from '../../../_components/src/admin/features/books/hooks/useBookList';
+import { CommonLayout } from '../../../_components/src/admin/foundation/layouts/CommonLayout';
+import { isContains } from '../../../_components/src/admin/lib/filter/isContains';
 
 import { BookDetailModal } from './internal/BookDetailModal';
 import { CreateBookModal } from './internal/CreateBookModal';
@@ -64,9 +66,9 @@ type BookModalAction = {
   openDetail: (bookId: string) => void;
 };
 
-export const BookListPage: React.FC = () => {
-  const { data: bookList = [] } = useBookList();
-  const bookListA11yId = useId();
+export default async function Page () {
+  const { data: bookList = [] } = await useBookList();
+  const bookListA11yId = "bookListA11yId";
 
   const formik = useFormik({
     initialValues: {

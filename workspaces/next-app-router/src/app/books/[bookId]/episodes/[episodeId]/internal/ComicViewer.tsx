@@ -3,9 +3,8 @@
 import _ from 'lodash';
 import { useState } from 'react';
 import { useInterval, useUpdate } from 'react-use';
-import styled from 'styled-components';
 
-import { ComicViewerCore } from '../../../../../../_components/src/features/viewer/components/ComicViewerCore';
+import ComicViewerCore from '../../../../../../_components/src/features/viewer/components/ComicViewerCore';
 import { addUnitIfNeeded } from '../../../../../../_components/src/lib/css/addUnitIfNeeded';
 
 const IMAGE_WIDTH = 1075;
@@ -16,19 +15,23 @@ const MAX_VIEWER_HEIGHT = 650;
 
 const MIN_PAGE_WIDTH = _.floor((MIN_VIEWER_HEIGHT / IMAGE_HEIGHT) * IMAGE_WIDTH);
 
-const _Container = styled.div`
-  position: relative;
-`;
+const Container: React.FC<{children: React.ReactNode, ref:any}> = ({ ref, children }) => (
+  <div style={{ position: 'relative' }} ref={ref}>
+    {children}
+  </div>
+);
 
-const _Wrapper = styled.div<{
-  $maxHeight: number;
-}>`
-  display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: 100%;
-  max-height: ${({ $maxHeight }) => addUnitIfNeeded($maxHeight)};
-  overflow: hidden;
-`;
+const Wrapper: React.FC<{children: React.ReactNode; $maxHeight: number | string}> = ({ children, $maxHeight }) => (
+  <div style={{
+    display: 'grid',
+    gridTemplateColumns: '100%',
+    gridTemplateRows: '100%',
+    maxHeight: addUnitIfNeeded($maxHeight),
+    overflow: 'hidden',
+  }}>
+    {children}
+  </div>
+);
 
 type Props = {
   episodeId: string;
@@ -54,10 +57,11 @@ export const ComicViewer: React.FC<Props> = ({ episodeId }) => {
   const viewerHeight = _.clamp(candidatePageHeight, MIN_VIEWER_HEIGHT, MAX_VIEWER_HEIGHT);
 
   return (
-    <_Container ref={ref}>
-      <_Wrapper $maxHeight={viewerHeight}>
+    <Container ref={ref}>
+      <Wrapper $maxHeight={viewerHeight}>
+        {/*//@ts-expect-error */}
         <ComicViewerCore episodeId={episodeId} />
-      </_Wrapper>
-    </_Container>
+      </Wrapper>
+    </Container>
   );
 };

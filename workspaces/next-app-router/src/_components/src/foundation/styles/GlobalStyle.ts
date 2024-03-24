@@ -1,16 +1,14 @@
-import { createGlobalStyle } from 'styled-components';
-import reset from 'styled-reset';
 
-import { Color } from './variables';
+// import { Color } from './variables';
 
-export const GlobalStyle = createGlobalStyle`
-  ${reset}
+// export const GlobalStyle = createGlobalStyle`
+//   ${reset}
 
-  body {
-    background-color: ${Color.MONO_A};
-  }
+//   body {
+//     background-color: ${Color.MONO_A};
+//   }
 
-  a {
-    text-decoration: none;
-  }
-`;
+//   a {
+//     text-decoration: none;
+//   }
+// `;

@@ -17,8 +17,8 @@ import {
 } from '@chakra-ui/react';
 import { useToggle } from '@uidotdev/usehooks';
 
-import { useAuthor } from '../../../../../admin/features/authors/hooks/useAuthor';
-import { useBookList } from '../../../../../admin/features/books/hooks/useBookList';
+import { useAuthor } from '../../../../../_components/src/admin/features/authors/hooks/useAuthor';
+import { useBookList } from '../../../../../_components/src/admin/features/books/hooks/useBookList';
 
 import { AuthorDetailContent } from './AuthorDetailContent';
 import { AuthorEditContent } from './AuthorEditContent';

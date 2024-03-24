@@ -19,8 +19,8 @@ import {
 import { Link } from '@tanstack/react-router';
 import { useToggle } from '@uidotdev/usehooks';
 
-import { useBook } from '../../../../../admin/features/books/hooks/useBook';
-import { useEpisodeList } from '../../../../../admin/features/episodes/hooks/useEpisodeList';
+import { useBook } from '../../../../../_components/src/admin/features/books/hooks/useBook';
+import { useEpisodeList } from '../../../../../_components/src/admin/features/episodes/hooks/useEpisodeList';
 
 import { BookDetailContent } from './BookDetailContent';
 import { BookEditContent } from './BookEditContent';

@@ -20,8 +20,8 @@ import * as yup from 'yup';
 
 import type { GetAuthorResponse } from '@wsh-2024/schema/src/api/authors/GetAuthorResponse';
 
-import { useUpdateAuthor } from '../../../../../admin/features/authors/hooks/useUpdateAuthor';
-import { isSupportedImage } from '../../../../../admin/lib/image/isSupportedImage';
+import { useUpdateAuthor } from '../../../../../_components/src/admin/features/authors/hooks/useUpdateAuthor';
+import { isSupportedImage } from '../../../../../_components/src/admin/lib/image/isSupportedImage';
 
 type AuthorEditContentProps = {
   author: GetAuthorResponse;

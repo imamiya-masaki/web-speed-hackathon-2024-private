@@ -1,7 +1,7 @@
 'use client'
 
+import './featurecard.css'
 import { Suspense } from 'react';
-import { styled } from 'styled-components';
 
 import { Flex } from '../../../foundation/components/Flex';
 import { Image } from '../../../foundation/components/Image';
@@ -11,59 +11,64 @@ import { useImage } from '../../../foundation/hooks/useImage';
 import { Color, Radius, Space, Typography } from '../../../foundation/styles/variables';
 import { useBook } from '../../book/hooks/useBook';
 
-const _Wrapper = styled(Link)`
-  display: grid;
-  gap: ${Space * 1}px;
-  background-color: ${Color.MONO_A};
-  padding: ${Space * 1.5}px;
-  border-radius: ${Radius.SMALL};
-  grid-template-columns: auto 1fr;
-  flex-shrink: 0;
-  border: 1px solid ${Color.MONO_30};
-`;
+const WrapperComponent: React.FC<{to: string; children: React.ReactNode}> = ({ to, children }) => (
+  <Link to={to} style={{
+    display: 'grid',
+    gap: `${Space}px`,
+    backgroundColor: Color.MONO_A,
+    padding: `${Space * 1.5}px`,
+    borderRadius: Radius.SMALL,
+    gridTemplateColumns: 'auto 1fr',
+    flexShrink: 0,
+    border: `1px solid ${Color.MONO_30}`,
+  }}>
+    {children}
+  </Link>
+);
 
-const _ImgWrapper = styled.div`
-  width: 96px;
-  height: 96px;
-  > img {
-    border-radius: ${Radius.SMALL};
-  }
-`;
+const ImgWrapperComponent: React.FC<{children: React.ReactNode}> = ({ children }) => (
+  <div className="FeatureCardImgWrapper" style={{ width: '96px', height: '96px' }}>
+    {children}
+  </div>
+);
 
-const _ContentWrapper = styled.div`
-  display: grid;
-  gap: ${Space * 1}px;
-  max-width: 200px;
-  width: 100%;
-`;
+const ContentWrapperComponent: React.FC<{children: React.ReactNode}> = ({ children }) => (
+  <div style={{
+    display: 'grid',
+    gap: `${Space}px`,
+    maxWidth: '200px',
+    width: '100%',
+  }}>
+    {children}
+  </div>
+);
 
-const _AvatarWrapper = styled.div`
-  width: 32px;
-  height: 32px;
-  > img {
-    border-radius: 50%;
-  }
-`;
+const AvatarWrapperComponent: React.FC<{children: React.ReactNode}> = ({ children }) => (
+  <div className="FeatureCardAvatarWrapper" style={{ width: '32px', height: '32px' }}>
+    {children}
+  </div>
+);
 
 type Props = {
   bookId: string;
 };
 
-const FeatureCard: React.FC<Props> = ({ bookId }) => {
-  const { data: book } = useBook({ params: { bookId } });
+export default async function FeatureCard ({ bookId }: {bookId: string}){
+  const { data: book } = await useBook({ params: { bookId } });
 
   const imageUrl = useImage({ height: 96, imageId: book.image.id, width: 96 });
   const authorImageUrl = useImage({ height: 32, imageId: book.author.image.id, width: 32 });
 
   return (
-    <_Wrapper href={`/books/${bookId}`}>
+    <Suspense fallback={null}>
+    <WrapperComponent to={`/books/${bookId}`}>
       {imageUrl != null && (
-        <_ImgWrapper>
+        <ImgWrapperComponent>
           <Image alt={book.image.alt} height={96} objectFit="cover" src={imageUrl} width={96} />
-        </_ImgWrapper>
+        </ImgWrapperComponent>
       )}
 
-      <_ContentWrapper>
+      <ContentWrapperComponent>
         <Text color={Color.MONO_100} typography={Typography.NORMAL16} weight="bold">
           {book.name}
         </Text>
@@ -73,25 +78,16 @@ const FeatureCard: React.FC<Props> = ({ bookId }) => {
 
         <Flex align="center" gap={Space * 1} justify="flex-end">
           {authorImageUrl != null && (
-            <_AvatarWrapper>
+            <AvatarWrapperComponent>
               <Image alt={book.author.name} height={32} objectFit="cover" src={authorImageUrl} width={32} />
-            </_AvatarWrapper>
+            </AvatarWrapperComponent>
           )}
           <Text color={Color.MONO_100} typography={Typography.NORMAL14}>
             {book.author.name}
           </Text>
         </Flex>
-      </_ContentWrapper>
-    </_Wrapper>
-  );
-};
-
-const FeatureCardWithSuspense: React.FC<Props> = (props) => {
-  return (
-    <Suspense fallback={null}>
-      <FeatureCard {...props} />
+      </ContentWrapperComponent>
+    </WrapperComponent>
     </Suspense>
   );
 };
-
-export { FeatureCardWithSuspense as FeatureCard };

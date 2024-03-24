@@ -1,41 +1,52 @@
-'use client'
-
 import { animated, useSpring } from '@react-spring/web';
 import { useCallback } from 'react';
-import { styled } from 'styled-components';
 
 import { Link } from '../../../../_components/src/foundation/components/Link';
 import { Color, Radius, Space } from '../../../../_components/src/foundation/styles/variables';
 
 import { FavButton } from './FavButton';
 
-const _Wrapper = styled.div`
-  position: fixed;
-  bottom: ${Space * 4}px;
-  left: 50%;
-  transform: translateX(-50%);
-`;
+// コンポーネントの定義
+const Wrapper: React.FC<{children: React.ReactNode}> = ({ children }) => (
+  <div style={{
+    position: 'fixed',
+    bottom: `${Space * 4}px`,
+    left: '50%',
+    transform: 'translateX(-50%)',
+  }}>
+    {children}
+  </div>
+);
 
-const _Content = styled.div`
-  display: flex;
-  gap: ${Space * 1}px;
-  justify-content: center;
-  min-width: 296px;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-  padding: ${Space * 1}px;
-  border-radius: calc(${Radius.X_LARGE} + ${Space * 1}px);
-  background-color: ${Color.MONO_A};
-`;
+const Content: React.FC<{children: React.ReactNode}> = ({ children }) => (
+  <div style={{
+    display: 'flex',
+    gap: `${Space}px`,
+    justifyContent: 'center',
+    minWidth: '296px',
+    boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)',
+    padding: `${Space}px`,
+    borderRadius: `calc(${Radius.X_LARGE} + ${Space}px)`,
+    backgroundColor: Color.MONO_A,
+  }}>
+    {children}
+  </div>
+);
 
-const _ReadLink = styled(Link)`
-  display: block;
-  border-radius: ${Radius.X_LARGE};
-  background-color: ${Color.Primary};
-  padding: ${Space * 2}px ${Space * 8}px;
-  font-weight: bold;
-  color: ${Color.MONO_100};
-  flex-shrink: 0;
-`;
+// ReadLinkコンポーネントのpropsの型を直接定義
+const ReadLink: React.FC<{to: string, children: React.ReactNode}> = ({ to, children }) => (
+  <Link to={to} style={{
+    display: 'block',
+    borderRadius: Radius.X_LARGE,
+    backgroundColor: Color.Primary,
+    padding: `${Space * 2}px ${Space * 8}px`,
+    fontWeight: 'bold',
+    color: Color.MONO_100,
+    flexShrink: 0,
+  }}>
+    {children}
+  </Link>
+);
 
 type Props = {
   bookId: string;
@@ -55,13 +66,13 @@ export const BottomNavigator: React.FC<Props> = ({ bookId, isFavorite, latestEpi
   }, [onClickFav]);
 
   return (
-    <_Wrapper>
+    <Wrapper>
       <animated.div style={props}>
-        <_Content>
+        <Content>
           <FavButton enabled={isFavorite} onClick={handleFavClick} />
-          <_ReadLink to={`/books/${bookId}/episodes/${latestEpisodeId}`}>最新話を読む</_ReadLink>
-        </_Content>
+          <ReadLink to={`/books/${bookId}/episodes/${latestEpisodeId}`}>最新話を読む</ReadLink>
+        </Content>
       </animated.div>
-    </_Wrapper>
+    </Wrapper>
   );
 };

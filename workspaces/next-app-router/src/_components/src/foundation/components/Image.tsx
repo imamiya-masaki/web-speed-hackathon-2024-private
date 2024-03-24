@@ -1,20 +1,29 @@
 'use client'
 
 import type * as CSS from 'csstype';
-import styled from 'styled-components';
 
 import { addUnitIfNeeded } from '../../lib/css/addUnitIfNeeded';
 
-const _Image = styled.img<{
+const ImageComponent: React.FC<{
+  src?: string;
+  alt?: string;
   $height: number | string;
-  $objectFit: string;
+  $objectFit:CSS.Property.ObjectFit;
   $width: number | string;
-}>`
-  object-fit: ${({ $objectFit }) => $objectFit};
-  width: ${({ $width }) => addUnitIfNeeded($width)};
-  height: ${({ $height }) => addUnitIfNeeded($height)};
-  display: block;
-`;
+  loading:  "eager" | "lazy"
+}> = ({ src, alt, $height, $objectFit, $width, loading }) => (
+  <img 
+    src={src} 
+    alt={alt} 
+    style={{ 
+      objectFit: $objectFit,
+      width: addUnitIfNeeded($width),
+      height: addUnitIfNeeded($height),
+      display: 'block',
+    }} 
+    loading={loading}
+  />
+);
 
 type Props = {
   height: number | string;
@@ -23,5 +32,5 @@ type Props = {
 } & JSX.IntrinsicElements['img'];
 
 export const Image: React.FC<Props> = ({ height, loading = 'eager', objectFit, width, ...rest }) => {
-  return <_Image {...rest} $height={height} $objectFit={objectFit} $width={width} loading={loading} />;
+  return <ImageComponent {...rest} $height={height} $objectFit={objectFit} $width={width} loading={loading} />;
 };

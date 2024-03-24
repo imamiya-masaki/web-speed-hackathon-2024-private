@@ -1,3 +1,5 @@
+'use client'
+
 import {
   Button,
   Divider,
@@ -63,9 +65,9 @@ type AuthorModalAction = {
   openDetail: (authorId: string) => void;
 };
 
-export const AuthorListPage: React.FC = () => {
-  const { data: authorList = [] } = useAuthorList();
-  const authorListA11yId = useId();
+export default async function Page() {
+  const { data: authorList = [] } = await useAuthorList();
+  const authorListA11yId = "authorListA11yId";
 
   const formik = useFormik({
     initialValues: {

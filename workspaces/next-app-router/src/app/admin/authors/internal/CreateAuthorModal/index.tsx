@@ -22,8 +22,8 @@ import { useFormik } from 'formik';
 import { useEffect, useRef, useState } from 'react';
 import * as yup from 'yup';
 
-import { useCreateAuthor } from '../../../../../admin/features/authors/hooks/useCreateAuthor';
-import { isSupportedImage } from '../../../../../admin/lib/image/isSupportedImage';
+import { useCreateAuthor } from '../../../../../_components/src/admin/features/authors/hooks/useCreateAuthor';
+import { isSupportedImage } from '../../../../../_components/src/admin/lib/image/isSupportedImage';
 
 export type Props = {
   isOpen: boolean;

@@ -9,11 +9,11 @@ import { StaticRouter } from 'react-router-dom/server';
 import { ServerStyleSheet } from 'styled-components';
 import { unstable_serialize } from 'swr';
 
-import { featureApiClient } from '@wsh-2024/web-speed/src/features/feature/apiClient/featureApiClient';
-import { rankingApiClient } from '@wsh-2024/web-speed/src/features/ranking/apiClient/rankingApiClient';
-import { releaseApiClient } from '@wsh-2024/web-speed/src/features/release/apiClient/releaseApiClient';
-import  ClientApp  from '@wsh-2024/web-speed/src/pages/_app';
-import { getDayOfWeekStr } from '@wsh-2024/web-speed/src/lib/date/getDayOfWeekStr';
+import { featureApiClient } from '@wsh-2024/web-speed/src/_components/src/features/feature/apiClient/featureApiClient';
+import { rankingApiClient } from '@wsh-2024/web-speed/src/_components/src/features/ranking/apiClient/rankingApiClient';
+import { releaseApiClient } from '@wsh-2024/web-speed/src/_components/src/features/release/apiClient/releaseApiClient';
+import  ClientApp  from '@wsh-2024/web-speed/src/app/page';
+import { getDayOfWeekStr } from '@wsh-2024/web-speed/src/_components/src/lib/date/getDayOfWeekStr';
 
 import { INDEX_HTML_PATH } from '../../constants/paths';
 

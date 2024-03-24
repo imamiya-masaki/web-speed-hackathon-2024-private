@@ -1,18 +1,17 @@
-'use client'
-
-import styled from 'styled-components';
-
 import { Color, Radius, Space } from '../../../_components/src/foundation/styles/variables';
 
-const _Input = styled.input`
-  border-radius: ${Radius.X_LARGE};
-  width: calc(100% - ${Space * 2}px);
-  padding: ${Space * 1}px;
-  border: 2px solid ${Color.MONO_60};
-`;
+// スタイルを JavaScript オブジェクトとして定義
+const inputStyle: React.CSSProperties = {
+  borderRadius: Radius.X_LARGE,
+  width: `calc(100% - ${Space * 2}px)`,
+  padding: `${Space * 1}px`,
+  border: `2px solid ${Color.MONO_60}`,
+};
 
+// Input コンポーネントの Props の型を定義
 type Props = JSX.IntrinsicElements['input'];
 
-export const Input: React.FC<Props> = ({ ...rest }) => {
-  return <_Input {...rest} placeholder="作品名を入力" />;
+// Input コンポーネントの定義
+export const Input: React.FC<Props> = (props) => {
+  return <input style={inputStyle} {...props} placeholder="作品名を入力" />;
 };

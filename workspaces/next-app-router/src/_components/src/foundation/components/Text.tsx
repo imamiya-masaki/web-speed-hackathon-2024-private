@@ -1,11 +1,10 @@
 
 import type * as CSS from 'csstype';
 import React from 'react';
-// import styled from 'styled-components';
 
 import type { Color, Typography } from '../styles/variables';
 
-// const _Text = styled.span<{
+// const _Text = .span<{
 //   $color: string;
 //   $flexGrow?: CSS.Property.FlexGrow;
 //   $flexShrink?: CSS.Property.FlexShrink;

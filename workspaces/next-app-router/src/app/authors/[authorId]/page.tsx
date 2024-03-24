@@ -1,13 +1,10 @@
-'use client'
+import "./authorsImage.css"
 
-import { Suspense, useId } from 'react';
-import { useParams } from 'react-router-dom';
-import type { RouteParams } from 'regexparam';
-import { styled } from 'styled-components';
+import { Suspense } from 'react';
 import invariant from 'tiny-invariant';
 
 import { useAuthor } from '../../../_components/src/features/author/hooks/useAuthor';
-import { BookListItem } from '../../../_components/src/features/book/components/BookListItem';
+import  BookListItem from '../../../_components/src/features/book/components/BookListItem';
 import { Box } from '../../../_components/src/foundation/components/Box';
 import { Flex } from '../../../_components/src/foundation/components/Flex';
 import { Image } from '../../../_components/src/foundation/components/Image';
@@ -17,38 +14,42 @@ import { Text } from '../../../_components/src/foundation/components/Text';
 import { useImage } from '../../../_components/src/foundation/hooks/useImage';
 import { Color, Space, Typography } from '../../../_components/src/foundation/styles/variables';
 
-const _HeadingWrapper = styled.section`
-  display: grid;
-  align-items: start;
-  grid-template-columns: auto 1fr;
-  padding-bottom: ${Space * 2}px;
-  gap: ${Space * 2}px;
-`;
 
-const _AuthorImageWrapper = styled.div`
-  width: 128px;
-  height: 128px;
-  > img {
-    border-radius: 50%;
-  }
-`;
+const HeadingWrapper: React.FC<{children: React.ReactNode}> = ({ children }) => (
+  <section style={{
+    display: 'grid',
+    alignItems: 'start',
+    gridTemplateColumns: 'auto 1fr',
+    paddingBottom: `${Space * 2}px`,
+    gap: `${Space * 2}px`,
+  }}>
+    {children}
+  </section>
+);
 
-const AuthorDetailPage: React.FC = () => {
-  const { authorId } = useParams<RouteParams<'/authors/:authorId'>>();
+const AuthorImageWrapper: React.FC<{children: React.ReactNode}> = ({ children }) => (
+  <div className="authorImageWrapper">
+    {children}
+  </div>
+);
+
+
+export default async function Page ({ params: {authorId} }: {params: { authorId: string }}) {
   invariant(authorId);
 
-  const { data: author } = useAuthor({ params: { authorId } });
+  const { data: author } = await useAuthor({ params: { authorId } });
 
   const imageUrl = useImage({ height: 128, imageId: author.image.id, width: 128 });
-  const bookListA11yId = useId();
+  const bookListA11yId = `bookListA11yId`;
 
   return (
+    <Suspense fallback={null}>
     <Box height="100%" px={Space * 2}>
-      <_HeadingWrapper aria-label="作者情報">
+      <HeadingWrapper aria-label="作者情報">
         {imageUrl != null && (
-          <_AuthorImageWrapper>
+          <AuthorImageWrapper>
             <Image key={author.id} alt={author.name} height={128} objectFit="cover" src={imageUrl} width={128} />
-          </_AuthorImageWrapper>
+          </AuthorImageWrapper>
         )}
 
         <Flex align="flex-start" direction="column" gap={Space * 1} justify="flex-start">
@@ -59,7 +60,7 @@ const AuthorDetailPage: React.FC = () => {
             {author.description}
           </Text>
         </Flex>
-      </_HeadingWrapper>
+      </HeadingWrapper>
 
       <Separator />
 
@@ -72,6 +73,7 @@ const AuthorDetailPage: React.FC = () => {
 
         <Flex align="center" as="ul" direction="column" justify="center">
           {author.books.map((book) => (
+            //  @ts-expect-error Server Component
             <BookListItem key={book.id} bookId={book.id} />
           ))}
           {author.books.length === 0 && (
@@ -85,15 +87,6 @@ const AuthorDetailPage: React.FC = () => {
         </Flex>
       </Box>
     </Box>
-  );
-};
-
-const AuthorDetailPageWithSuspense: React.FC = () => {
-  return (
-    <Suspense fallback={null}>
-      <AuthorDetailPage />
     </Suspense>
   );
 };
-
-export { AuthorDetailPageWithSuspense as AuthorDetailPage };

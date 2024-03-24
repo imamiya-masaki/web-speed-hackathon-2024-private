@@ -20,8 +20,8 @@ import * as yup from 'yup';
 
 import type { GetBookResponse } from '@wsh-2024/schema/src/api/books/GetBookResponse';
 
-import { useUpdateBook } from '../../../../../admin/features/books/hooks/useUpdateBook';
-import { isSupportedImage } from '../../../../../admin/lib/image/isSupportedImage';
+import { useUpdateBook } from '../../../../../_components/src/admin/features/books/hooks/useUpdateBook';
+import { isSupportedImage } from '../../../../../_components/src/admin/lib/image/isSupportedImage';
 
 type BookEditContentProps = {
   book: GetBookResponse;

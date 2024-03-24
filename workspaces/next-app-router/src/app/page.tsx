@@ -2,9 +2,9 @@ import _ from 'lodash';
 import moment from 'moment-timezone';
 
 import { BookCard } from '../_components/src/features/book/components/BookCard';
-import { FeatureCard } from '../_components/src/features/feature/components/FeatureCard';
+import FeatureCard from '../_components/src/features/feature/components/FeatureCard';
 import { useFeatureList } from '../_components/src/features/feature/hooks/useFeatureList';
-import { RankingCard } from '../_components/src/features/ranking/components/RankingCard';
+import  RankingCard from '../_components/src/features/ranking/components/RankingCard';
 import { useRankingList } from '../_components/src/features/ranking/hooks/useRankingList';
 import { useRelease } from '../_components/src/features/release/hooks/useRelease';
 import { Box } from '../_components/src/foundation/components/Box';
@@ -29,7 +29,7 @@ export default async function Page() {
   const rankingA11yId = 'rankingA11yId';
   const todayA11yId = 'todayA11yId';
 
-  console.log({pickupA11yId, rankingA11yId, todayA11yId})
+  console.log({featureList})
 
   return (
     <CommonLayout>
@@ -46,6 +46,7 @@ export default async function Page() {
           <Box maxWidth="100%" overflowX="scroll" overflowY="hidden">
             <Flex align="stretch" direction="row" gap={Space * 2} justify="flex-start">
               {_.map(featureList, (feature: any) => (
+                //@ts-expect-error
                 <FeatureCard key={feature.id} bookId={feature.book.id} />
               ))}
             </Flex>
@@ -62,6 +63,7 @@ export default async function Page() {
           <Box maxWidth="100%" overflowX="hidden" overflowY="hidden">
             <Flex align="center" as="ul" direction="column" justify="center">
               {_.map(rankingList, (ranking: any) => (
+                // @ts-expect-error Server Component
                 <RankingCard key={ranking.id} bookId={ranking.book.id} />
               ))}
             </Flex>

@@ -2,11 +2,11 @@ import { Suspense, useMemo } from 'react';
 
 import type { GetBookListResponse } from '@wsh-2024/schema/src/api/books/GetBookListResponse';
 
-import { BookListItem } from '../../../features/book/components/BookListItem';
-import { Flex } from '../../../foundation/components/Flex';
-import { Text } from '../../../foundation/components/Text';
-import { Color, Typography } from '../../../foundation/styles/variables';
-import { isContains } from '../../../lib/filter/isContains';
+import BookListItem from '../../../_components/src/features/book/components/BookListItem';
+import { Flex } from '../../../_components/src/foundation/components/Flex';
+import { Text } from '../../../_components/src/foundation/components/Text';
+import { Color, Typography } from '../../../_components/src/foundation/styles/variables';
+import { isContains } from '../../../_components/src/lib/filter/isContains';
 
 type Props = {
   books: GetBookListResponse;
@@ -33,6 +33,7 @@ export const SearchResult: React.FC<Props> = ({ books, keyword }) => {
         }
       >
         {relatedBooks.map((book) => (
+          //  @ts-expect-error Server Component
           <BookListItem key={book.id} bookId={book.id} />
         ))}
         {relatedBooks.length === 0 && (

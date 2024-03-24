@@ -1,12 +1,11 @@
 import { Box, Button, Heading, Spacer, Stack } from '@chakra-ui/react';
 import { useFormik } from 'formik';
-import { useId } from 'react';
 
-import { useLogout } from '../../../admin/features/auth/hooks/useLogout';
+import { useLogout } from '../../../_components/src/admin/features/auth/hooks/useLogout';
 
 export const LogoutContent: React.FC = () => {
   const logout = useLogout();
-  const logoutContentA11yId = useId();
+  const logoutContentA11yId = `logoutContentA11yId`;
 
   const formik = useFormik({
     initialValues: {},

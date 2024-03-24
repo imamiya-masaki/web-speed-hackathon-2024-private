@@ -37,8 +37,6 @@ export const Footer: React.FC = () => {
 
   const handleRequestToTermDialogOpen = () => {
     openDialog()
-    console.log('riyoukiyaku')
-    alert("dialog!!!!")
     setDialogContent(
       <ContentDom aria-labelledby={termDialogA11yId} role="dialog">
         <Text as="h2" color={Color.MONO_100} id={termDialogA11yId} typography={Typography.NORMAL16}>
@@ -155,7 +153,7 @@ export const Footer: React.FC = () => {
     <>
     <dialog  open={isOpen} onClose={closeDialog} style={overlayStyle}>
       <Wrapper>
-        <Button addStyle={{"borderRadius": "50%", "height": "32px", "width": "32px", "position": "absolute", top: `-${Space * 5}px`, left: `-${Space * 5}px`}} onClick={() => setDialogContent(undefined)}>
+        <Button addStyle={{"borderRadius": "50%", "height": "32px", "width": "32px", "position": "absolute", top: `-${Space * 5}px`, left: `-${Space * 5}px`}} onClick={() => {closeDialog();setDialogContent(undefined)}}>
           <SvgIcon color={Color.MONO_A} height={32} type="Close" width={32} />
         </Button>
         <Container>{dialogContent}</Container>

@@ -1,13 +1,12 @@
 import { Box, Button, FormControl, FormErrorMessage, FormLabel, Heading, Input, Spacer, Stack } from '@chakra-ui/react';
 import { useFormik } from 'formik';
-import { useId } from 'react';
 import * as yup from 'yup';
 
-import { useLogin } from '../../../admin/features/auth/hooks/useLogin';
+import { useLogin } from '../../../_components/src/admin/features/auth/hooks/useLogin';
 
 export const LoginContent: React.FC = () => {
   const login = useLogin();
-  const loginContentA11yId = useId();
+  const loginContentA11yId = `loginContentA11yId`;
 
   const formik = useFormik({
     initialValues: {

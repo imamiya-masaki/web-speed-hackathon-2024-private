@@ -1,15 +1,12 @@
 'use client'
-
+import "./books-bookid.css"
 import { useAtom } from 'jotai/react';
 import { Suspense, useCallback } from 'react';
-import { useParams } from 'react-router-dom';
-import type { RouteParams } from 'regexparam';
-import { styled } from 'styled-components';
 import invariant from 'tiny-invariant';
 
 import { FavoriteBookAtomFamily } from '../../../_components/src/features/book/atoms/FavoriteBookAtomFamily';
 import { useBook } from '../../../_components/src/features/book/hooks/useBook';
-import { EpisodeListItem } from '../../../_components/src/features/episode/components/EpisodeListItem';
+import  EpisodeListItem from '../../../_components/src/features/episode/components/EpisodeListItem';
 import { useEpisodeList } from '../../../_components/src/features/episode/hooks/useEpisodeList';
 import { Box } from '../../../_components/src/foundation/components/Box';
 import { Flex } from '../../../_components/src/foundation/components/Flex';
@@ -24,36 +21,46 @@ import { Color, Space, Typography } from '../../../_components/src/foundation/st
 import { BottomNavigator } from './internal/BottomNavigator';
 import { ActionLayout } from '../../../_components/src/foundation/layouts/ActionLayout';
 
-const _HeadingWrapper = styled.section`
-  display: grid;
-  align-items: start;
-  grid-template-columns: auto 1fr;
-  padding-bottom: ${Space * 2}px;
-  gap: ${Space * 2}px;
-`;
+const headingWrapperStyle = {
+  display: 'grid',
+  alignItems: 'start',
+  gridTemplateColumns: 'auto 1fr',
+  paddingBottom: `${Space * 2}px`,
+  gap: `${Space * 2}px`,
+};
 
-const _AuthorWrapper = styled(Link)`
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  width: 100%;
-  gap: ${Space * 1}px;
-`;
+const authorWrapperStyle = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
+  width: '100%',
+  gap: `${Space}px`,
+};
 
-const _AvatarWrapper = styled.div`
-  width: 32px;
-  height: 32px;
-  > img {
-    border-radius: 50%;
-  }
-`;
+const HeadingWrapper: React.FC<{children: React.ReactNode}> = ({ children }) => (
+  <section style={headingWrapperStyle}>
+    {children}
+  </section>
+);
 
-const BookDetailPage: React.FC = () => {
-  const { bookId } = useParams<RouteParams<'/books/:bookId'>>();
+const AuthorWrapper: React.FC<{children: React.ReactNode; to: string}> = ({ children, to }) => (
+  <Link to={to} style={authorWrapperStyle}>
+    {children}
+  </Link>
+);
+
+const AvatarWrapper: React.FC<{children: React.ReactNode}> = ({ children }) => (
+  <div className="book-bookid-avatarWrapper">
+    {children}
+  </div>
+);
+
+export default async function Page ({params}: {params: {bookId: string}}){
+  const { bookId } = params
   invariant(bookId);
 
-  const { data: book } = useBook({ params: { bookId } });
-  const { data: episodeList } = useEpisodeList({ query: { bookId } });
+  const { data: book } = await useBook({ params: { bookId } });
+  const  episodeList  = await useEpisodeList({ query: { bookId } });
 
   const [isFavorite, toggleFavorite] = useAtom(FavoriteBookAtomFamily(bookId));
 
@@ -67,8 +74,10 @@ const BookDetailPage: React.FC = () => {
   const latestEpisode = episodeList?.find((episode) => episode.chapter === 1);
 
   return (
+    <ActionLayout>
+    <Suspense fallback={<div>Loading...</div>}>
     <Box height="100%" position="relative" px={Space * 2}>
-      <_HeadingWrapper aria-label="作品情報">
+      <HeadingWrapper aria-label="作品情報">
         {bookImageUrl != null && (
           <Image alt={book.name} height={256} objectFit="cover" src={bookImageUrl} width={192} />
         )}
@@ -85,18 +94,18 @@ const BookDetailPage: React.FC = () => {
 
           <Spacer height={Space * 1} />
 
-          <_AuthorWrapper href={`/authors/${book.author.id}`}>
+          <AuthorWrapper to={`/authors/${book.author.id}`}>
             {auhtorImageUrl != null && (
-              <_AvatarWrapper>
+              <AvatarWrapper>
                 <Image alt={book.author.name} height={32} objectFit="cover" src={auhtorImageUrl} width={32} />
-              </_AvatarWrapper>
+              </AvatarWrapper>
             )}
             <Text color={Color.MONO_100} typography={Typography.NORMAL14}>
               {book.author.name}
             </Text>
-          </_AuthorWrapper>
+          </AuthorWrapper>
         </Flex>
-      </_HeadingWrapper>
+      </HeadingWrapper>
 
       <BottomNavigator
         bookId={bookId}
@@ -110,6 +119,7 @@ const BookDetailPage: React.FC = () => {
       <section aria-label="エピソード一覧">
         <Flex align="center" as="ul" direction="column" justify="center">
           {episodeList.map((episode) => (
+            // @ts-expect-error
             <EpisodeListItem key={episode.id} bookId={bookId} episodeId={episode.id} />
           ))}
           {episodeList.length === 0 && (
@@ -123,19 +133,9 @@ const BookDetailPage: React.FC = () => {
         </Flex>
       </section>
     </Box>
-  );
-};
-
-const BookDetailPageWithSuspense: React.FC = () => {
-  return (
-    <ActionLayout>
-    <Suspense fallback={<div>Loading...</div>}>
-      <BookDetailPage />
     </Suspense>
     </ActionLayout>
   );
 };
-
-export default BookDetailPageWithSuspense;
 
 // export { BookDetailPageWithSuspense as BookDetailPage };

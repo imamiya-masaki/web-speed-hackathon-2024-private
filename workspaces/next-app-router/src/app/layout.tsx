@@ -1,6 +1,7 @@
 
 import "./globals.css"
 import { type ReactNode } from 'react';
+import { RegisterServiceWorker } from "@/_components/src/utils/RegisterServiceWorkerComponents";
 interface LayoutProps {
   children?: ReactNode; // ReactNode型を使用して、childrenの型を指定します。
 }
@@ -12,7 +13,6 @@ interface LayoutProps {
 
 
 import { init as ucaInit } from 'unicode-collation-algorithm2';
-
 ucaInit();
 
 // const AdminSetUpComponent: React.FC<LayoutProps> = ({ children  }) => {
@@ -46,7 +46,7 @@ ucaInit();
 // }
 
 // import { Dialog } from '../_components/src/foundation/components/Dialog';
-import { GlobalStyle } from '../_components/src/foundation/styles/GlobalStyle';
+// import { GlobalStyle } from '../_components/src/foundation/styles/GlobalStyle';
 // import { usePathname } from "next/navigation";
 
 // const ClientSetUpComponent: React.FC<LayoutProps> = ({ children  }) => {
@@ -64,6 +64,7 @@ export default function RootLayout({ children }: {children: React.ReactNode}) {
   // const path = usePathname();
   return     (
   <html lang="ja">
+    <RegisterServiceWorker />
   <body>
   {/* <GlobalStyle /> */}
   {/* <Dialog /> */}

@@ -1,14 +1,14 @@
 import { Flex } from '@chakra-ui/react';
 
 
-import { useAuthUser } from '../../admin/features/auth/hooks/useAuthUser';
-import { CommonLayout } from '../../admin/foundation/layouts/CommonLayout';
+import { useAuthUser } from '../../_components/src/admin/features/auth/hooks/useAuthUser';
+import { CommonLayout } from '../../_components/src/admin/foundation/layouts/CommonLayout';
 
 import { LoginContent } from './internal/LoginContent';
 import { LogoutContent } from './internal/LogoutContent';
 
-export const AuthPage: React.FC = () => {
-  const { data: user } = useAuthUser();
+export default async function Page(){
+  const { data: user } = await useAuthUser();
 
   return (
     <CommonLayout>
@@ -18,5 +18,3 @@ export const AuthPage: React.FC = () => {
     </CommonLayout>
   );
 };
-
-export default AuthPage

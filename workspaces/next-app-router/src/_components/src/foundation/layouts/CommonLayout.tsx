@@ -1,16 +1,18 @@
 'use client'
 
-import styled from 'styled-components';
 import { type ReactNode } from 'react';
 import { Container } from '../components/Container';
 import { Footer } from '../components/Footer';
 import { Space } from '../styles/variables';
 
-const _Content = styled.div`
-  height: 100%;
-  padding: 0 ${Space * 2}px;
-`;
-
+const Content: React.FC<{children: React.ReactNode}> = ({ children }) => (
+  <div style={{
+    height: '100%',
+    padding: `0 ${Space * 2}px`,
+  }}>
+    {children}
+  </div>
+);
 
 interface LayoutProps {
   children?: ReactNode; // ReactNode型を使用して、childrenの型を指定します。
@@ -19,9 +21,9 @@ interface LayoutProps {
 export const CommonLayout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <Container>
-      <_Content>
+      <Content>
         {children}
-      </_Content>
+      </Content>
       <Footer />
     </Container>
   );
