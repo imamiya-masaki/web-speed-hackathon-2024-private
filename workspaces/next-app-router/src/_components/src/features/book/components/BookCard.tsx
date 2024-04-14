@@ -10,8 +10,25 @@ import { Text } from '../../../foundation/components/Text';
 import { Color, Space, Typography } from '../../../foundation/styles/variables';
 import { useBook } from '../hooks/useBook';
 
+type Book = Awaited<ReturnType<typeof useBook>>["data"];
+
+type BookCardInfo = {
+  name: string;
+  image: {
+    alt: string;
+    id: string;
+  },
+  author: {
+    name: string,
+    image: {
+      id: string,
+    }
+  }
+}
+
 type Props = {
   bookId: string;
+  bookData?: BookCardInfo;
 };
 
 
@@ -32,9 +49,15 @@ const AvatarWrapper: React.FC<{ children: ReactNode}> = ({ children }) => {
 };
 
 // @ts-ignore
-const BookCard: React.FC<Props>= async({ bookId }) => {
-  const { data: book } = await useBook({ params: { bookId } });
-
+const BookCard: React.FC<Props>= async({ bookId, bookData }) => {
+  let book: BookCardInfo;
+  if (!bookData) {
+    console.log('BookCard:fetch')
+    const data = await useBook({ params: { bookId } });
+    book = data.data
+  } else {
+    book = bookData
+  }
   return (
     <Wrapper href={`/books/${bookId}`}>
         <ImgWrapper>

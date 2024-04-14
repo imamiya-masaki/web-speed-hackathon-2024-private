@@ -45,9 +45,9 @@ export default async function Page() {
           <Spacer height={Space * 2} />
           <Box maxWidth="100%" overflowX="scroll" overflowY="hidden">
             <Flex align="stretch" direction="row" gap={Space * 2} justify="flex-start">
-              {_.map(featureList, (feature: any) => (
+              {_.map(featureList, (feature) => (
                 //@ts-expect-error
-                <FeatureCard key={feature.id} bookId={feature.book.id} />
+                <FeatureCard key={feature.id} bookId={feature.book.id} bookData={feature.book}/>
               ))}
             </Flex>
           </Box>
@@ -62,9 +62,9 @@ export default async function Page() {
           <Spacer height={Space * 2} />
           <Box maxWidth="100%" overflowX="hidden" overflowY="hidden">
             <Flex align="center" as="ul" direction="column" justify="center">
-              {_.map(rankingList, (ranking: any) => (
+              {_.map(rankingList, (ranking) => (
                 // @ts-expect-error Server Component
-                <RankingCard key={ranking.id} bookId={ranking.book.id} />
+                <RankingCard key={ranking.id} bookId={ranking.book.id} bookData={ranking.book}/>
               ))}
             </Flex>
           </Box>
@@ -79,8 +79,8 @@ export default async function Page() {
           <Spacer height={Space * 2} />
           <Box maxWidth="100%" overflowX="scroll" overflowY="hidden">
             <Flex align="stretch" gap={Space * 2} justify="flex-start">
-              {_.map(release.books, (book: any) => (
-                <BookCard key={book.id} bookId={book.id} />
+              {_.map(release.books, (book) => (
+                <BookCard key={book.id} bookId={book.id} bookData={book}/>
               ))}
             </Flex>
           </Box>

@@ -60,7 +60,7 @@ export default async function Page ({params}: {params: {bookId: string}}){
   const  episodeList  = await useEpisodeList({ query: { bookId } });
 
   console.log({episodeList})
-  const latestEpisode = episodeList?.find((episode) => episode.chapter === 1);
+  const latestEpisode = episodeList?.find((episode: any) => episode.chapter === 1);
 
   return (
     <ActionLayout>

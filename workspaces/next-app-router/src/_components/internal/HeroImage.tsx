@@ -44,7 +44,7 @@ export const HeroImage: React.FC = () => {
     canvasRef.current = document?.createElement('canvas')
 
     // width が 4096 / dpr の 16:9 の画像として描画する。
-    const width = 4096 / (window?.devicePixelRatio ?? 1);
+    const width = 4096 / (2);
     const height = (width / 16) * 9;
     const imageWidth = image.clientWidth;
     const imageHeight = (imageWidth / 16) * 9;
@@ -82,7 +82,7 @@ void main() {
       scene.add(mesh);
 
       const renderer = new WebGLRenderer({ alpha: true, antialias: true, canvas: canvasRef.current! });
-      renderer.setPixelRatio(window?.devicePixelRatio ?? 1);
+      renderer.setPixelRatio(2);
       renderer.setSize(width, height);
 
       const animate = () => {

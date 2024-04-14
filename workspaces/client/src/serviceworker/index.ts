@@ -29,7 +29,7 @@ self.addEventListener('fetch', (ev: FetchEvent) => {
 async function onFetch(request: Request): Promise<Response> {
   // サーバーの負荷を分散するために Jitter 処理をいれる
   await jitter();
-
+  console.log('onFetch')
   const res = await fetch(request);
 
   if (res.headers.get('Content-Type') === 'image/jxl') {

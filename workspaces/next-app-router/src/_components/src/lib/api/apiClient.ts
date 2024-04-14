@@ -1,4 +1,4 @@
-const baseURL = 'https://webspeed-api.anpan-playground.com'
+const baseURL = 'https://webspeed.anpan-playground.com'
 
 const wraperApiClient = {
   get: async <T>(url: string, query?: Record<string, unknown>):Promise<{data: T}>=> {
@@ -26,7 +26,7 @@ const wraperApiClient = {
     try {
     data = await fetched?.json()
     //@ts-ignore
-    console.log('zot確認', data.error, urlL, query )
+    console.log('zot確認:client', data.error, urlL, query )
     } catch (e) {
       // const fetch = await fetched.text()
       console.error('error', e, )

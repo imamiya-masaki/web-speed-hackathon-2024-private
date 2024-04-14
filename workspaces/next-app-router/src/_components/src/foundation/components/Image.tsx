@@ -91,8 +91,8 @@ export const ImageRender: React.FC<Props> = ({ height, loading = 'eager', object
   const [dpr, setDpr] = useState<number>(1)
 
   useEffect(() => {
-    setDpr(window?.devicePixelRatio)
-  },[window?.devicePixelRatio])
+    setDpr(2)
+  },[2])
 
   const {height: canvasHeight, imageId: canvasImageId, width:canvasWidth} = canvas!
   // useEffect(()=>{(async () => {

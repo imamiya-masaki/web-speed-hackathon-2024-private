@@ -38,12 +38,35 @@ const AvatarWrapperComponent: React.FC<{children: React.ReactNode}> = ({ childre
 );
 
 
+type RankingBookCardInfo = {
+  id: string;
+  name: string;
+  image: {
+    id: string;
+  }
+  description: string;
+  author: {
+    name: string;
+    image: {
+      id: string;
+    }
+  }
+}
+
 type Props = {
   bookId: string;
+  bookData?: RankingBookCardInfo;
 };
 
-export default async function RankingCard ({ bookId }: {bookId: string}){
-  const { data: book } = await useBook({ params: { bookId } });
+export default async function RankingCard ({ bookId, bookData }: Props){
+  let book: RankingBookCardInfo;
+  if (!bookData) {
+    console.log('RankingCard:fetch')
+    const data = await useBook({ params: { bookId } });
+    book = data.data
+  } else {
+    book = bookData
+  }
 
   return (
     <Suspense fallback={<div>Loading...</div>}>

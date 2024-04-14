@@ -9,7 +9,7 @@ import { Color, Space, Typography } from '../../_components/src/foundation/style
 
 import { Input } from '../../_components/search/internal/Input';
 import { SearchResult } from '../../_components/search/internal/SearchResult';
-import { ActionLayout } from '@/_components/src/foundation/layouts/ActionLayout';
+import { ActionLayout } from '../../_components/src/foundation/layouts/ActionLayout';
 export default async function Page () {
   const books = await useBookList({ query: {} });
   console.log('books', books)

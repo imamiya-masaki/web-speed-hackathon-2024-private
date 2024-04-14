@@ -65,6 +65,7 @@
     "@types/underscore": "1.11.15",
     "eslint": "^8",
     "eslint-config-next": "14.1.4",
+    "event-stream": "4.0.1",
     "typescript": "^5"
   }
 }

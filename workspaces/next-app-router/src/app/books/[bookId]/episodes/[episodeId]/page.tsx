@@ -11,7 +11,7 @@ import { Separator } from '../../../../../_components/src/foundation/components/
 import { Space } from '../../../../../_components/src/foundation/styles/variables';
 
 import { ComicViewer } from '../../../../../_components/books/episodes/internal/ComicViewer';
-import { ActionLayout } from '@/_components/src/foundation/layouts/ActionLayout';
+import { ActionLayout } from '../../../../../_components/src/foundation/layouts/ActionLayout';
 
 export default async function Page ({params}: {params: {bookId: string, episodeId: string}}){
   const { bookId, episodeId } = params

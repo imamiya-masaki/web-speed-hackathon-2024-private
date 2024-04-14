@@ -1,6 +1,7 @@
 import * as fzstd from 'fzstd';
 
 export async function zstdFetch(request: Request): Promise<Response> {
+  console.log('zstdFetch')
   const originalResponse = await fetch(request, {
     headers: new Headers([...request.headers.entries(), ['X-Accept-Encoding', 'zstd']]),
   });

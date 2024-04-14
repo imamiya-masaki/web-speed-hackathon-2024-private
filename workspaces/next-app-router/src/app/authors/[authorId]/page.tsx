@@ -3,15 +3,15 @@ import "./authorsImage.css"
 import { Suspense } from 'react';
 import invariant from 'tiny-invariant';
 
-import { useAuthor } from '../../../_components/src/features/author/hooks/useAuthor';
-import  BookListItem from '../../../_components/src/features/book/components/BookListItem';
-import { Box } from '../../../_components/src/foundation/components/Box';
-import { Flex } from '../../../_components/src/foundation/components/Flex';
-import { ImageRender } from '../../../_components/src/foundation/components/Image';
-import { Separator } from '../../../_components/src/foundation/components/Separator';
-import { Spacer } from '../../../_components/src/foundation/components/Spacer';
-import { Text } from '../../../_components/src/foundation/components/Text';
-import { Color, Space, Typography } from '../../../_components/src/foundation/styles/variables';
+import { useAuthor } from '../../../src/_components/src/features/author/hooks/useAuthor';
+import  BookListItem from '../../../src/_components/src/features/book/components/BookListItem';
+import { Box } from '../../../src/_components/src/foundation/components/Box';
+import { Flex } from '../../../src/_components/src/foundation/components/Flex';
+import { ImageRender } from '../../../src/_components/src/foundation/components/Image';
+import { Separator } from '../../../src/_components/src/foundation/components/Separator';
+import { Spacer } from '../../../src/_components/src/foundation/components/Spacer';
+import { Text } from '../../../src/_components/src/foundation/components/Text';
+import { Color, Space, Typography } from '../../../src/_components/src/foundation/styles/variables';
 
 
 const HeadingWrapper: React.FC<{children: React.ReactNode}> = ({ children }) => (
