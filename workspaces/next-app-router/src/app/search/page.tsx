@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense, useCallback, useEffect, useId, useState } from 'react';
+import { Suspense, useCallback, useEffect, useState } from 'react';
 
 import { useBookList } from '../../_components/src/features/book/hooks/useBookList';
 import { Box } from '../../_components/src/foundation/components/Box';
@@ -13,7 +13,7 @@ import { ActionLayout } from '../../_components/src/foundation/layouts/ActionLay
 export default async function Page () {
   const books = await useBookList({ query: {} });
   console.log('books', books)
-  const searchResultsA11yId = useId();
+  const searchResultsA11yId = `searchResultsA11yId`;
 
   const [isClient, setIsClient] = useState(false);
   const [keyword, setKeyword] = useState('');
