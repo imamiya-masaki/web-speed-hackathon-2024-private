@@ -1,7 +1,7 @@
 import { inject } from 'regexparam';
 
-import type { GetReleaseRequestParams } from '@/schema/src/api/releases/GetReleaseRequestParams';
-import type { GetReleaseResponse } from '@/schema/src/api/releases/GetReleaseResponse';
+import type { GetReleaseRequestParams } from '@wsh-2024/schema/src/api/releases/GetReleaseRequestParams';
+import type { GetReleaseResponse } from '@wsh-2024/schema/src/api/releases/GetReleaseResponse';
 
 import type { DomainSpecificApiClientInterface } from '../../../lib/api/DomainSpecificApiClientInterface';
 import { apiClient } from '../../../lib/api/apiClient';

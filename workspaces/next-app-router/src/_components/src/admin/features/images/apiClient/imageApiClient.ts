@@ -1,7 +1,7 @@
 import { inject } from 'regexparam';
 
-import type { PostImageRequestBody } from '@/schema/src/api/images/PostImageRequestBody';
-import type { PostImageResponse } from '@/schema/src/api/images/PostImageResponse';
+import type { PostImageRequestBody } from '@wsh-2024/schema/src/api/images/PostImageRequestBody';
+import type { PostImageResponse } from '@wsh-2024/schema/src/api/images/PostImageResponse';
 
 import type { DomainSpecificApiClientInterface } from '../../../lib/api/DomainSpecificApiClientInterface';
 import { apiClient } from '../../../lib/api/apiClient';

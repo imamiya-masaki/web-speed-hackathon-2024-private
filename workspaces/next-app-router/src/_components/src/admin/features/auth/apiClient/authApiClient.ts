@@ -1,9 +1,9 @@
 import { inject } from 'regexparam';
 
-import type { LoginRequestBody } from '@/schema/src/api/auth/LoginRequestBody';
-import type { LoginResponse } from '@/schema/src/api/auth/LoginResponse';
-import type { LogoutResponse } from '@/schema/src/api/auth/LogoutResponse';
-import type { UserResponse } from '@/schema/src/api/auth/UserResponse';
+import type { LoginRequestBody } from '@wsh-2024/schema/src/api/auth/LoginRequestBody';
+import type { LoginResponse } from '@wsh-2024/schema/src/api/auth/LoginResponse';
+import type { LogoutResponse } from '@wsh-2024/schema/src/api/auth/LogoutResponse';
+import type { UserResponse } from '@wsh-2024/schema/src/api/auth/UserResponse';
 
 import type { DomainSpecificApiClientInterface } from '../../../lib/api/DomainSpecificApiClientInterface';
 import { apiClient } from '../../../lib/api/apiClient';

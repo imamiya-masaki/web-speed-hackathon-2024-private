@@ -1,9 +1,9 @@
 import { inject } from 'regexparam';
 
-import type { GetAuthorListRequestQuery } from '@/schema/src/api/authors/GetAuthorListRequestQuery';
-import type { GetAuthorListResponse } from '@/schema/src/api/authors/GetAuthorListResponse';
-import type { GetAuthorRequestParams } from '@/schema/src/api/authors/GetAuthorRequestParams';
-import type { GetAuthorResponse } from '@/schema/src/api/authors/GetAuthorResponse';
+import type { GetAuthorListRequestQuery } from '@wsh-2024/schema/src/api/authors/GetAuthorListRequestQuery';
+import type { GetAuthorListResponse } from '@wsh-2024/schema/src/api/authors/GetAuthorListResponse';
+import type { GetAuthorRequestParams } from '@wsh-2024/schema/src/api/authors/GetAuthorRequestParams';
+import type { GetAuthorResponse } from '@wsh-2024/schema/src/api/authors/GetAuthorResponse';
 
 import type { DomainSpecificApiClientInterface } from '../../../lib/api/DomainSpecificApiClientInterface';
 import { apiClient } from '../../../lib/api/apiClient';

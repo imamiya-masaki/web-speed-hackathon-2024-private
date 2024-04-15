@@ -1,16 +1,16 @@
 import { inject } from 'regexparam';
 
-import type { DeleteBookRequestParams } from '@/schema/src/api/books/DeleteBookRequestParams';
-import type { DeleteBookResponse } from '@/schema/src/api/books/DeleteBookResponse';
-import type { GetBookListRequestQuery } from '@/schema/src/api/books/GetBookListRequestQuery';
-import type { GetBookListResponse } from '@/schema/src/api/books/GetBookListResponse';
-import type { GetBookRequestParams } from '@/schema/src/api/books/GetBookRequestParams';
-import type { GetBookResponse } from '@/schema/src/api/books/GetBookResponse';
-import type { PatchBookRequestBody } from '@/schema/src/api/books/PatchBookRequestBody';
-import type { PatchBookRequestParams } from '@/schema/src/api/books/PatchBookRequestParams';
-import type { PatchBookResponse } from '@/schema/src/api/books/PatchBookResponse';
-import type { PostBookRequestBody } from '@/schema/src/api/books/PostBookRequestBody';
-import type { PostBookResponse } from '@/schema/src/api/books/PostBookResponse';
+import type { DeleteBookRequestParams } from '@wsh-2024/schema/src/api/books/DeleteBookRequestParams';
+import type { DeleteBookResponse } from '@wsh-2024/schema/src/api/books/DeleteBookResponse';
+import type { GetBookListRequestQuery } from '@wsh-2024/schema/src/api/books/GetBookListRequestQuery';
+import type { GetBookListResponse } from '@wsh-2024/schema/src/api/books/GetBookListResponse';
+import type { GetBookRequestParams } from '@wsh-2024/schema/src/api/books/GetBookRequestParams';
+import type { GetBookResponse } from '@wsh-2024/schema/src/api/books/GetBookResponse';
+import type { PatchBookRequestBody } from '@wsh-2024/schema/src/api/books/PatchBookRequestBody';
+import type { PatchBookRequestParams } from '@wsh-2024/schema/src/api/books/PatchBookRequestParams';
+import type { PatchBookResponse } from '@wsh-2024/schema/src/api/books/PatchBookResponse';
+import type { PostBookRequestBody } from '@wsh-2024/schema/src/api/books/PostBookRequestBody';
+import type { PostBookResponse } from '@wsh-2024/schema/src/api/books/PostBookResponse';
 
 import type { DomainSpecificApiClientInterface } from '../../../lib/api/DomainSpecificApiClientInterface';
 import { apiClient } from '../../../lib/api/apiClient';

@@ -1,16 +1,16 @@
 import { inject } from 'regexparam';
 
-import type { DeleteEpisodePageRequestParams } from '@/schema/src/api/episodePages/DeleteEpisodePageRequestParams';
-import type { DeleteEpisodePageResponse } from '@/schema/src/api/episodePages/DeleteEpisodePageResponse';
-import type { GetEpisodePageListRequestQuery } from '@/schema/src/api/episodePages/GetEpisodePageListRequestQuery';
-import type { GetEpisodePageListResponse } from '@/schema/src/api/episodePages/GetEpisodePageListResponse';
-import type { GetEpisodePageRequestParams } from '@/schema/src/api/episodePages/GetEpisodePageRequestParams';
-import type { GetEpisodePageResponse } from '@/schema/src/api/episodePages/GetEpisodePageResponse';
-import type { PatchEpisodePageRequestBody } from '@/schema/src/api/episodePages/PatchEpisodePageRequestBody';
-import type { PatchEpisodePageRequestParams } from '@/schema/src/api/episodePages/PatchEpisodePageRequestParams';
-import type { PatchEpisodePageResponse } from '@/schema/src/api/episodePages/PatchEpisodePageResponse';
-import type { PostEpisodePageRequestBody } from '@/schema/src/api/episodePages/PostEpisodePageRequestBody';
-import type { PostEpisodePageResponse } from '@/schema/src/api/episodePages/PostEpisodePageResponse';
+import type { DeleteEpisodePageRequestParams } from '@wsh-2024/schema/src/api/episodePages/DeleteEpisodePageRequestParams';
+import type { DeleteEpisodePageResponse } from '@wsh-2024/schema/src/api/episodePages/DeleteEpisodePageResponse';
+import type { GetEpisodePageListRequestQuery } from '@wsh-2024/schema/src/api/episodePages/GetEpisodePageListRequestQuery';
+import type { GetEpisodePageListResponse } from '@wsh-2024/schema/src/api/episodePages/GetEpisodePageListResponse';
+import type { GetEpisodePageRequestParams } from '@wsh-2024/schema/src/api/episodePages/GetEpisodePageRequestParams';
+import type { GetEpisodePageResponse } from '@wsh-2024/schema/src/api/episodePages/GetEpisodePageResponse';
+import type { PatchEpisodePageRequestBody } from '@wsh-2024/schema/src/api/episodePages/PatchEpisodePageRequestBody';
+import type { PatchEpisodePageRequestParams } from '@wsh-2024/schema/src/api/episodePages/PatchEpisodePageRequestParams';
+import type { PatchEpisodePageResponse } from '@wsh-2024/schema/src/api/episodePages/PatchEpisodePageResponse';
+import type { PostEpisodePageRequestBody } from '@wsh-2024/schema/src/api/episodePages/PostEpisodePageRequestBody';
+import type { PostEpisodePageResponse } from '@wsh-2024/schema/src/api/episodePages/PostEpisodePageResponse';
 
 import type { DomainSpecificApiClientInterface } from '../../../lib/api/DomainSpecificApiClientInterface';
 import { apiClient } from '../../../lib/api/apiClient';

@@ -1,6 +1,6 @@
 import { Suspense, useMemo } from 'react';
 
-import type { GetBookListResponse } from '@/schema/src/api/books/GetBookListResponse';
+import type { GetBookListResponse } from '@wsh-2024/schema/src/api/books/GetBookListResponse';
 
 import BookListItem from '../../src/features/book/components/BookListItem';
 import { Flex } from '../../src/foundation/components/Flex';
