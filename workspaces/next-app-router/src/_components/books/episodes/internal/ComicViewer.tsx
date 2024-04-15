@@ -1,7 +1,7 @@
 'use client'
 
 import _ from 'lodash';
-import { useState, forwardRef } from 'react';
+import { useState } from 'react';
 import { useInterval, useUpdate } from 'react-use';
 
 import ComicViewerCore from '../../../src/features/viewer/components/ComicViewerCore';
@@ -15,11 +15,6 @@ const MAX_VIEWER_HEIGHT = 650;
 
 const MIN_PAGE_WIDTH = _.floor((MIN_VIEWER_HEIGHT / IMAGE_HEIGHT) * IMAGE_WIDTH);
 
-const Container = forwardRef<HTMLDivElement, {children: React.ReactNode}>((props, ref) => (
-  <div style={{ position: 'relative' }} ref={ref}>
-    {props.children}
-  </div>
-  ));
 const Wrapper: React.FC<{children: React.ReactNode; $maxHeight: number | string}> = ({ children, $maxHeight }) => (
   <div style={{
     display: 'grid',
@@ -56,11 +51,11 @@ export const ComicViewer: React.FC<Props> = ({ episodeId }) => {
   const viewerHeight = _.clamp(candidatePageHeight, MIN_VIEWER_HEIGHT, MAX_VIEWER_HEIGHT);
 
   return (
-    <Container ref={ref}>
+    <div style={{ position: 'relative' }} ref={ref}>
       <Wrapper $maxHeight={viewerHeight}>
         {/*/ //@ts-expect-error */}
         <ComicViewerCore episodeId={episodeId} />
       </Wrapper>
-    </Container>
+    </div>
   );
 };
