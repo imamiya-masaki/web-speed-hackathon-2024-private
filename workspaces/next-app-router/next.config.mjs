@@ -5,7 +5,7 @@ const nextConfig = {
     remotePatterns: [
         {
             protocol: 'https',
-            hostname: 'webspeed.anpan-playground.com',
+            hostname: 'webspeed-api.anpan-playground.com',
             port: '',
             pathname: '/images/**'
         }

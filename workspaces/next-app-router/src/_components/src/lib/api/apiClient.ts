@@ -1,4 +1,4 @@
-const baseURL = 'https://webspeed.anpan-playground.com'
+const baseURL = 'https://webspeed-api.anpan-playground.com'
 
 const wraperApiClient = {
   get: async <T>(url: string, query?: Record<string, unknown>):Promise<{data: T}>=> {
