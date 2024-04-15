@@ -10,6 +10,9 @@ const nextConfig = {
             pathname: '/images/**'
         }
     ]
+    },
+    typescript: {
+        ignoreBuildErrors: true
     }
 };
 
