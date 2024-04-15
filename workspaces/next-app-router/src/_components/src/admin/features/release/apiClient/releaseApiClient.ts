@@ -1,6 +1,6 @@
 import { inject } from 'regexparam';
 
-import type { GetReleaseListResponse } from '@wsh-2024/schema/src/api/releases/GetReleaseListResponse';
+import type { GetReleaseListResponse } from '@/schema/src/api/releases/GetReleaseListResponse';
 
 import type { DomainSpecificApiClientInterface } from '../../../lib/api/DomainSpecificApiClientInterface';
 import { apiClient } from '../../../lib/api/apiClient';

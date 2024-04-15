@@ -1,16 +1,16 @@
 import { inject } from 'regexparam';
 
-import type { DeleteEpisodeRequestParams } from '@wsh-2024/schema/src/api/episodes/DeleteEpisodeRequestParams';
-import type { DeleteEpisodeResponse } from '@wsh-2024/schema/src/api/episodes/DeleteEpisodeResponse';
-import type { GetEpisodeListRequestQuery } from '@wsh-2024/schema/src/api/episodes/GetEpisodeListRequestQuery';
-import type { GetEpisodeListResponse } from '@wsh-2024/schema/src/api/episodes/GetEpisodeListResponse';
-import type { GetEpisodeRequestParams } from '@wsh-2024/schema/src/api/episodes/GetEpisodeRequestParams';
-import type { GetEpisodeResponse } from '@wsh-2024/schema/src/api/episodes/GetEpisodeResponse';
-import type { PatchEpisodeRequestBody } from '@wsh-2024/schema/src/api/episodes/PatchEpisodeRequestBody';
-import type { PatchEpisodeRequestParams } from '@wsh-2024/schema/src/api/episodes/PatchEpisodeRequestParams';
-import type { PatchEpisodeResponse } from '@wsh-2024/schema/src/api/episodes/PatchEpisodeResponse';
-import type { PostEpisodeRequestBody } from '@wsh-2024/schema/src/api/episodes/PostEpisodeRequestBody';
-import type { PostEpisodeResponse } from '@wsh-2024/schema/src/api/episodes/PostEpisodeResponse';
+import type { DeleteEpisodeRequestParams } from '@/schema/src/api/episodes/DeleteEpisodeRequestParams';
+import type { DeleteEpisodeResponse } from '@/schema/src/api/episodes/DeleteEpisodeResponse';
+import type { GetEpisodeListRequestQuery } from '@/schema/src/api/episodes/GetEpisodeListRequestQuery';
+import type { GetEpisodeListResponse } from '@/schema/src/api/episodes/GetEpisodeListResponse';
+import type { GetEpisodeRequestParams } from '@/schema/src/api/episodes/GetEpisodeRequestParams';
+import type { GetEpisodeResponse } from '@/schema/src/api/episodes/GetEpisodeResponse';
+import type { PatchEpisodeRequestBody } from '@/schema/src/api/episodes/PatchEpisodeRequestBody';
+import type { PatchEpisodeRequestParams } from '@/schema/src/api/episodes/PatchEpisodeRequestParams';
+import type { PatchEpisodeResponse } from '@/schema/src/api/episodes/PatchEpisodeResponse';
+import type { PostEpisodeRequestBody } from '@/schema/src/api/episodes/PostEpisodeRequestBody';
+import type { PostEpisodeResponse } from '@/schema/src/api/episodes/PostEpisodeResponse';
 
 import type { DomainSpecificApiClientInterface } from '../../../lib/api/DomainSpecificApiClientInterface';
 import { apiClient } from '../../../lib/api/apiClient';

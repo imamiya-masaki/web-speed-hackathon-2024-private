@@ -1,7 +1,7 @@
 import { inject } from 'regexparam';
 
-import type { GetRankingListRequestQuery } from '@wsh-2024/schema/src/api/rankings/GetRankingListRequestQuery';
-import type { GetRankingListResponse } from '@wsh-2024/schema/src/api/rankings/GetRankingListResponse';
+import type { GetRankingListRequestQuery } from '@/schema/src/api/rankings/GetRankingListRequestQuery';
+import type { GetRankingListResponse } from '@/schema/src/api/rankings/GetRankingListResponse';
 
 import type { DomainSpecificApiClientInterface } from '../../../lib/api/DomainSpecificApiClientInterface';
 import { apiClient } from '../../../lib/api/apiClient';

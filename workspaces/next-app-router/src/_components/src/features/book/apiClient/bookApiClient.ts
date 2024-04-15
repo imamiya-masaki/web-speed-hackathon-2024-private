@@ -1,9 +1,9 @@
 import { inject } from 'regexparam';
 
-import type { GetBookListRequestQuery } from '@wsh-2024/schema/src/api/books/GetBookListRequestQuery';
-import type { GetBookListResponse } from '@wsh-2024/schema/src/api/books/GetBookListResponse';
-import type { GetBookRequestParams } from '@wsh-2024/schema/src/api/books/GetBookRequestParams';
-import type { GetBookResponse } from '@wsh-2024/schema/src/api/books/GetBookResponse';
+import type { GetBookListRequestQuery } from '@/schema/src/api/books/GetBookListRequestQuery';
+import type { GetBookListResponse } from '@/schema/src/api/books/GetBookListResponse';
+import type { GetBookRequestParams } from '@/schema/src/api/books/GetBookRequestParams';
+import type { GetBookResponse } from '@/schema/src/api/books/GetBookResponse';
 
 import type { DomainSpecificApiClientInterface } from '../../../lib/api/DomainSpecificApiClientInterface';
 import { apiClient } from '../../../lib/api/apiClient';

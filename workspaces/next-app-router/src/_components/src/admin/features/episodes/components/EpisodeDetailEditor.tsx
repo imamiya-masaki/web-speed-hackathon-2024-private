@@ -26,8 +26,8 @@ import { useEffect, useRef, useState } from 'react';
 import * as yup from 'yup';
 
 import { encrypt } from '../../../../image-encrypt/src/encrypt';
-import type { GetBookResponse } from '@wsh-2024/schema/src/api/books/GetBookResponse';
-import type { GetEpisodeResponse } from '@wsh-2024/schema/src/api/episodes/GetEpisodeResponse';
+import type { GetBookResponse } from '@/schema/src/api/books/GetBookResponse';
+import type { GetEpisodeResponse } from '@/schema/src/api/episodes/GetEpisodeResponse';
 
 import { getImageUrl } from '../../../lib/image/getImageUrl';
 import { isSupportedImage } from '../../../lib/image/isSupportedImage';

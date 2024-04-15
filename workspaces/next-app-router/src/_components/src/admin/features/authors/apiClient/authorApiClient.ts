@@ -1,16 +1,16 @@
 import { inject } from 'regexparam';
 
-import type { DeleteAuthorRequestParams } from '@wsh-2024/schema/src/api/authors/DeleteAuthorRequestParams';
-import type { DeleteAuthorResponse } from '@wsh-2024/schema/src/api/authors/DeleteAuthorResponse';
-import type { GetAuthorListRequestQuery } from '@wsh-2024/schema/src/api/authors/GetAuthorListRequestQuery';
-import type { GetAuthorListResponse } from '@wsh-2024/schema/src/api/authors/GetAuthorListResponse';
-import type { GetAuthorRequestParams } from '@wsh-2024/schema/src/api/authors/GetAuthorRequestParams';
-import type { GetAuthorResponse } from '@wsh-2024/schema/src/api/authors/GetAuthorResponse';
-import type { PatchAuthorRequestBody } from '@wsh-2024/schema/src/api/authors/PatchAuthorRequestBody';
-import type { PatchAuthorRequestParams } from '@wsh-2024/schema/src/api/authors/PatchAuthorRequestParams';
-import type { PatchAuthorResponse } from '@wsh-2024/schema/src/api/authors/PatchAuthorResponse';
-import type { PostAuthorRequestBody } from '@wsh-2024/schema/src/api/authors/PostAuthorRequestBody';
-import type { PostAuthorResponse } from '@wsh-2024/schema/src/api/authors/PostAuthorResponse';
+import type { DeleteAuthorRequestParams } from '@/schema/src/api/authors/DeleteAuthorRequestParams';
+import type { DeleteAuthorResponse } from '@/schema/src/api/authors/DeleteAuthorResponse';
+import type { GetAuthorListRequestQuery } from '@/schema/src/api/authors/GetAuthorListRequestQuery';
+import type { GetAuthorListResponse } from '@/schema/src/api/authors/GetAuthorListResponse';
+import type { GetAuthorRequestParams } from '@/schema/src/api/authors/GetAuthorRequestParams';
+import type { GetAuthorResponse } from '@/schema/src/api/authors/GetAuthorResponse';
+import type { PatchAuthorRequestBody } from '@/schema/src/api/authors/PatchAuthorRequestBody';
+import type { PatchAuthorRequestParams } from '@/schema/src/api/authors/PatchAuthorRequestParams';
+import type { PatchAuthorResponse } from '@/schema/src/api/authors/PatchAuthorResponse';
+import type { PostAuthorRequestBody } from '@/schema/src/api/authors/PostAuthorRequestBody';
+import type { PostAuthorResponse } from '@/schema/src/api/authors/PostAuthorResponse';
 
 import type { DomainSpecificApiClientInterface } from '../../../lib/api/DomainSpecificApiClientInterface';
 import { apiClient } from '../../../lib/api/apiClient';

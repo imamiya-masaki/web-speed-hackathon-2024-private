@@ -1,7 +1,7 @@
 import { inject } from 'regexparam';
 
-import type { GetFeatureListRequestQuery } from '@wsh-2024/schema/src/api/features/GetFeatureListRequestQuery';
-import type { GetFeatureListResponse } from '@wsh-2024/schema/src/api/features/GetFeatureListResponse';
+import type { GetFeatureListRequestQuery } from '@/schema/src/api/features/GetFeatureListRequestQuery';
+import type { GetFeatureListResponse } from '@/schema/src/api/features/GetFeatureListResponse';
 
 import type { DomainSpecificApiClientInterface } from '../../../lib/api/DomainSpecificApiClientInterface';
 import { apiClient } from '../../../lib/api/apiClient';
