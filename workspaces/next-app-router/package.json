@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "PORT=8000 next dev",
-    "build": "PORT=8000 next build",
-    "start": "PORT=8000 next start",
-    "lint": "PORT=8000 next lint"
+    "dev": "PORT=8080 next dev",
+    "build": "PORT=8080 next build",
+    "start": "PORT=8080 next start",
+    "lint": "PORT=8080 next lint"
   },
   "dependencies": {
     "@chakra-ui/icons": "2.1.1",

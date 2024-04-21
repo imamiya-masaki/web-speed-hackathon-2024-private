@@ -8,7 +8,11 @@ const nextConfig = {
             hostname: 'webspeed-api.anpan-playground.com',
             port: '',
             pathname: '/images/**'
-        }
+        },
+        {
+            protocol: 'http',
+            hostname: 'localhost',
+          },
     ]
     },
     typescript: {
