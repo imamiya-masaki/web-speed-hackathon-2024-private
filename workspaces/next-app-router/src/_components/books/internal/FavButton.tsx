@@ -4,9 +4,10 @@ interface ButtonProps {
   $outlined: boolean;
   children: React.ReactNode;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void; // クリックイベントハンドラーも追加可能
+  AriaLabel: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ $outlined, children, onClick }) => {
+const Button: React.FC<ButtonProps> = ({ $outlined, children, onClick, AriaLabel }) => {
 
   const style = {
     borderRadius: '50%',
@@ -21,7 +22,7 @@ const Button: React.FC<ButtonProps> = ({ $outlined, children, onClick }) => {
     cursor: 'pointer',
   }
   return (
-    <button style={style} onClick={onClick}>
+    <button style={style} onClick={onClick} aria-label={AriaLabel}>
       {children}
     </button>
   );
@@ -37,7 +38,7 @@ export const FavButton: React.FC<Props> = ({ enabled, onClick }) => {
   return (
     <Button
       $outlined={!enabled}
-      aria-label={enabled ? 'お気に入りを解除する' : 'お気に入りに追加する'}
+      AriaLabel={enabled ? 'お気に入りを解除する' : 'お気に入りに追加する'}
       onClick={onClick}
     >
       <SvgIcon

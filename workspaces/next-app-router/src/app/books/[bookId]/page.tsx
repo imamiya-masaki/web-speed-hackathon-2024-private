@@ -34,7 +34,7 @@ const authorWrapperStyle = {
 };
 
 const HeadingWrapper: React.FC<{children: React.ReactNode}> = ({ children }) => (
-  <section style={headingWrapperStyle}>
+  <section style={headingWrapperStyle} aria-label="作品情報">
     {children}
   </section>
 );
@@ -66,7 +66,7 @@ export default async function Page ({params}: {params: {bookId: string}}){
     <ActionLayout>
     <Suspense fallback={<div>Loading...</div>}>
     <Box height="100%" position="relative" px={Space * 2}>
-      <HeadingWrapper aria-label="作品情報">
+      <HeadingWrapper>
           <ImageRender alt={book.name} height={256} objectFit="cover" width={192} canvas={{ height: 256, imageId: book.image.id, width: 192 }}/>
         <Flex align="flex-start" direction="column" gap={Space * 1} justify="flex-end">
           <Box>
