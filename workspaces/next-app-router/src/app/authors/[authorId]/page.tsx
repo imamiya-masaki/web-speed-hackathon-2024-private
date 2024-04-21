@@ -22,7 +22,7 @@ const HeadingWrapper: React.FC<{children: React.ReactNode}> = ({ children }) => 
     gridTemplateColumns: 'auto 1fr',
     paddingBottom: `${Space * 2}px`,
     gap: `${Space * 2}px`,
-  }}>
+  }} aria-label="作者情報">
     {children}
   </section>
 );
@@ -45,7 +45,7 @@ export default async function Page ({ params: {authorId} }: {params: { authorId:
     <ActionLayout>
       <Suspense fallback={null}>
       <Box height="100%" px={Space * 2}>
-        <HeadingWrapper aria-label="作者情報">
+        <HeadingWrapper>
             <AuthorImageWrapper>
               <ImageRender key={author.id} alt={author.name} height={128} objectFit="cover" width={128} canvas={{ height: 128, imageId: author.image.id, width: 128 }}/>
             </AuthorImageWrapper>
