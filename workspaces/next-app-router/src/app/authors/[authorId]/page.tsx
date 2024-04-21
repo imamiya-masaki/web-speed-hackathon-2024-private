@@ -13,6 +13,7 @@ import { Spacer } from '../../../../src/_components/src/foundation/components/Sp
 import { Text } from '../../../../src/_components/src/foundation/components/Text';
 import { Color, Space, Typography } from '../../../../src/_components/src/foundation/styles/variables';
 
+import { ActionLayout } from '../../../_components/src/foundation/layouts/ActionLayout';
 
 const HeadingWrapper: React.FC<{children: React.ReactNode}> = ({ children }) => (
   <section style={{
@@ -41,48 +42,50 @@ export default async function Page ({ params: {authorId} }: {params: { authorId:
   const bookListA11yId = `bookListA11yId`;
 
   return (
-    <Suspense fallback={null}>
-    <Box height="100%" px={Space * 2}>
-      <HeadingWrapper aria-label="作者情報">
-          <AuthorImageWrapper>
-            <ImageRender key={author.id} alt={author.name} height={128} objectFit="cover" width={128} canvas={{ height: 128, imageId: author.image.id, width: 128 }}/>
-          </AuthorImageWrapper>
+    <ActionLayout>
+      <Suspense fallback={null}>
+      <Box height="100%" px={Space * 2}>
+        <HeadingWrapper aria-label="作者情報">
+            <AuthorImageWrapper>
+              <ImageRender key={author.id} alt={author.name} height={128} objectFit="cover" width={128} canvas={{ height: 128, imageId: author.image.id, width: 128 }}/>
+            </AuthorImageWrapper>
 
-        <Flex align="flex-start" direction="column" gap={Space * 1} justify="flex-start">
-          <Text color={Color.MONO_100} typography={Typography.NORMAL20} weight="bold">
-            {author.name}
+          <Flex align="flex-start" direction="column" gap={Space * 1} justify="flex-start">
+            <Text color={Color.MONO_100} typography={Typography.NORMAL20} weight="bold">
+              {author.name}
+            </Text>
+            <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL14}>
+              {author.description}
+            </Text>
+          </Flex>
+        </HeadingWrapper>
+
+        <Separator />
+
+        <Box aria-labelledby={bookListA11yId} as="section" maxWidth="100%" py={Space * 2} width="100%">
+          <Text as="h2" color={Color.MONO_100} id={bookListA11yId} typography={Typography.NORMAL20} weight="bold">
+            作品一覧
           </Text>
-          <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL14}>
-            {author.description}
-          </Text>
-        </Flex>
-      </HeadingWrapper>
 
-      <Separator />
+          <Spacer height={Space * 2} />
 
-      <Box aria-labelledby={bookListA11yId} as="section" maxWidth="100%" py={Space * 2} width="100%">
-        <Text as="h2" color={Color.MONO_100} id={bookListA11yId} typography={Typography.NORMAL20} weight="bold">
-          作品一覧
-        </Text>
-
-        <Spacer height={Space * 2} />
-
-        <Flex align="center" as="ul" direction="column" justify="center">
-          {author.books.map((book) => (
-            //  @ts-expect-error Server Component
-            <BookListItem key={book.id} bookId={book.id} bookData={book}/>
-          ))}
-          {author.books.length === 0 && (
-            <>
-              <Spacer height={Space * 2} />
-              <Text color={Color.MONO_100} typography={Typography.NORMAL14}>
-                この作者の作品はありません
-              </Text>
-            </>
-          )}
-        </Flex>
+          <Flex align="center" as="ul" direction="column" justify="center">
+            {author.books.map((book) => (
+              //  @ts-expect-error Server Component
+              <BookListItem key={book.id} bookId={book.id} bookData={book}/>
+            ))}
+            {author.books.length === 0 && (
+              <>
+                <Spacer height={Space * 2} />
+                <Text color={Color.MONO_100} typography={Typography.NORMAL14}>
+                  この作者の作品はありません
+                </Text>
+              </>
+            )}
+          </Flex>
+        </Box>
       </Box>
-    </Box>
-    </Suspense>
+      </Suspense>
+    </ActionLayout>
   );
 };
