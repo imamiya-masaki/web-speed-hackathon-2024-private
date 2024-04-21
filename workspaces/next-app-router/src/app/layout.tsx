@@ -1,5 +1,6 @@
 
 import "./globals.css"
+import "./reset.css"
 import { type ReactNode } from 'react';
 import { RegisterServiceWorker } from "@/_components/src/utils/RegisterServiceWorkerComponents";
 interface LayoutProps {
