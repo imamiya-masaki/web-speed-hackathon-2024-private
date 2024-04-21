@@ -70,7 +70,7 @@ export default async function Page ({ params: {authorId} }: {params: { authorId:
         <Flex align="center" as="ul" direction="column" justify="center">
           {author.books.map((book) => (
             //  @ts-expect-error Server Component
-            <BookListItem key={book.id} bookId={book.id} />
+            <BookListItem key={book.id} bookId={book.id} bookData={book}/>
           ))}
           {author.books.length === 0 && (
             <>

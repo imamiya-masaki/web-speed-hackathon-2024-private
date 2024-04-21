@@ -29,9 +29,24 @@ const ImgWrapperComponent: React.FC<{children: React.ReactNode}> = ({ children }
     {children}
   </div>
 );
+type BookListItemInfo = {
+  id: string,
+  name: string,
+  image: {
+    id: string
+  },
+  description: string
+}
+export default async function BookListItem({ bookId, bookData }: {bookId: string, bookData: BookListItemInfo}) {
 
-export default async function BookListItem({ bookId }: {bookId: string}) {
-  const { data: book } = await useBook({ params: { bookId } });
+  let book: BookListItemInfo;
+  if (!bookData) {
+    console.log('BookListItem:fetch')
+    const data = await useBook({ params: { bookId } });
+    book = data.data
+  } else {
+    book = bookData
+  }
 
 
   return (

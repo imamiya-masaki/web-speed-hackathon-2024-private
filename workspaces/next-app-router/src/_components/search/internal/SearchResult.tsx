@@ -34,7 +34,7 @@ export const SearchResult: React.FC<Props> = ({ books, keyword }) => {
       >
         {relatedBooks.map((book) => (
           //  @ts-expect-error Server Component
-          <BookListItem key={book.id} bookId={book.id} />
+          <BookListItem key={book.id} bookId={book.id} bookData={book}/>
         ))}
         {relatedBooks.length === 0 && (
           <Text color={Color.MONO_100} typography={Typography.NORMAL14}>
