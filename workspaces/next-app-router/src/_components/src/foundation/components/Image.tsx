@@ -45,7 +45,11 @@ type Props = {
 
 export const ImageRender: React.FC<Props> = ({ height, loading = 'eager', objectFit, width, canvas, src,alt ,...rest }) => {
   const [imageURL, setImageURL] = useState<string | undefined>(src)
-  const [dpr, setDpr] = useState<number>(2)
+  const [dpr, setDpr] = useState<number>(2) 
+  useEffect(() => {
+    setDpr(window.devicePixelRatio)
+  },[])
+
   const {height: canvasHeight, imageId: canvasImageId, width:canvasWidth} = canvas!
   // useEffect(()=>{(async () => {
   //   const dpr = window.devicePixelRatio;
