@@ -1,16 +1,36 @@
 'use client'
 
-import * as Icons from '@mui/icons-material';
+import {Favorite, FavoriteBorder, Search, NavigateNext,Close, ArrowBack} from '@mui/icons-material';
 
+const candidateType = ["Favorite", "FavoriteBorder", "Search", "NavigateNext", "Close", "ArrowBack"] as const;
+type candidateType = (typeof candidateType)[number];
 type Props = {
   color: string;
   height: number;
-  type: keyof typeof Icons;
+  type: candidateType;
   width: number;
 };
+// typeを列挙
+// tree shakingを効かすため
+
 
 export const SvgIcon: React.FC<Props> = ({ color, height, type, width }) => {
-  // eslint-disable-next-line
-  const Icon = Icons[type];
-  return <Icon style={{ color, height, width }} />;
+  let Icon: candidateType; 
+  const style = { color, height, width };
+  switch(type) {
+    case "Favorite":
+      return <Favorite style={style}/>
+    case "FavoriteBorder":
+      return <FavoriteBorder style={style}/>
+    case "Search":
+      return <Search style={style} />;
+    case "NavigateNext":
+      return <NavigateNext style={style} />;
+    case "Close":
+      return <Close style={style} />;
+    case "ArrowBack":
+      return <ArrowBack style={style} />;
+    default:
+      return <span>Icon not found</span>;
+  }
 };
