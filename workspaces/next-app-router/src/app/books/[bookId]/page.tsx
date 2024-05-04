@@ -16,6 +16,7 @@ import { Color, Space, Typography } from '../../../_components/src/foundation/st
 
 import { BottomNavigator } from '../../../_components/books/internal/BottomNavigator';
 import { ActionLayout } from '../../../_components/src/foundation/layouts/ActionLayout';
+import React from "react";
 
 const headingWrapperStyle = {
   display: 'grid',
@@ -103,7 +104,7 @@ export default async function Page ({params}: {params: {bookId: string}}){
         <Flex align="center" as="ul" direction="column" justify="center">
           {episodeList.map((episode) => (
             // @ts-expect-error
-            <EpisodeListItem key={episode.id} bookId={bookId} episodeId={episode.id} />
+            <EpisodeListItem key={episode.id} bookId={bookId} episodeId={episode.id} episodeInfo={episode}/>
           ))}
           {episodeList.length === 0 && (
             <>

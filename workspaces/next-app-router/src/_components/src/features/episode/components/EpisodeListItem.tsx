@@ -10,6 +10,7 @@ import { Text } from '../../../foundation/components/Text';
 import { Color, Space, Typography } from '../../../foundation/styles/variables';
 import { useEpisode } from '../hooks/useEpisode';
 import { useMemo, useState } from 'react';
+import React from 'react';
 
 const WrapperComponent: React.FC<{children: React.ReactNode}> = ({ children }) => (
   <li style={{ width: '100%' }}>
@@ -34,8 +35,22 @@ type Props = {
   episodeId: string;
 };
 
-export default async function EpisodeListItem ({ bookId, episodeId }: {bookId: string, episodeId: string})  {
-  const episode  = await useEpisode({ params: { episodeId } });
+type EpisodeListItemInfo = {
+  name: string,
+  id: string,
+  chapter: number,
+  description: string
+}
+
+export default async function EpisodeListItem ({ bookId, episodeId, episodeInfo }: {bookId: string, episodeId: string, episodeInfo: EpisodeListItemInfo})  {
+  
+  let episode: EpisodeListItemInfo;
+  if (episodeInfo) {
+    episode = episodeInfo
+  } else {
+    episode = await useEpisode({ params: { episodeId } });
+  }
+
 
   return (
     <WrapperComponent>
