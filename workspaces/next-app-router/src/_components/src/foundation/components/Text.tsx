@@ -26,6 +26,8 @@ type Props = {
   flexShrink?: CSS.Property.FlexShrink;
   id?: string;
   typography: Typography;
+  overflowX?: React.CSSProperties["overflowX"];
+  overflowY?: React.CSSProperties["overflowY"];
   weight?: 'bold' | 'normal';
 };
 
@@ -38,6 +40,8 @@ export const Text: React.FC<Props> = ({
   id,
   typography,
   weight = 'normal',
+  overflowX,
+  overflowY,
 }) => {
   const styles: React.CSSProperties = {
     color,
@@ -45,6 +49,12 @@ export const Text: React.FC<Props> = ({
     flexShrink,
     fontWeight: weight,
     ...typography
+  }
+  if (overflowX) {
+    styles.overflowX = overflowX;
+  }
+  if (overflowY){
+    styles.overflowY = overflowY;
   }
   const asDom = as
   const Component = asDom ?? "span"
