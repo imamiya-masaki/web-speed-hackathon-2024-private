@@ -71,42 +71,6 @@ function getScrollToLeft({
   return scrollToLeft;
 }
 
-
-const ContainerComponent: React.FC<{ children: React.ReactNode, ref:any }> = ({ children, ref }) => (
-  <div style={{ position: 'relative' }} ref={ref}>
-    {children}
-  </div>
-);
-
-const WrapperComponent: React.FC<{
-  $paddingInline: number;
-  $pageWidth: number;
-  children: React.ReactNode;
-  ref: any
-}> = ({ $paddingInline, $pageWidth, children, ref }) => (
-  <div
-    className="comic-viewer-core-wrapper" // CSSでのスタイリングを適用するためのクラス名
-    style={{
-      backgroundColor: 'black',
-      cursor: 'grab',
-      direction: 'rtl',
-      display: 'grid',
-      gridAutoColumns: addUnitIfNeeded($pageWidth),
-      gridAutoFlow: 'column',
-      gridTemplateRows: 'minmax(auto, 100%)',
-      height: '100%',
-      overflowX: 'scroll',
-      overflowY: 'hidden',
-      overscrollBehavior: 'none',
-      paddingInline: addUnitIfNeeded($paddingInline),
-      touchAction: 'none',
-    }}
-    ref={ref}
-  >
-    {children}
-  </div>
-);
-
 type Props = {
   episodeId: string;
 };
@@ -210,7 +174,6 @@ export default function ComicViewerCore ({ episodeId }: {episodeId: string}) {
       }
       prevContentRect = entries[0]?.contentRect ?? null;
     };
-
     scrollView?.addEventListener('pointerdown', handlePointerDown, { passive: false, signal: abortController.signal });
     scrollView?.addEventListener('pointermove', handlePointerMove, { passive: false, signal: abortController.signal });
     scrollView?.addEventListener('pointerup', handlePointerUp, { passive: false, signal: abortController.signal });
@@ -228,13 +191,31 @@ export default function ComicViewerCore ({ episodeId }: {episodeId: string}) {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-    <ContainerComponent ref={containerRef}>
-      <WrapperComponent ref={scrollViewRef} $paddingInline={viewerPaddingInline} $pageWidth={pageWidth}>
-        {episode ? episode.pages.map((page) => {
-          return <ComicViewerPage key={page.id} pageImageId={page.image.id} />;
-        }) : null}
-      </WrapperComponent>
-    </ContainerComponent>
+      <div style={{ position: 'relative' }} ref={containerRef}>    
+        <div
+        className="comic-viewer-core-wrapper" // CSSでのスタイリングを適用するためのクラス名
+        style={{
+          backgroundColor: 'black',
+          cursor: 'grab',
+          direction: 'rtl',
+          display: 'grid',
+          gridAutoColumns: addUnitIfNeeded(pageWidth),
+          gridAutoFlow: 'column',
+          gridTemplateRows: 'minmax(auto, 100%)',
+          height: '100%',
+          overflowX: 'scroll',
+          overflowY: 'hidden',
+          overscrollBehavior: 'none',
+          paddingInline: addUnitIfNeeded(viewerPaddingInline),
+          touchAction: 'none',
+        }}
+        ref={scrollViewRef}
+        >
+          {episode ? episode.pages.map((page) => {
+            return <ComicViewerPage key={page.id} pageImageId={page.image.id} />;
+          }) : null}
+        </div>
+      </div>
     </Suspense>
   );
 };
