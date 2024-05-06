@@ -22,6 +22,8 @@ function getScrollToLeft({
   pageWidth: number;
   scrollView: HTMLDivElement;
 }) {
+  console.log('getScrollToLeft')
+  const start = performance.now();
   const scrollViewClientRect = scrollView.getBoundingClientRect();
   const scrollViewCenterX = (scrollViewClientRect.left + scrollViewClientRect.right) / 2;
 
@@ -32,7 +34,7 @@ function getScrollToLeft({
 
   // 画面に表示されているページの中心と、スクロールビューの中心との差分を計算する
   // 世界は我々の想像する以上に変化するため、2 ** 12 回繰り返し観測する
-  for (let times = 0; times < 2 ** 12; times++) {
+  for (let times = 0; times < 2 ** 8; times++) {
         // @ts-ignore
     for (const [idx, child] of children.entries()) {
       const nthChild = idx + 1;
@@ -66,8 +68,9 @@ function getScrollToLeft({
         scrollToLeft = candidateScrollToLeft;
       }
     }
-  }
 
+  }
+  console.log('getScrollToLeft:time', performance.now() - start)
   return scrollToLeft;
 }
 
@@ -113,6 +116,7 @@ export default function ComicViewerCore ({ episodeId }: {episodeId: string}) {
     let scrollToLeftWhenScrollEnd = 0;
 
     const handlePointerDown = (ev: PointerEvent) => {
+      console.log('handlePointerDown')
       const scrollView = ev.currentTarget as HTMLDivElement;
       isPressed = true;
       scrollView.style.cursor = 'grabbing';
@@ -121,6 +125,7 @@ export default function ComicViewerCore ({ episodeId }: {episodeId: string}) {
     };
 
     const handlePointerMove = (ev: PointerEvent) => {
+      console.log('handlePointerMove')
       if (isPressed) {
         const scrollView = ev.currentTarget as HTMLDivElement;
         scrollView.scrollBy({
@@ -132,6 +137,7 @@ export default function ComicViewerCore ({ episodeId }: {episodeId: string}) {
     };
 
     const handlePointerUp = (ev: PointerEvent) => {
+      console.log('handlePointerUp')
       const scrollView = ev.currentTarget as HTMLDivElement;
       isPressed = false;
       scrollView.style.cursor = 'grab';
@@ -140,6 +146,7 @@ export default function ComicViewerCore ({ episodeId }: {episodeId: string}) {
     };
 
     const handleScroll = (ev: Pick<Event, 'currentTarget'>) => {
+      console.log('handleScroll')
       const scrollView = ev.currentTarget as HTMLDivElement;
       scrollToLeftWhenScrollEnd = getScrollToLeft({ pageCountParView, pageWidth, scrollView });
     };
@@ -148,11 +155,12 @@ export default function ComicViewerCore ({ episodeId }: {episodeId: string}) {
     abortController.signal.addEventListener('abort', () => window?.clearTimeout(scrollEndTimer), { once: true });
 
     const handleScrollEnd = (ev: Pick<Event, 'currentTarget'>) => {
+      console.log('handleScrollEnd')
       const scrollView = ev.currentTarget as HTMLDivElement;
 
       // マウスが離されるまではスクロール中とみなす
       if (isPressed) {
-        scrollEndTimer = window?.setTimeout(() => handleScrollEnd({ currentTarget: scrollView }), 0);
+        scrollEndTimer = window?.setTimeout(() => handleScrollEnd({ currentTarget: scrollView }), 100);
         return;
       } else {
         scrollView.scrollBy({
