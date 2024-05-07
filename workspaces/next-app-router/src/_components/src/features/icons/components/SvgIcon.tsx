@@ -1,6 +1,9 @@
-'use client'
-
-import {Favorite, FavoriteBorder, Search, NavigateNext,Close, ArrowBack} from '@mui/icons-material';
+import Favorite from '@mui/icons-material/Favorite';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import Search from '@mui/icons-material/Search';
+import NavigateNext from '@mui/icons-material/NavigateNext';
+import Close from '@mui/icons-material/Close';
+import ArrowBack from '@mui/icons-material/ArrowBack';
 
 const candidateType = ["Favorite", "FavoriteBorder", "Search", "NavigateNext", "Close", "ArrowBack"] as const;
 type candidateType = (typeof candidateType)[number];
