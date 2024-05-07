@@ -5,14 +5,19 @@ import { registerServiceWorker } from "./registerServiceWorker"
 
 
 export const RegisterServiceWorker:React.FC = function () {
-    useEffect(() => {
-        if ('serviceWorker' in navigator) {
-            registerServiceWorker().then(() => {
-              console.log('Service Worker registered and activated.');
-            }).catch((error) => {
-              console.error('Service Worker registration failed:', error);
-            });
-          }
-    },[])
+    useEffect(() => 
+    {
+      (async() => {
+      console.log('RegisterServiceWorker', navigator), 'serviceWorker' in navigator;
+      try {
+       await registerServiceWorker()
+      } catch(e) {
+        console.error(e)
+      }
+      return
+    })()
+    }
+    ,[])
+
     return (<></>)
 }
