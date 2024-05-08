@@ -34,7 +34,7 @@
     "jimp": "0.22.12",
     "jotai": "2.7.0",
     "ky": "1.2.0",
-    "lodash": "4.17.21",
+    "lodash.clamp": "4.0.3",
     "magika": "0.2.12",
     "moment-timezone": "0.5.45",
     "next": "14.1.4",
