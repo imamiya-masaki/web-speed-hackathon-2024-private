@@ -2,7 +2,6 @@ import './rankingcard.css'
 
 import { Suspense,useState } from 'react';
 
-import { SvgIcon } from '../../icons/components/SvgIcon';
 import { Box } from '../../../foundation/components/Box';
 import { Flex } from '../../../foundation/components/Flex';
 import { ImageRender } from '../../../foundation/components/Image';
@@ -12,6 +11,8 @@ import { Spacer } from '../../../foundation/components/Spacer';
 import { Text } from '../../../foundation/components/Text';
 import { Color, Radius, Space, Typography } from '../../../foundation/styles/variables';
 import { useBook } from '../../book/hooks/useBook';
+
+import NextImage from 'next/image';
 
 const WrapperComponent: React.FC<{children: React.ReactNode}> = ({ children }) => (
   <li style={{ width: '100%' }}>
@@ -36,6 +37,10 @@ const AvatarWrapperComponent: React.FC<{children: React.ReactNode}> = ({ childre
     {children}
   </div>
 );
+
+const NavigateNextSVG: React.FC = () => {
+  return (<NextImage src="/color_set_icon/navigate_next_40dp.svg" width={32} height={32} alt="NavigateNext" />)
+}
 
 
 type RankingBookCardInfo = {
@@ -110,7 +115,8 @@ export default async function RankingCard ({ bookId, bookData }: Props){
               <Text color={Color.Secondary} typography={Typography.NORMAL14} weight="bold">
                 この漫画を読む
               </Text>
-              <SvgIcon color={Color.Secondary} height={32} type="NavigateNext" width={32} />
+              <NavigateNextSVG />
+              {/* <SvgIcon color={Color.Secondary} height={32} type="NavigateNext" width={32} /> */}
             </Flex>
           </Box>
         </Flex>

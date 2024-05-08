@@ -1,124 +1,58 @@
 "use client"
 import React, { ReactNode, useState } from 'react';
 
-import { COMPANY } from '../constants/Company';
-import { CONTACT } from '../constants/Contact';
-import { OVERVIEW } from '../constants/Overview';
-import { QUESTION } from '../constants/Question';
-import { TERM } from '../constants/Term';
-import { Color, Space, Typography } from '../styles/variables';
+import { Color, Space } from '../styles/variables';
 
 import { Box } from './Box';
 import { Button } from './Button';
 import { Flex } from './Flex';
-import { Spacer } from './Spacer';
-import { Text } from './Text';
 
-import { SvgIcon } from '../../features/icons/components/SvgIcon';
-
+import NextImage from 'next/image'
 
 const ContentDom: React.FC<{children: ReactNode, role: string}> = ({role, children}) => {
   return <section style={{"whiteSpace": "pre-line"}} role={role}>{children}</section>
 }
 
+const Close: React.FC = () => {
+  return (<NextImage src="/color_set_icon/close_40dp.svg" width={32} height={32} alt="Close" />)
+}
+
 export const Footer: React.FC = () => {
-  const [isClient, setIsClient] = React.useState(false);
 
   const [isOpen, setIsOpen] = useState(false);
   const [dialogContent, setDialogContent] = useState<JSX.Element | undefined>(undefined);
   const [iframeSrc, setIframeSrc] = useState<string>("");
   const openDialog = () => setIsOpen(true);
   const closeDialog = () => setIsOpen(false);
-  
-  const termDialogA11yId = 'termDialogA11yId';
-  const contactDialogA11yId = 'contactDialogA11yId';
-  const questionDialogA11yId = 'questionDialogA11yId';
-  const companyDialogA11yId = 'companyDialogA11yId';
-  const overviewDialogA11yId = 'overviewDialogA11yId';
 
   const handleRequestToTermDialogOpen = () => {
     const origin = window.location.origin;
     setIframeSrc(`${origin}/footer/term`)
     openDialog()
-    // setDialogContent(
-    //   <ContentDom aria-labelledby={termDialogA11yId} role="dialog">
-    //     <Text as="h2" color={Color.MONO_100} id={termDialogA11yId} typography={Typography.NORMAL16}>
-    //       利用規約
-    //     </Text>
-    //     <Spacer height={Space * 1} />
-    //     <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL12}>
-    //       {TERM}
-    //     </Text>
-    //   </ContentDom>,
-    // );
   };
 
   const handleRequestToContactDialogOpen = () => {
     const origin = window.location.origin;
     setIframeSrc(`${origin}/footer/contact`)
     openDialog()
-    // setDialogContent(
-    //   <ContentDom aria-labelledby={contactDialogA11yId} role="dialog">
-    //     <Text as="h2" color={Color.MONO_100} id={contactDialogA11yId} typography={Typography.NORMAL16}>
-    //       お問い合わせ
-    //     </Text>
-    //     <Spacer height={Space * 1} />
-    //     <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL12}>
-    //       {CONTACT}
-    //     </Text>
-    //   </ContentDom>,
-    // );
   };
 
   const handleRequestToQuestionDialogOpen = () => {
     const origin = window.location.origin;
     setIframeSrc(`${origin}/footer/question`)
     openDialog()
-    // setDialogContent(
-    //   <ContentDom aria-labelledby={questionDialogA11yId} role="dialog">
-    //     <Text as="h2" color={Color.MONO_100} id={questionDialogA11yId} typography={Typography.NORMAL16}>
-    //       Q&A
-    //     </Text>
-    //     <Spacer height={Space * 1} />
-    //     <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL12}>
-    //       {QUESTION}
-    //     </Text>
-    //   </ContentDom>,
-    // );
   };
 
   const handleRequestToCompanyDialogOpen = () => {
     const origin = window.location.origin;
     setIframeSrc(`${origin}/footer/company`)
     openDialog()
-    // setDialogContent(
-    //   <ContentDom aria-labelledby={companyDialogA11yId} role="dialog">
-    //     <Text as="h2" color={Color.MONO_100} id={companyDialogA11yId} typography={Typography.NORMAL16}>
-    //       運営会社
-    //     </Text>
-    //     <Spacer height={Space * 1} />
-    //     <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL12}>
-    //       {COMPANY}
-    //     </Text>
-    //   </ContentDom>,
-    // );
   };
 
   const handleRequestToOverviewDialogOpen = () => {
     const origin = window.location.origin;
     setIframeSrc(`${origin}/footer/overview`)
     openDialog()
-    // setDialogContent(
-    //   <ContentDom aria-labelledby={overviewDialogA11yId} role="dialog">
-    //     <Text as="h2" color={Color.MONO_100} id={overviewDialogA11yId} typography={Typography.NORMAL16}>
-    //       Cyber TOONとは
-    //     </Text>
-    //     <Spacer height={Space * 1} />
-    //     <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL12}>
-    //       {OVERVIEW}
-    //     </Text>
-    //   </ContentDom>,
-    // );
   };
 
   const overlayStyle: React.CSSProperties = {
@@ -164,8 +98,9 @@ export const Footer: React.FC = () => {
     <>
     <dialog  open={isOpen} onClose={closeDialog} style={overlayStyle}>
       <Wrapper>
-        <Button addStyle={{"borderRadius": "50%", "height": "32px", "width": "32px", "position": "absolute", top: `-${Space * 5}px`, left: `-${Space * 1}px`}} onClick={() => {closeDialog();setDialogContent(undefined)}}>
-          <SvgIcon color={Color.MONO_A} height={32} type="Close" width={32} />
+        <Button addStyle={{"borderRadius": "50%", "height": "32px", "width": "32px", "position": "absolute", top: `-${Space * 5}px`, left: `-${Space * 1}px`}} onClick={() => {closeDialog();}}>
+          <Close />
+          {/* <SvgIcon color={Color.MONO_A} height={32} type="Close" width={32} /> */}
         </Button>
         <Container> <iframe src={iframeSrc} style={{ width: '100%', height: '100%', overflowY: 'scroll', overflowX: 'hidden'}}></iframe></Container>
       </Wrapper>

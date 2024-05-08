@@ -1,5 +1,5 @@
-import { SvgIcon } from '../../src/features/icons/components/SvgIcon'
 import { Color, Space } from '../../src/foundation/styles/variables';
+import NextImage from 'next/image';
 interface ButtonProps {
   $outlined: boolean;
   children: React.ReactNode;
@@ -28,6 +28,13 @@ const Button: React.FC<ButtonProps> = ({ $outlined, children, onClick, AriaLabel
   );
 };
 
+const Favorite: React.FC = () => {
+  return (<NextImage src="/color_set_icon/favorite_24dp.svg" width={24} height={24} alt="Favorite" />)
+}
+
+const FavoriteBorder: React.FC = () => {
+  return (<NextImage src="/color_set_icon/favorite_border_24dp.svg" width={24} height={24} alt="FavoriteBorder"/>)
+}
 
 type Props = {
   enabled?: boolean;
@@ -41,12 +48,7 @@ export const FavButton: React.FC<Props> = ({ enabled, onClick }) => {
       AriaLabel={enabled ? 'お気に入りを解除する' : 'お気に入りに追加する'}
       onClick={onClick}
     >
-      <SvgIcon
-        color={enabled ? Color.Favorite : Color.MONO_40}
-        height={24}
-        type={enabled ? 'Favorite' : 'FavoriteBorder'}
-        width={24}
-      />
+      {enabled ? <Favorite/> : <FavoriteBorder />}
     </Button>
   );
 };

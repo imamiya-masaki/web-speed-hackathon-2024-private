@@ -1,8 +1,9 @@
-import { SvgIcon } from '../src/features/icons/components/SvgIcon';
 import { Text } from '../src/foundation/components/Text';
 import { Color, Radius, Space, Typography } from '../src/foundation/styles/variables';
 
 import { HeroImage } from './HeroImage';
+
+import NextImage from 'next/image';
 
 // _Wrapperコンポーネントのスタイル
 const wrapperStyle = {
@@ -47,12 +48,17 @@ const SearchLink: React.FC<SearchLinkProps> = ({ href, children }) => {
   return <a href={href} style={searchLinkStyle}>{children}</a>;
 };
 
+const SearchSVG: React.FC = () => {
+  return (<NextImage src="/color_set_icon/search_24dp.svg" width={24} height={24} alt="Search" />)
+}
+
+
 export const CoverSection: React.FC = () => {
   return (
     <Wrapper>
       <HeroImage />
       <SearchLink href="/search">
-        <SvgIcon color={Color.MONO_A} height={24} type="Search" width={24} />
+        <SearchSVG />
         <Text color={Color.MONO_A} typography={Typography.NORMAL16}>
           検索
         </Text>

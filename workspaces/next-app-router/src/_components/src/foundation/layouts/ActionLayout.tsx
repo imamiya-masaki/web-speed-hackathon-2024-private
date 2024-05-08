@@ -3,11 +3,12 @@ import { Container } from '../components/Container';
 import { Flex } from '../components/Flex';
 import { Footer } from '../components/Footer';
 import { Color, Space, Typography } from '../styles/variables';
-import { SvgIcon } from '../../features/icons/components/SvgIcon';
 import { Link } from '../components/Link';
 import { Text } from '../components/Text';
 
 import {type ReactNode} from 'react';
+
+import NextImage from 'next/image';
 
 const Header: React.FC<{children: React.ReactNode}> = ({ children }) => (
   <header style={{
@@ -25,6 +26,9 @@ type Props = {
   
 };
 
+const ArrowBack: React.FC = () => {
+  return (<NextImage src="/color_set_icon/arrow_back_40dp.svg" width={32} height={32} alt="ArrowBack"/>)
+}
 
 
 export const ActionLayout: React.FC<Props> = ({ children}) => {
@@ -46,7 +50,8 @@ export const ActionLayout: React.FC<Props> = ({ children}) => {
       <Header>
         <Flex align="center" justify="space-between">
         <BackToTopButton to={'/'}>
-            <SvgIcon color={Color.MONO_100} height={32} type="ArrowBack" width={32} />
+            <ArrowBack />
+            {/* <SvgIcon color={Color.MONO_100} height={32} type="ArrowBack" width={32} /> */}
             <Text color={Color.MONO_100} typography={Typography.NORMAL16} weight="bold">
             トップへ戻る
             </Text>
