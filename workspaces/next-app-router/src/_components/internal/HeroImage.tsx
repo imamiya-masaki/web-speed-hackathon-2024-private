@@ -21,7 +21,7 @@ const Wrapper: React.FC<{children: React.ReactNode}> = ({ children }) => {
 
 
 export const HeroImage: React.FC = () => {
-  const imageInfo = {dpr: 1, height: (4096 / 16) * 9, width: 4096, src: "/assets/HeroImageSrc/HeroImageSrc-1.png"}
+  const imageInfo = {dpr: 1, height: (4096 / 16) * 9, width: 4096, src: "/assets/HeroImageSrc/HeroImageSrc-1.webp"}
   // const [imageInfo, setImageInfo] = useState<{"width": number, "height": number, dpr: number, src: string}>({dpr: 1, height: (4096 / 16) * 9, width: 4096, src: "/assets/HeroImageSrc/HeroImageSrc-1.png"})
 
   // ↓そもそもdprなんだから、srcsetでやるべき案件なので、nexrimageに任せるためコメントアウト
