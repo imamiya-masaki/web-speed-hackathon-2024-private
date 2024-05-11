@@ -8,7 +8,6 @@ import  BookListItem from '../../../../src/_components/src/features/book/compone
 import { Box } from '../../../../src/_components/src/foundation/components/Box';
 import { Flex } from '../../../../src/_components/src/foundation/components/Flex';
 import { ImageRender } from '../../../../src/_components/src/foundation/components/Image';
-import { Separator } from '../../../../src/_components/src/foundation/components/Separator';
 import { Spacer } from '../../../../src/_components/src/foundation/components/Spacer';
 import { Text } from '../../../../src/_components/src/foundation/components/Text';
 import { Color, Space, Typography } from '../../../../src/_components/src/foundation/styles/variables';
@@ -22,7 +21,7 @@ const HeadingWrapper: React.FC<{children: React.ReactNode}> = ({ children }) => 
     gridTemplateColumns: 'auto 1fr',
     paddingBottom: `${Space * 2}px`,
     gap: `${Space * 2}px`,
-  }} aria-label="作者情報">
+  }} aria-label="作者情報" className="separator_line">
     {children}
   </section>
 );
@@ -59,8 +58,6 @@ export default async function Page ({ params: {authorId} }: {params: { authorId:
             </Text>
           </Flex>
         </HeadingWrapper>
-
-        <Separator />
 
         <Box aria-labelledby={bookListA11yId} as="section" maxWidth="100%" py={Space * 2} width="100%">
           <Text as="h2" color={Color.MONO_100} id={bookListA11yId} typography={Typography.NORMAL20} weight="bold">

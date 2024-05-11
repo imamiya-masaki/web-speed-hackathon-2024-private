@@ -11,13 +11,13 @@ import { FavoriteBookAtomFamily } from '@/_components/src/features/book/atoms/Fa
 import { useAtom } from 'jotai';
 
 // コンポーネントの定義
-const Wrapper: React.FC<{children: React.ReactNode}> = ({ children }) => (
+const Wrapper: React.FC<{children: React.ReactNode, className: string}> = ({ children, className }) => (
   <div style={{
     position: 'fixed',
     bottom: `${Space * 4}px`,
     left: '50%',
     transform: 'translateX(-50%)',
-  }}>
+  }} className={className}>
     {children}
   </div>
 );
@@ -55,9 +55,10 @@ const ReadLink: React.FC<{to: string, children: React.ReactNode}> = ({ to, child
 type Props = {
   bookId: string;
   latestEpisodeId: string;
+  className: string;
 };
 
-export const BottomNavigator: React.FC<Props> = ({ bookId, latestEpisodeId }) => {
+export const BottomNavigator: React.FC<Props> = ({ bookId, latestEpisodeId, className }) => {
   const props = useSpring({
     from: { transform: 'translateY(100%)' },
     to: { transform: 'translateY(0)' },
@@ -70,7 +71,7 @@ export const BottomNavigator: React.FC<Props> = ({ bookId, latestEpisodeId }) =>
   }, [toggleFavorite]);
 
   return (
-    <Wrapper>
+    <Wrapper className={className}>
       <animated.div style={props}>
         <Content>
           <FavButton enabled={isFavorite} onClick={handleFavClick} />

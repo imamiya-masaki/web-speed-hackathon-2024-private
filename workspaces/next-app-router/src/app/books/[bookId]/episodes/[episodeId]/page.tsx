@@ -7,7 +7,6 @@ import  EpisodeListItem from '../../../../../_components/src/features/episode/co
 import { useEpisode } from '../../../../../_components/src/features/episode/hooks/useEpisode';
 import { Box } from '../../../../../_components/src/foundation/components/Box';
 import { Flex } from '../../../../../_components/src/foundation/components/Flex';
-import { Separator } from '../../../../../_components/src/foundation/components/Separator';
 import { Space } from '../../../../../_components/src/foundation/styles/variables';
 
 import { ComicViewer } from '../../../../../_components/books/episodes/internal/ComicViewer';
@@ -25,11 +24,9 @@ export default async function Page ({params}: {params: {bookId: string, episodeI
     <ActionLayout>
     <Suspense fallback={<div>Loading...</div>}>
     <Box>
-      <section aria-label="漫画ビューアー">
+      <section aria-label="漫画ビューアー" className="separator_line">
         <ComicViewer episodeId={episode.id} />
       </section>
-
-      <Separator />
 
       <Box aria-label="エピソード一覧" as="section" px={Space * 2}>
         <Flex align="center" as="ul" direction="column" justify="center">

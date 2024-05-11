@@ -4,7 +4,6 @@ import { Box } from '../../../foundation/components/Box';
 import { Flex } from '../../../foundation/components/Flex';
 import { ImageRender } from '../../../foundation/components/Image';
 import { Link } from '../../../foundation/components/Link';
-import { Separator } from '../../../foundation/components/Separator';
 import { Spacer } from '../../../foundation/components/Spacer';
 import { Text } from '../../../foundation/components/Text';
 import { Color, Space, Typography } from '../../../foundation/styles/variables';
@@ -13,13 +12,13 @@ import { useMemo, useState } from 'react';
 
 
 const WrapperComponent: React.FC<{children: React.ReactNode}> = ({ children }) => (
-  <li style={{ width: '100%' }}>
+  <li style={{ width: '100%' }}  className='separator_line'>
     {children}
   </li>
 );
 
 const LinkComponent: React.FC<{to: string; children: React.ReactNode}> = ({ to, children }) => (
-  <Link to={to} style={{ width: '100%' }}>
+  <Link to={to} style={{ width: '100%' }} >
     {children}
   </Link>
 );
@@ -50,12 +49,12 @@ export default async function BookListItem({ bookId, bookData }: {bookId: string
 
 
   return (
-    <WrapperComponent>
+    <WrapperComponent >
       <LinkComponent to={`/books/${book.id}`}>
         <Spacer height={Space * 1.5} />
         <Flex align="flex-start" gap={Space * 2.5} justify="flex-start">
         <ImgWrapperComponent>
-              <ImageRender alt={book.name} height={64} objectFit="cover" width={64} canvas={{ height: 64, imageId: book.image.id, width: 64 }}/>
+              <ImageRender alt={book.name} height={64} loading={"lazy"} objectFit="cover" width={64} canvas={{ height: 64, imageId: book.image.id, width: 64 }}/>
             </ImgWrapperComponent>
           <Box width="100%">
             <Flex align="flex-start" direction="column" gap={Space * 1} justify="flex-start">
@@ -69,7 +68,6 @@ export default async function BookListItem({ bookId, bookData }: {bookId: string
           </Box>
         </Flex>
         <Spacer height={Space * 1.5} />
-        <Separator />
       </LinkComponent>
     </WrapperComponent>
   );

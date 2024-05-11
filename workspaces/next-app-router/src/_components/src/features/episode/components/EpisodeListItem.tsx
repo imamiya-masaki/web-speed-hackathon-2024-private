@@ -4,7 +4,6 @@ import { Box } from '../../../foundation/components/Box';
 import { Flex } from '../../../foundation/components/Flex';
 import { ImageRender } from '../../../foundation/components/Image';
 import { Link } from '../../../foundation/components/Link';
-import { Separator } from '../../../foundation/components/Separator';
 import { Spacer } from '../../../foundation/components/Spacer';
 import { Text } from '../../../foundation/components/Text';
 import { Color, Space, Typography } from '../../../foundation/styles/variables';
@@ -13,13 +12,13 @@ import { useMemo, useState } from 'react';
 import React from 'react';
 
 const WrapperComponent: React.FC<{children: React.ReactNode}> = ({ children }) => (
-  <li style={{ width: '100%' }}>
+  <li style={{ width: '100%' }} className='separator_line'>
     {children}
   </li>
 );
 
 const LinkComponent: React.FC<{to: string; children: React.ReactNode}> = ({ to, children }) => (
-  <Link to={to} style={{ width: '100%' }}>
+  <Link to={to} style={{ width: '100%' }} >
     {children}
   </Link>
 );
@@ -39,7 +38,10 @@ type EpisodeListItemInfo = {
   name: string,
   id: string,
   chapter: number,
-  description: string
+  description: string,
+  image: {
+    id: string
+  }
 }
 
 export default async function EpisodeListItem ({ bookId, episodeId, episodeInfo }: {bookId: string, episodeId: string, episodeInfo: EpisodeListItemInfo})  {
@@ -78,7 +80,6 @@ export default async function EpisodeListItem ({ bookId, episodeId, episodeInfo 
           </Box>
         </Flex>
         <Spacer height={Space * 1.5} />
-        <Separator />
       </LinkComponent>
     </WrapperComponent>
   );

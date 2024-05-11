@@ -6,7 +6,6 @@ import { Box } from '../../../foundation/components/Box';
 import { Flex } from '../../../foundation/components/Flex';
 import { ImageRender } from '../../../foundation/components/Image';
 import { Link } from '../../../foundation/components/Link';
-import { Separator } from '../../../foundation/components/Separator';
 import { Spacer } from '../../../foundation/components/Spacer';
 import { Text } from '../../../foundation/components/Text';
 import { Color, Radius, Space, Typography } from '../../../foundation/styles/variables';
@@ -15,13 +14,13 @@ import { useBook } from '../../book/hooks/useBook';
 import NextImage from 'next/image';
 
 const WrapperComponent: React.FC<{children: React.ReactNode}> = ({ children }) => (
-  <li style={{ width: '100%' }}>
+  <li style={{ width: '100%' }} className='separator_line'>
     {children}
   </li>
 );
 
 const LinkComponent: React.FC<{ to: string; children: React.ReactNode }> = ({ to, children }) => (
-  <Link to={to} style={{ width: '100%' }}>
+  <Link to={to} style={{ width: '100%' }} >
     {children}
   </Link>
 );
@@ -80,7 +79,7 @@ export default async function RankingCard ({ bookId, bookData }: Props){
         <Spacer height={Space * 1.5} />
         <Flex align="flex-start" gap={Space * 2.5} justify="flex-start">
             <ImgWrapperComponent>
-              <ImageRender alt={book.name} height={96} objectFit="cover" width={96} canvas={{ height: 96, imageId: book.image.id, width: 96 }}/>
+              <ImageRender alt={book.name} height={96} loading="lazy" objectFit="cover" width={96} canvas={{ height: 96, imageId: book.image.id, width: 96 }}/>
             </ImgWrapperComponent>
           <Box width="100%">
             <Flex align="flex-start" direction="column" gap={Space * 1} justify="flex-start">
@@ -99,6 +98,7 @@ export default async function RankingCard ({ bookId, bookData }: Props){
                   <ImageRender
                     alt={`${book.author.name}のアイコン`}
                     height={32}
+                    loading="lazy"
                     objectFit="cover"
                     width={32}
                     canvas={{ height: 32, imageId: book.author.image.id, width: 32 }}
@@ -121,7 +121,6 @@ export default async function RankingCard ({ bookId, bookData }: Props){
           </Box>
         </Flex>
         <Spacer height={Space * 1.5} />
-        <Separator />
       </LinkComponent>
     </WrapperComponent>
     </Suspense>

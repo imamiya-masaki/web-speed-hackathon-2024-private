@@ -5,3 +5,8 @@ body {
 a {
   text-decoration: none;
 }
+
+/* とりあえず困らないうちはグローバルで*/
+.separator_line {
+  border-bottom: 1px solid #E9E9E9; /* #D3D3D3 の色で1ピクセルの下線 */ /* canvasで見るとE9E9E9ぽかった*/
+}

@@ -59,11 +59,12 @@ export const Separator: React.FC = () => {
   if (wrapperRef.current) {
     return (
    
-      <Wrapper ref={wrapperRef}>
+      <div style={{ width: '100%' }} ref={wrapperRef}>
+        dadsa
         {imgUrl != null ? <SeparatorComponent ariaHidden={true} height={1} src={imgUrl} width="100%" /> : null}
-      </Wrapper>
+      </div>
     );
   } else {
-    return <></>
+    return <>dsada</>
   }
 };

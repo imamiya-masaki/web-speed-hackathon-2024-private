@@ -96,6 +96,7 @@ export default async function Page ({params}: {params: {bookId: string}}){
       <BottomNavigator
         bookId={bookId}
         latestEpisodeId={latestEpisode?.id ?? ''}
+        className="separator_line"
       />
 
       <Separator />

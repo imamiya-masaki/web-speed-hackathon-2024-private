@@ -1,15 +1,10 @@
-'use client'
-
 import type * as CSS from 'csstype';
 
 import NextImage from 'next/image'
 
 import { addUnitIfNeeded } from '../../lib/css/addUnitIfNeeded';
 
-import { useAsync } from 'react-use';
-
 import { getImageUrl } from '../../lib/image/getImageUrl';
-import { useEffect, useMemo, useState } from 'react';
 
 
 const ImageComponent: React.FC<{
@@ -43,12 +38,13 @@ type Props = {
   alt?:string
 } & JSX.IntrinsicElements['img'];
 
-export const ImageRender: React.FC<Props> = ({ height, loading = 'eager', objectFit, width, canvas, src,alt ,...rest }) => {
-  const [imageURL, setImageURL] = useState<string | undefined>(src)
-  const [dpr, setDpr] = useState<number>(2) 
-  useEffect(() => {
-    setDpr(window.devicePixelRatio)
-  },[])
+export const ImageRender: React.FC<Props> = ({ height, loading = 'lazy', objectFit, width, canvas, src,alt ,...rest }) => {
+  // const [imageURL, setImageURL] = useState<string | undefined>(src)
+  // const [dpr, setDpr] = useState<number>(1) 
+  // useEffect(() => {
+  //   setDpr(window.devicePixelRatio)
+  // },[])
+  const dpr = 1
 
   const {height: canvasHeight, imageId: canvasImageId, width:canvasWidth} = canvas!
   // useEffect(()=>{(async () => {
