@@ -1,6 +1,6 @@
 import { TERM } from '../../../_components/src/foundation/constants/Term';
 import { Color, Space, Typography } from '../../../_components/src/foundation/styles/variables';
-import React, { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { Spacer } from '../../../_components/src/foundation/components/Spacer';
 import { Text } from '../../../_components/src/foundation/components/Text';
 

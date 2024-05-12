@@ -19,6 +19,7 @@ type Props = {
   pt?: number;
   px?: number;
   py?: number;
+  minHeight?: CSS.Property.MinHeight;
 };
 
 export const Flex: React.FC<Props> = (val) => {
@@ -38,6 +39,9 @@ export const Flex: React.FC<Props> = (val) => {
     "paddingTop": addUnitIfNeeded(val.py ?? val.pt),
     "padding": val.p ? addUnitIfNeeded(val.p) : undefined,
   };
+  if (val.minHeight) {
+    styles.minHeight = val.minHeight;
+  }
 
   const Component = as ?? "div"
   return (

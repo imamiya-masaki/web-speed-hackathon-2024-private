@@ -3,7 +3,7 @@ import { MAPPING } from './mapping';
 const COLUMN_SIZE = 8;
 const ROW_SIZE = 16;
 
-export async function decrypt({
+export function decrypt({
   exportCanvasContext,
   sourceImage,
   sourceImageInfo,
@@ -11,7 +11,7 @@ export async function decrypt({
   exportCanvasContext: CanvasRenderingContext2D;
   sourceImage: CanvasImageSource;
   sourceImageInfo: { height: number; width: number };
-}): Promise<void> {
+}){
   const columnOffsetPixel = Math.floor((sourceImageInfo.width % COLUMN_SIZE) / 2);
   const columnPixel = Math.floor(sourceImageInfo.width / COLUMN_SIZE);
 

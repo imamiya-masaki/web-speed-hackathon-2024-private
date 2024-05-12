@@ -14,19 +14,28 @@ import { getDayOfWeekStr } from '../_components/src/lib/date/getDayOfWeekStr';
 import { CoverSection } from '../_components/internal/CoverSection';
 import { CommonLayout } from '../_components/src/foundation/layouts/CommonLayout';
 
+import dynamic from 'next/dynamic'
+import { Suspense } from 'react';
+
+
+const FeatureListComponents = async() => {
+  const featureList = await useFeatureList({ query: {} });
+  return (<>
+  {featureList.map((feature) => (
+    //@ts-expect-error
+    <FeatureCard key={feature.id} bookId={feature.book.id} bookData={feature.book}/>
+  ))}
+</>)}
+
 export default async function Page() {
   // 後で処理する
   const todayStr = getDayOfWeekStr(new Date());
-  // const todayStr = 'sunday'
   const release = await useRelease({ params: { dayOfWeek: todayStr } });
-  const featureList = await useFeatureList({ query: {} });
   const rankingList = await useRankingList({ query: {} });
 
   const pickupA11yId = 'pickupA11yId';
   const rankingA11yId = 'rankingA11yId';
   const todayA11yId = 'todayA11yId';
-
-  console.log({featureList})
 
   return (
     <CommonLayout>
@@ -41,12 +50,13 @@ export default async function Page() {
           </Text>
           <Spacer height={Space * 2} />
           <Box maxWidth="100%" overflowX="scroll" overflowY="hidden">
-            <Flex align="stretch" direction="row" gap={Space * 2} justify="flex-start">
-              {featureList.map((feature) => (
-                //@ts-expect-error
-                <FeatureCard key={feature.id} bookId={feature.book.id} bookData={feature.book}/>
-              ))}
-            </Flex>
+            {/* レンダリング後は206pxが大体一定？ のため minheightの設定*/}
+          <Flex align="stretch" direction="row" gap={Space * 2} justify="flex-start" minHeight="206px">
+            <Suspense fallback={null}>
+              {/*@ts-expect-error */}
+              <FeatureListComponents />
+            </Suspense>
+          </Flex>
           </Box>
         </Box>
 
@@ -60,7 +70,6 @@ export default async function Page() {
           <Box maxWidth="100%" overflowX="hidden" overflowY="hidden">
             <Flex align="center" as="ul" direction="column" justify="center">
               {rankingList.map((ranking) => (
-                // @ts-expect-error Server Component
                 <RankingCard key={ranking.id} bookId={ranking.book.id} bookData={ranking.book}/>
               ))}
             </Flex>

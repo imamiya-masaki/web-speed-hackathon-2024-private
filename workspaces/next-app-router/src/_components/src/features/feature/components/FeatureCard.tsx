@@ -63,18 +63,11 @@ type FeatureCardBookInfo = {
 
 type Props = {
   bookId: string;
-  bookData?: FeatureCardBookInfo;
+  bookData: FeatureCardBookInfo;
 };
 
 export default async function FeatureCard ({ bookId, bookData }: Props){
-  let book: FeatureCardBookInfo;
-  if (!bookData) {
-    console.log('RankingCard:fetch')
-    const data = await useBook({ params: { bookId } });
-    book = data.data
-  } else {
-    book = bookData
-  }
+  const book = bookData;
 
   return (
     <WrapperComponent to={`/books/${bookId}`}>
