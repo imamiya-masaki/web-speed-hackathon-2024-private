@@ -83,9 +83,7 @@ const BookCard: React.FC<Props>= async({ bookId, bookData }) => {
 
 const BookCardWithSuspense: React.FC<Props> = (props) => {
   return (
-    <Suspense fallback={null}>
-      <BookCard {...props} />
-    </Suspense>
+    <BookCard {...props} />
   );
 };
 

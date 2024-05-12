@@ -16,15 +16,17 @@ const MIN_PAGE_WIDTH = Math.floor((MIN_VIEWER_HEIGHT / IMAGE_HEIGHT) * IMAGE_WID
 // const MIN_PAGE_WIDTH = _.floor((MIN_VIEWER_HEIGHT / IMAGE_HEIGHT) * IMAGE_WIDTH);
 
 function lodashClamp(number: number, lower: number, upper: number) {
+  // console.log("loadshClamp", {number, lower, upper})
   return Math.max(lower, Math.min(number, upper));
 }
 
-const Wrapper: React.FC<{children: React.ReactNode; $maxHeight: number | string}> = ({ children, $maxHeight }) => (
+const Wrapper: React.FC<{children: React.ReactNode; $maxHeight: number | string, $minHeight?: number | string}> = ({ children, $maxHeight, $minHeight }) => (
   <div style={{
     display: 'grid',
     gridTemplateColumns: '100%',
     gridTemplateRows: '100%',
     maxHeight: addUnitIfNeeded($maxHeight),
+    minHeight: addUnitIfNeeded($minHeight),
     overflow: 'hidden',
   }}>
     {children}
@@ -58,7 +60,7 @@ export const ComicViewer: React.FC<Props> = ({ episodeId }) => {
     <div style={{ position: 'relative' }} ref={ref}>
       <Wrapper $maxHeight={viewerHeight}>
         {/*/ //@ts-expect-error */}
-        <ComicViewerCore episodeId={episodeId} />
+        <ComicViewerCore episodeId={episodeId} maxHeight={viewerHeight}/>
       </Wrapper>
     </div>
   );

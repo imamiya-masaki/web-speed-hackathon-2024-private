@@ -34,7 +34,7 @@ function getScrollToLeft({
 
   // 画面に表示されているページの中心と、スクロールビューの中心との差分を計算する
   // 世界は我々の想像する以上に変化するため、2 ** 12 回繰り返し観測する
-  for (let times = 0; times < 2 ** 8; times++) {
+  for (let times = 0; times < 2 ** 5; times++) {
         // @ts-ignore
     for (const [idx, child] of children.entries()) {
       const nthChild = idx + 1;
@@ -78,10 +78,12 @@ type Props = {
   episodeId: string;
 };
 
-export default function ComicViewerCore ({ episodeId }: {episodeId: string}) {
+export default function ComicViewerCore ({ episodeId, maxHeight }: {episodeId: string, maxHeight?: number | string}) {
   // 画面のリサイズに合わせて再描画する
   const rerender = useUpdate();
-  useInterval(rerender, 0);
+  const rerenderCheck = () => {console.log('rerener'); rerender()}
+  // useInterval(rerenderCheck, 0);
+  
   const [episode, setEpisode] = useState<Awaited<ReturnType<typeof useEpisode>> | undefined>(undefined);
 
   useMemo(async() => {
@@ -98,7 +100,7 @@ export default function ComicViewerCore ({ episodeId }: {episodeId: string}) {
   const cqw = (container?.getBoundingClientRect().width ?? 0) / 100;
   // コンテナの高さ
   const cqh = (container?.getBoundingClientRect().height ?? 0) / 100;
-
+  // console.log({cqw, cqh})
   // 1画面に表示できるページ数（1 or 2）
   const pageCountParView = (100 * cqw) / (100 * cqh) < (2 * IMAGE_WIDTH) / IMAGE_HEIGHT ? 1 : 2;
   // ページの幅
@@ -112,8 +114,10 @@ export default function ComicViewerCore ({ episodeId }: {episodeId: string}) {
   useEffect(() => {
     const abortController = new AbortController();
 
+    window?.addEventListener('resize', rerenderCheck);
+
     let isPressed = false;
-    let scrollToLeftWhenScrollEnd = 0;
+    // let scrollToLeftWhenScrollEnd = 0;
 
     const handlePointerDown = (ev: PointerEvent) => {
       console.log('handlePointerDown')
@@ -121,7 +125,7 @@ export default function ComicViewerCore ({ episodeId }: {episodeId: string}) {
       isPressed = true;
       scrollView.style.cursor = 'grabbing';
       scrollView.setPointerCapture(ev.pointerId);
-      scrollToLeftWhenScrollEnd = getScrollToLeft({ pageCountParView, pageWidth, scrollView });
+      // scrollToLeftWhenScrollEnd = getScrollToLeft({ pageCountParView, pageWidth, scrollView });
     };
 
     const handlePointerMove = (ev: PointerEvent) => {
@@ -132,7 +136,7 @@ export default function ComicViewerCore ({ episodeId }: {episodeId: string}) {
           behavior: 'instant',
           left: -1 * ev.movementX,
         });
-        scrollToLeftWhenScrollEnd = getScrollToLeft({ pageCountParView, pageWidth, scrollView });
+        // scrollToLeftWhenScrollEnd = getScrollToLeft({ pageCountParView, pageWidth, scrollView });
       }
     };
 
@@ -142,31 +146,39 @@ export default function ComicViewerCore ({ episodeId }: {episodeId: string}) {
       isPressed = false;
       scrollView.style.cursor = 'grab';
       scrollView.releasePointerCapture(ev.pointerId);
-      scrollToLeftWhenScrollEnd = getScrollToLeft({ pageCountParView, pageWidth, scrollView });
+
+      const scrollBy = getScrollToLeft({ pageCountParView, pageWidth, scrollView });
+      scrollView.scrollBy({
+        behavior: 'smooth',
+        left: scrollBy,
+      });
+      // scrollToLeftWhenScrollEnd = getScrollToLeft({ pageCountParView, pageWidth, scrollView });
     };
 
     const handleScroll = (ev: Pick<Event, 'currentTarget'>) => {
-      console.log('handleScroll')
-      const scrollView = ev.currentTarget as HTMLDivElement;
-      scrollToLeftWhenScrollEnd = getScrollToLeft({ pageCountParView, pageWidth, scrollView });
+      // addeventlisnterなので、状態管理はwindowで行う
+      // @ts-ignore
+      window.isScroll = true;
+      // scrollToLeftWhenScrollEnd = getScrollToLeft({ pageCountParView, pageWidth, scrollView });
     };
 
-    let scrollEndTimer = -1;
-    abortController.signal.addEventListener('abort', () => window?.clearTimeout(scrollEndTimer), { once: true });
+    // let scrollEndTimer = -1;
+    // abortController.signal.addEventListener('abort', () => window?.clearTimeout(scrollEndTimer), { once: true });
 
     const handleScrollEnd = (ev: Pick<Event, 'currentTarget'>) => {
-      console.log('handleScrollEnd')
-      const scrollView = ev.currentTarget as HTMLDivElement;
-
+      // scrollendが何回も実行されてしまうため、状態管理する
+      // @ts-ignore
+      const isScroll = window.isScroll;
       // マウスが離されるまではスクロール中とみなす
-      if (isPressed) {
-        scrollEndTimer = window?.setTimeout(() => handleScrollEnd({ currentTarget: scrollView }), 100);
-        return;
-      } else {
+      if (!isPressed && isScroll) {
+        const scrollView = ev.currentTarget as HTMLDivElement;
+        const scrollBy = getScrollToLeft({ pageCountParView, pageWidth, scrollView });
         scrollView.scrollBy({
           behavior: 'smooth',
-          left: scrollToLeftWhenScrollEnd,
+          left: scrollBy,
         });
+        // @ts-ignore
+        window.isScroll = false
       }
     };
 

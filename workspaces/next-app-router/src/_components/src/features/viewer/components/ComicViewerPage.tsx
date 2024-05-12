@@ -17,17 +17,22 @@ export const ComicViewerPage = ({ pageImageId }: Props) => {
   const ref = useRef<HTMLCanvasElement>(null);
 
   useAsync(async () => {
+    const startTime = performance.now()
+    console.log('ComicViewerPage', )
     const image = new Image();
     image.src = getImageUrl({
       format: 'jpg',
       imageId: pageImageId,
     });
     await image.decode();
-
+    // console.log('time', performance.now() - startTime)
     const canvas = ref.current!;
     if (canvas) {
       canvas.width = image.naturalWidth;
       canvas.height = image.naturalHeight;
+      // canvas.width = 500
+      // canvas.height = 700
+      console.log('width.height', image.naturalHeight, image.naturalWidth)
       const ctx = canvas.getContext('2d')!;
 
       decrypt({
@@ -37,8 +42,12 @@ export const ComicViewerPage = ({ pageImageId }: Props) => {
           height: image.naturalHeight,
           width: image.naturalWidth,
         },
-      });
-  
+      })
+
+      const endTime = performance.now();
+      // console.log('performanceTime', endTime - startTime, `endtime: ${endTime}, startTime: ${startTime}`)
+
+      // console.log('decrypted')
       canvas.setAttribute('role', 'img');
     }
 
