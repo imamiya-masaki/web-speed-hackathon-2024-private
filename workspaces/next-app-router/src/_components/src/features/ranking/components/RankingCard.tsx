@@ -1,14 +1,12 @@
 import './rankingcard.css'
 
-import { Suspense,useState } from 'react';
-
 import { Box } from '../../../foundation/components/Box';
 import { Flex } from '../../../foundation/components/Flex';
 import { ImageRender } from '../../../foundation/components/Image';
 import { Link } from '../../../foundation/components/Link';
 import { Spacer } from '../../../foundation/components/Spacer';
 import { Text } from '../../../foundation/components/Text';
-import { Color, Radius, Space, Typography } from '../../../foundation/styles/variables';
+import { Color, Space, Typography } from '../../../foundation/styles/variables';
 import { useBook } from '../../book/hooks/useBook';
 
 import NextImage from 'next/image';

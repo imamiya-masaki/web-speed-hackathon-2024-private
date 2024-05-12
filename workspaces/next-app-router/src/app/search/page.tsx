@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense, useCallback, useEffect, useState } from 'react';
+import { Suspense, useCallback, useEffect, useState, useMemo } from 'react';
 
 import { useBookList } from '../../_components/src/features/book/hooks/useBookList';
 import { Box } from '../../_components/src/foundation/components/Box';
@@ -10,6 +10,7 @@ import { Color, Space, Typography } from '../../_components/src/foundation/style
 import { Input } from '../../_components/search/internal/Input';
 import { SearchResult } from '../../_components/search/internal/SearchResult';
 import { ActionLayout } from '../../_components/src/foundation/layouts/ActionLayout';
+import { init as ucaInit } from 'unicode-collation-algorithm2';
 
 // @ts-expect-error
 const SearchContent: React.FC<{keyword: string}> = async({keyword}) => {
@@ -22,6 +23,9 @@ const SearchContent: React.FC<{keyword: string}> = async({keyword}) => {
 }
 
 export default function Page () {
+  useMemo(() => {
+    ucaInit();
+  },[])
   const searchResultsA11yId = `searchResultsA11yId`;
 
   const [isClient, setIsClient] = useState(false);
