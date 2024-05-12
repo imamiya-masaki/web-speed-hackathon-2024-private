@@ -1,5 +1,3 @@
-import moment from 'moment-timezone';
-
 import { BookCard } from '../_components/src/features/book/components/BookCard';
 import FeatureCard from '../_components/src/features/feature/components/FeatureCard';
 import { useFeatureList } from '../_components/src/features/feature/hooks/useFeatureList';
@@ -18,7 +16,7 @@ import { CommonLayout } from '../_components/src/foundation/layouts/CommonLayout
 
 export default async function Page() {
   // 後で処理する
-  const todayStr = getDayOfWeekStr(moment());
+  const todayStr = getDayOfWeekStr(new Date());
   // const todayStr = 'sunday'
   const release = await useRelease({ params: { dayOfWeek: todayStr } });
   const featureList = await useFeatureList({ query: {} });
@@ -32,6 +30,7 @@ export default async function Page() {
 
   return (
     <CommonLayout>
+    {todayStr}
     <Flex align="flex-start" direction="column" gap={Space * 2} justify="center" pb={Space * 2}>
       <Box as="header" maxWidth="100%" width="100%">
         <CoverSection />
