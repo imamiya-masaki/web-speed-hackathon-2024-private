@@ -77,7 +77,6 @@ export default async function FeatureCard ({ bookId, bookData }: Props){
   }
 
   return (
-    <Suspense fallback={null}>
     <WrapperComponent to={`/books/${bookId}`}>
         <ImgWrapperComponent>
           <ImageRender alt={book.image.alt} height={96} objectFit="cover" width={96} canvas={{ height: 96, imageId: book.image.id, width: 96 }}/>
@@ -101,6 +100,5 @@ export default async function FeatureCard ({ bookId, bookData }: Props){
         </Flex>
       </ContentWrapperComponent>
     </WrapperComponent>
-    </Suspense>
   );
 };

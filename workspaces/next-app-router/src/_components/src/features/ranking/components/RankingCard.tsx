@@ -73,7 +73,6 @@ export default async function RankingCard ({ bookId, bookData }: Props){
   }
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
     <WrapperComponent>
       <LinkComponent to={`/books/${book.id}`}>
         <Spacer height={Space * 1.5} />
@@ -123,6 +122,5 @@ export default async function RankingCard ({ bookId, bookData }: Props){
         <Spacer height={Space * 1.5} />
       </LinkComponent>
     </WrapperComponent>
-    </Suspense>
   );
 };
