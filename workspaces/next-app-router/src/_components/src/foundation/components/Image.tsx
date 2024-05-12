@@ -97,14 +97,15 @@ export const ImageRender: React.FC<Props> = ({ height, loading = 'lazy', objectF
     height: canvasHeight * dpr,
     imageId: canvasImageId,
     width: canvasWidth * dpr,
-  }) ?? src;
+  }) ;
   return  <NextImage
-  src={imageu ?? ''}
+  src={imageu }
   alt={alt ?? ''}
   style={ {objectFit,
     display: 'block',}}
     width={Number(width)}
     height={Number(height)}
   loading={loading}
+  {...(rest as any)}
   />
 };

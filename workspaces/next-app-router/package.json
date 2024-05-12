@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "dev:inspect": "NODE_OPTIONS='--inspect' PORT=8080 next dev",
     "dev": "PORT=8080 next dev",
     "build": "PORT=8080 next build",
     "start": "PORT=8080 next start",
@@ -34,7 +35,6 @@
     "jimp": "0.22.12",
     "jotai": "2.7.0",
     "ky": "1.2.0",
-    "lodash.clamp": "4.0.3",
     "magika": "0.2.12",
     "moment-timezone": "0.5.45",
     "next": "14.1.4",

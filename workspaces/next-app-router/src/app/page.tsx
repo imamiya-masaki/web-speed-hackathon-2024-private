@@ -30,7 +30,6 @@ export default async function Page() {
 
   return (
     <CommonLayout>
-    {todayStr}
     <Flex align="flex-start" direction="column" gap={Space * 2} justify="center" pb={Space * 2}>
       <Box as="header" maxWidth="100%" width="100%">
         <CoverSection />
