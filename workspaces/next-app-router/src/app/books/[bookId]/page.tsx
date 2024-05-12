@@ -9,7 +9,6 @@ import { Box } from '../../../_components/src/foundation/components/Box';
 import { Flex } from '../../../_components/src/foundation/components/Flex';
 import { ImageRender } from '../../../_components/src/foundation/components/Image';
 import { Link } from '../../../_components/src/foundation/components/Link';
-import { Separator } from '../../../_components/src/foundation/components/Separator';
 import { Spacer } from '../../../_components/src/foundation/components/Spacer';
 import { Text } from '../../../_components/src/foundation/components/Text';
 import { Color, Space, Typography } from '../../../_components/src/foundation/styles/variables';
@@ -98,8 +97,6 @@ export default async function Page ({params}: {params: {bookId: string}}){
         latestEpisodeId={latestEpisode?.id ?? ''}
         className="separator_line"
       />
-
-      <Separator />
 
       <section aria-label="エピソード一覧">
         <Flex align="center" as="ul" direction="column" justify="center">
