@@ -1,5 +1,3 @@
-'use client'
-
 import { type ReactNode } from 'react';
 import { Container } from '../components/Container';
 import { Footer } from '../components/Footer';

@@ -9,10 +9,6 @@ import { Flex } from './Flex';
 
 import NextImage from 'next/image'
 
-const ContentDom: React.FC<{children: ReactNode, role: string}> = ({role, children}) => {
-  return <section style={{"whiteSpace": "pre-line"}} role={role}>{children}</section>
-}
-
 const Close: React.FC = () => {
   return (<NextImage src="/color_set_icon/close_40dp.svg" width={32} height={32} alt="Close" />)
 }
@@ -20,7 +16,6 @@ const Close: React.FC = () => {
 export const Footer: React.FC = () => {
 
   const [isOpen, setIsOpen] = useState(false);
-  const [dialogContent, setDialogContent] = useState<JSX.Element | undefined>(undefined);
   const [iframeSrc, setIframeSrc] = useState<string>("");
   const openDialog = () => setIsOpen(true);
   const closeDialog = () => setIsOpen(false);
