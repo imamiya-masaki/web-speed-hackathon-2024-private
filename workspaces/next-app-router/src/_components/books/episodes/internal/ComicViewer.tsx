@@ -1,6 +1,5 @@
 'use client'
 
-import lodashClamp from 'lodash/clamp';
 import { useState } from 'react';
 import { useInterval, useUpdate } from 'react-use';
 
@@ -15,6 +14,10 @@ const MAX_VIEWER_HEIGHT = 650;
 
 const MIN_PAGE_WIDTH = Math.floor((MIN_VIEWER_HEIGHT / IMAGE_HEIGHT) * IMAGE_WIDTH);
 // const MIN_PAGE_WIDTH = _.floor((MIN_VIEWER_HEIGHT / IMAGE_HEIGHT) * IMAGE_WIDTH);
+
+function lodashClamp(number: number, lower: number, upper: number) {
+  return Math.max(lower, Math.min(number, upper));
+}
 
 const Wrapper: React.FC<{children: React.ReactNode; $maxHeight: number | string}> = ({ children, $maxHeight }) => (
   <div style={{
