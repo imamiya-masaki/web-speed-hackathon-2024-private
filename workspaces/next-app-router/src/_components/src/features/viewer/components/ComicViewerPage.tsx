@@ -21,7 +21,7 @@ export const ComicViewerPage = ({ pageImageId }: Props) => {
     console.log('ComicViewerPage', )
     const image = new Image();
     image.src = getImageUrl({
-      format: 'jpg',
+      format: 'avif',
       imageId: pageImageId,
     });
     await image.decode();
