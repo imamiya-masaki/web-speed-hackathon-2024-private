@@ -12,10 +12,10 @@ const MAX_VIEWER_HEIGHT = 650 as const;
 const MIN_PAGE_WIDTH = Math.floor((MIN_VIEWER_HEIGHT / IMAGE_HEIGHT) * IMAGE_WIDTH);
 // const MIN_PAGE_WIDTH = _.floor((MIN_VIEWER_HEIGHT / IMAGE_HEIGHT) * IMAGE_WIDTH);
 
-function lodashClamp(number: number, lower: number, upper: number) {
-  // console.log("loadshClamp", {number, lower, upper})
-  return Math.max(lower, Math.min(number, upper));
-}
+// function lodashClamp(number: number, lower: number, upper: number) {
+//   // console.log("loadshClamp", {number, lower, upper})
+//   return Math.max(lower, Math.min(number, upper));
+// }
 
 const Wrapper: React.FC<{children: React.ReactNode;}> = ({ children }) => (
   <div style={{
