@@ -6,8 +6,6 @@ import { addUnitIfNeeded } from '../../../src/lib/css/addUnitIfNeeded';
 const IMAGE_WIDTH = 1075 as const;
 const IMAGE_HEIGHT = 1518 as const;
 
-const calc = 1075 / 1518;
-
 const MIN_VIEWER_HEIGHT = 500 as const;
 const MAX_VIEWER_HEIGHT = 650 as const;
 
