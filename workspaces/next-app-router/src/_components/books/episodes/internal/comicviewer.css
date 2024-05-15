@@ -8,8 +8,8 @@
     aspect-ratio: 1075 / 1518;
   }
 }
-/* 708以下で、page 1枚 */
-@media (min-width: 708px) {
+/* 709移譲で、page 2枚 */
+@media (min-width: 709px) {
   .viewer {
     aspect-ratio: 2150 / 1518; /* MIN_VIEWER_HEIGHTの仮定値 */
   }

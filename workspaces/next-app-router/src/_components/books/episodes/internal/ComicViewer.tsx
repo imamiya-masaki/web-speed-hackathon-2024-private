@@ -36,8 +36,6 @@ type Props = {
 
 export const ComicViewer: React.FC<Props> = ({ episodeId }) => {
   // 画面のリサイズに合わせて再描画する
-  // const rerender = useUpdate();
-  // useInterval(rerender, 0);
 
   // // コンテナの幅
   // const cqw = (el?.getBoundingClientRect().width ?? 0);
