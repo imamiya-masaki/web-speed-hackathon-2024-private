@@ -2,6 +2,8 @@
 import "./globals.css"
 import "./reset.css"
 import { type ReactNode } from 'react';
+import { Container } from '../_components/src/foundation/components/Container';
+import { Footer } from '../_components/src/foundation/components/Footer';
 import { RegisterServiceWorker } from "@/_components/src/utils/RegisterServiceWorkerComponents";
 interface LayoutProps {
   children?: ReactNode; // ReactNode型を使用して、childrenの型を指定します。
@@ -66,7 +68,10 @@ export default function RootLayout({ children }: {children: React.ReactNode}) {
   <body>
   {/* <GlobalStyle /> */}
   {/* <Dialog /> */}
-  {children}
+  <Container>
+    {children}
+    <Footer />
+  </Container>
   </body>
     </html>)
   // return <ClientSetUpComponent><Component {...pageProps} /></ClientSetUpComponent>

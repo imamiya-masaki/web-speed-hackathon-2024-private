@@ -46,7 +46,7 @@ export const ActionLayout: React.FC<Props> = ({ children}) => {
     </Link>
   );
   return (
-    <Container>
+    <>
       <Header>
         <Flex align="center" justify="space-between">
         <BackToTopButton to={'/'}>
@@ -64,8 +64,6 @@ export const ActionLayout: React.FC<Props> = ({ children}) => {
       <Box as="main" height="100%" py={Space * 2}>
         {children}
       </Box>
-
-      <Footer />
-    </Container>
+    </>
   );
 };

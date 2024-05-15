@@ -18,11 +18,10 @@ interface LayoutProps {
 
 export const CommonLayout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <Container>
+    <>
       <Content>
         {children}
       </Content>
-      <Footer />
-    </Container>
+    </>
   );
 };
