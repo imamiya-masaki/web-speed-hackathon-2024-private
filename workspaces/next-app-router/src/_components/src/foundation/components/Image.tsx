@@ -36,9 +36,10 @@ type Props = {
   canvas?: { height: number; imageId: string; width: number }
   src?:string
   alt?:string
+  priority?: boolean
 } & JSX.IntrinsicElements['img'];
 
-export const ImageRender: React.FC<Props> = ({ height, loading = 'lazy', objectFit, width, canvas, src,alt ,...rest }) => {
+export const ImageRender: React.FC<Props> = ({ height, loading = 'lazy', objectFit, width, canvas, src,alt, priority=false ,...rest }) => {
   // const [imageURL, setImageURL] = useState<string | undefined>(src)
   // const [dpr, setDpr] = useState<number>(1) 
   // useEffect(() => {
@@ -106,6 +107,7 @@ export const ImageRender: React.FC<Props> = ({ height, loading = 'lazy', objectF
     width={Number(width)}
     height={Number(height)}
   loading={loading}
+  priority={priority}
   {...(rest as any)}
   />
 };

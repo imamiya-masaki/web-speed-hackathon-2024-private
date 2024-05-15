@@ -64,7 +64,7 @@ export const HeroImage: React.FC = () => {
   // })
   return (
     <Wrapper>
-      <NextImage style={imageStyle} src={imageInfo.src} fill={true} alt="Cyber TOON" loading={"eager"}/>
+      <NextImage style={imageStyle} src={imageInfo.src} fill={true} alt="Cyber TOON" loading={"eager"} priority={true}/>
     </Wrapper>
   );
 };
