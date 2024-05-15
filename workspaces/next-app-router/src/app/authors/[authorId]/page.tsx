@@ -42,11 +42,10 @@ export default async function Page ({ params: {authorId} }: {params: { authorId:
 
   return (
     <ActionLayout>
-      <Suspense fallback={null}>
       <Box height="100%" px={Space * 2}>
         <HeadingWrapper>
             <AuthorImageWrapper>
-              <ImageRender key={author.id} alt={author.name} height={128} objectFit="cover" width={128} canvas={{ height: 128, imageId: author.image.id, width: 128 }}/>
+              <ImageRender key={author.id} alt={author.name} height={128} objectFit="cover" width={128} loading={"eager"} priority={true} canvas={{ height: 128, imageId: author.image.id, width: 128 }}/>
             </AuthorImageWrapper>
 
           <Flex align="flex-start" direction="column" gap={Space * 1} justify="flex-start">
@@ -67,6 +66,7 @@ export default async function Page ({ params: {authorId} }: {params: { authorId:
           <Spacer height={Space * 2} />
 
           <Flex align="center" as="ul" direction="column" justify="center">
+            <Suspense fallback={null}>
             {author.books.map((book) => (
               //  @ts-expect-error Server Component
               <BookListItem key={book.id} bookId={book.id} bookData={book}/>
@@ -79,10 +79,10 @@ export default async function Page ({ params: {authorId} }: {params: { authorId:
                 </Text>
               </>
             )}
+            </Suspense>
           </Flex>
         </Box>
       </Box>
-      </Suspense>
     </ActionLayout>
   );
 };

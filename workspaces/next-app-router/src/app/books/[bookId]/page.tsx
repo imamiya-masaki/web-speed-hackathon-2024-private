@@ -1,6 +1,5 @@
 import "./books-bookid.css"
 import { Suspense } from 'react';
-import invariant from 'tiny-invariant';
 
 import { useBook } from '../../../_components/src/features/book/hooks/useBook';
 import  EpisodeListItem from '../../../_components/src/features/episode/components/EpisodeListItem';
@@ -51,53 +50,20 @@ const AvatarWrapper: React.FC<{children: React.ReactNode}> = ({ children }) => (
   </div>
 );
 
-export default async function Page ({params}: {params: {bookId: string}}){
-  const { bookId } = params
-  console.log('bookId', bookId)
-  invariant(bookId);
 
-  const { data: book } = await useBook({ params: { bookId } });
+ const EpisodeListDOM = async({bookId}: {bookId: string}) => {
+  console.log('bookId', bookId)
   const  episodeList  = await useEpisodeList({ query: { bookId } });
 
   console.log({episodeList})
   const latestEpisode = episodeList?.find((episode: any) => episode.chapter === 1);
-
   return (
-    <ActionLayout>
-    <Suspense fallback={<div>Loading...</div>}>
-    <Box height="100%" position="relative" px={Space * 2}>
-      <HeadingWrapper>
-          <ImageRender alt={book.name} height={256} objectFit="cover" width={192} canvas={{ height: 256, imageId: book.image.id, width: 192 }}/>
-        <Flex align="flex-start" direction="column" gap={Space * 1} justify="flex-end">
-          <Box>
-            <Text color={Color.MONO_100} typography={Typography.NORMAL20} weight="bold">
-              {book.name}
-            </Text>
-            <Spacer height={Space * 1} />
-            <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL14}>
-              {book.description}
-            </Text>
-          </Box>
-
-          <Spacer height={Space * 1} />
-
-          <AuthorWrapper to={`/authors/${book.author.id}`}>
-              <AvatarWrapper>
-                <ImageRender alt={book.author.name} height={32} objectFit="cover" width={32} canvas={{ height: 32, imageId: book.author.image.id, width: 32 }}/>
-              </AvatarWrapper>
-            <Text color={Color.MONO_100} typography={Typography.NORMAL14}>
-              {book.author.name}
-            </Text>
-          </AuthorWrapper>
-        </Flex>
-      </HeadingWrapper>
-
-      <BottomNavigator
+    <>
+       <BottomNavigator
         bookId={bookId}
         latestEpisodeId={latestEpisode?.id ?? ''}
         className="separator_line"
       />
-
       <section aria-label="エピソード一覧">
         <Flex align="center" as="ul" direction="column" justify="center">
           {episodeList.map((episode) => (
@@ -114,8 +80,49 @@ export default async function Page ({params}: {params: {bookId: string}}){
           )}
         </Flex>
       </section>
+    </>
+  )
+}
+
+export default async function Page ({params}: {params: {bookId: string}}){
+  const { bookId } = params
+  console.log('bookId', bookId)
+  const { data: book } = await useBook({ params: { bookId } });
+
+  return (
+    <ActionLayout>
+    <Box height="100%" position="relative" px={Space * 2}>
+      <HeadingWrapper>
+          <ImageRender alt={book.name} height={256} objectFit="cover" width={192} priority={true} loading={"eager"} canvas={{ height: 256, imageId: book.image.id, width: 192 }}/>
+        <Flex align="flex-start" direction="column" gap={Space * 1} justify="flex-end">
+          <Box>
+            <Text color={Color.MONO_100} typography={Typography.NORMAL20} weight="bold">
+              {book.name}
+            </Text>
+            <Spacer height={Space * 1} />
+            <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL14}>
+              {book.description}
+            </Text>
+          </Box>
+
+          <Spacer height={Space * 1} />
+
+          <AuthorWrapper to={`/authors/${book.author.id}`}>
+              <AvatarWrapper>
+                <ImageRender alt={book.author.name} height={32} objectFit="cover" priority={true} loading={"eager"} width={32} canvas={{ height: 32, imageId: book.author.image.id, width: 32 }}/>
+              </AvatarWrapper>
+            <Text color={Color.MONO_100} typography={Typography.NORMAL14}>
+              {book.author.name}
+            </Text>
+          </AuthorWrapper>
+        </Flex>
+      </HeadingWrapper>
+
+     <Suspense fallback={null}>
+      {/*/ @ts-ignore */}
+        <EpisodeListDOM bookId={bookId}/>
+     </Suspense>
     </Box>
-    </Suspense>
     </ActionLayout>
   );
 };

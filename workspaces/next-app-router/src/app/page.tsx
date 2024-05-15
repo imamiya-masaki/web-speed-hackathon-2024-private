@@ -14,7 +14,6 @@ import { getDayOfWeekStr } from '../_components/src/lib/date/getDayOfWeekStr';
 import { CoverSection } from '../_components/internal/CoverSection';
 import { CommonLayout } from '../_components/src/foundation/layouts/CommonLayout';
 
-import dynamic from 'next/dynamic'
 import { Suspense } from 'react';
 
 
@@ -27,11 +26,26 @@ const FeatureListComponents = async() => {
   ))}
 </>)}
 
-export default async function Page() {
-  // 後で処理する
+const RankingListComponents = async() => {
+  const rankingList = await useRankingList({ query: {} });
+  return (<>
+  {rankingList.map((ranking) => (
+    <RankingCard key={ranking.id} bookId={ranking.book.id} bookData={ranking.book}/>
+  ))}
+  </>) 
+}
+
+const ReleaseComponents = async() => {
   const todayStr = getDayOfWeekStr(new Date());
   const release = await useRelease({ params: { dayOfWeek: todayStr } });
-  const rankingList = await useRankingList({ query: {} });
+  return (<>
+  {release.books.map((book) => (
+                <BookCard key={book.id} bookId={book.id} bookData={book}/>
+              ))}
+  </>) 
+}
+
+export default async function Page() {
 
   const pickupA11yId = 'pickupA11yId';
   const rankingA11yId = 'rankingA11yId';
@@ -69,9 +83,10 @@ export default async function Page() {
           <Spacer height={Space * 2} />
           <Box maxWidth="100%" overflowX="hidden" overflowY="hidden">
             <Flex align="center" as="ul" direction="column" justify="center">
-              {rankingList.map((ranking) => (
-                <RankingCard key={ranking.id} bookId={ranking.book.id} bookData={ranking.book}/>
-              ))}
+            <Suspense fallback={null}>
+              {/*@ts-expect-error */}
+              <RankingListComponents />
+            </Suspense>
             </Flex>
           </Box>
         </Box>
@@ -85,9 +100,10 @@ export default async function Page() {
           <Spacer height={Space * 2} />
           <Box maxWidth="100%" overflowX="scroll" overflowY="hidden">
             <Flex align="stretch" gap={Space * 2} justify="flex-start">
-              {release.books.map((book) => (
-                <BookCard key={book.id} bookId={book.id} bookData={book}/>
-              ))}
+              <Suspense fallback={null}>
+                {/*@ts-expect-error */}
+                  <ReleaseComponents />
+              </Suspense>
             </Flex>
           </Box>
         </Box>
