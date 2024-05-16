@@ -12,9 +12,7 @@ type FeatureApiClient = DomainSpecificApiClientInterface<{
 
 export const featureApiClient: FeatureApiClient = {
   fetchList: async ({ query }) => {
-    const response = await apiClient.get<GetFeatureListResponse>(inject('/api/v1/features', {}), {
-      params: query,
-    });
+    const response = await apiClient.get<GetFeatureListResponse>(inject('/api/v1/features', {}), query);
     return response.data;
   },
   fetchList$$key: (options) => ({

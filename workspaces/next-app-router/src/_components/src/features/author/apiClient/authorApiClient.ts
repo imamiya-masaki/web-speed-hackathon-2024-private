@@ -23,9 +23,8 @@ export const authorApiClient: AuthorApiClient = {
     ...options,
   }),
   fetchList: async ({ query }) => {
-    const response = await apiClient.get<GetAuthorListResponse>(inject('/api/v1/authors', {}), {
-      params: query,
-    });
+    console.log('query', query)
+    const response = await apiClient.get<GetAuthorListResponse>(inject('/api/v1/authors', {}), query);
     return response.data;
   },
   fetchList$$key: (options) => ({

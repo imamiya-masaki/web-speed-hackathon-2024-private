@@ -12,9 +12,7 @@ type RankingApiClient = DomainSpecificApiClientInterface<{
 
 export const rankingApiClient: RankingApiClient = {
   fetchList: async ({ query }) => {
-    const response = await apiClient.get<GetRankingListResponse>(inject('/api/v1/rankings', {}), {
-      params: query,
-    });
+    const response = await apiClient.get<GetRankingListResponse>(inject('/api/v1/rankings', {}),query);
     return response.data;
   },
   fetchList$$key: (options) => ({
