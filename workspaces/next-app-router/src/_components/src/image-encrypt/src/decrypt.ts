@@ -12,6 +12,7 @@ export function decrypt({
   sourceImage: CanvasImageSource;
   sourceImageInfo: { height: number; width: number };
 }){
+  const startTime = performance.now()
   const columnOffsetPixel = Math.floor((sourceImageInfo.width % COLUMN_SIZE) / 2);
   const columnPixel = Math.floor(sourceImageInfo.width / COLUMN_SIZE);
 
@@ -27,4 +28,6 @@ export function decrypt({
     const destY = rowOffsetPixel + to.row * rowPixel;
     exportCanvasContext.drawImage(sourceImage, srcX, srcY, columnPixel, rowPixel, destX, destY, columnPixel, rowPixel);
   }
+  const endTime = performance.now()
+  // console.log('decrypt', endTime - startTime)
 }

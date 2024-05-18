@@ -1,3 +1,55 @@
 .comic-viewer-core-wrapper::-webkit-scrollbar {
     display: none;
   }
+
+  .comic-viewer-core-parent {
+    container-type: inline-size;
+  }
+
+  .comc-viewer-core {
+    container: layout inline-size;
+    grid-auto-columns: calc((100cqh / 1075)*1518);
+  }
+  .comic-viewer-core-page {
+  }
+
+
+  /*
+  const IMAGE_WIDTH = 1075;
+  const IMAGE_HEIGHT = 1518;
+  */
+
+  /* 
+    const pageWidth = ( cqh / IMAGE_HEIGHT) * IMAGE_WIDTH;
+  if (pageCountParView === 1) {
+    viewerPaddingInlineA = (cqw - pageWidth ) / 2
+  } else  {
+    viewerPaddingInlineA =  cqw / 2
+  }
+  なため、下のmediaqueryで再現可能
+  1枚,2枚の判定式は、ComicViewer.tsxと同様(cqwは、コンポーネントのサイズに依らないので)
+  pageWidthは、pageコンポーネント目線100%なため下記で再現可能
+
+  */
+
+  @container (100vw < 709px) {
+    .comic-viewer-core {
+      grid-auto-columns: calc((100cqh / 1075)*1518);
+      padding-inline: calc(calc(100cqw - calc((100cqh / 1075)*1518))/2);
+      /* margin-right: clamp(0px, calc(-100% + 100vw) / 2, 100%);; */
+
+       /* margin-right: clamp(0px, calc(-100% + 100vw), 100%); */
+       /* transform: translateX(clamp(0px, calc((-100% + 100vw)), 100%)); */
+    }
+  }
+
+  
+  /* 708以下で、page 1枚 */
+  /* 708移譲で、page 2枚 */
+  @media (min-width: 709px) {
+    .comic-viewer-core {
+      grid-auto-columns: calc((100cqh / 1075)*1518);
+      padding-inline: 50vw; /* MIN_VIEWER_HEIGHTの仮定値 */
+    }
+  }
+

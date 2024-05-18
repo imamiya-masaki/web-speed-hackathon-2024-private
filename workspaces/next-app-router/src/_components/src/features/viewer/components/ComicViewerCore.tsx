@@ -50,7 +50,7 @@ function getScrollToLeft({
               right: nthChild % 2 === 1 ? pageWidth : 0,
             }
           : { left: 0, right: 0 };
-
+      console.log('scrollMargin', scrollMargin, nthChild)
       // scroll-margin の分だけ広げた範囲を計算する
       const areaClientRect = {
         bottom: elementClientRect.bottom,
@@ -92,25 +92,36 @@ export default function ComicViewerCore ({ episodeId, maxHeight }: {episodeId: s
   }, [])
   
 
-
   const [container, containerRef] = useState<HTMLDivElement | null>(null);
   const [scrollView, scrollViewRef] = useState<HTMLDivElement | null>(null);
 
-  // コンテナの幅
-  const cqw = (container?.getBoundingClientRect().width ?? 0) / 100;
-  // コンテナの高さ
-  const cqh = (container?.getBoundingClientRect().height ?? 0) / 100;
-  // console.log({cqw, cqh})
-  // 1画面に表示できるページ数（1 or 2）
-  const pageCountParView = (100 * cqw) / (100 * cqh) < (2 * IMAGE_WIDTH) / IMAGE_HEIGHT ? 1 : 2;
-  // ページの幅
-  const pageWidth = ((100 * cqh) / IMAGE_HEIGHT) * IMAGE_WIDTH;
-  // 画面にページを表示したときに余る左右の余白
-  const viewerPaddingInline =
-    (100 * cqw - pageWidth * pageCountParView) / 2 +
-    // 2ページ表示のときは、奇数ページが左側にあるべきなので、ページの最初と最後に1ページの余白をいれる
-    (pageCountParView === 2 ? pageWidth : 0);
+  // // コンテナの幅
+  const cqw = (container?.getBoundingClientRect().width ?? 0);
+  // // コンテナの高さ
+  const cqh = (container?.getBoundingClientRect().height ?? 0);
+  // // console.log({cqw, cqh})
+  // // 1画面に表示できるページ数（1 or 2）
+  const pageCountParView = cqw / cqh < (2 * IMAGE_WIDTH) / IMAGE_HEIGHT ? 1 : 2;
+  // // ページの幅
+  const pageWidth = ( cqh / IMAGE_HEIGHT) * IMAGE_WIDTH;
+  // // 画面にページを表示したときに余る左右の余白
 
+  const num = (cqw - pageWidth * pageCountParView) / 2 
+
+  const viewerPaddingInline =
+   num + (pageCountParView === 2 ? pageWidth : 0);
+
+  let viewerPaddingInlineA: number;
+  if (pageCountParView === 1) {
+    viewerPaddingInlineA = (cqw - pageWidth ) / 2
+  } else  {
+    viewerPaddingInlineA =   cqw / 2
+  }
+
+  //   // 2ページ表示のときは、奇数ページが左側にあるべきなので、ページの最初と最後に1ページの余白をいれる
+
+    console.log('pageWidth', {viewerPaddingInline, cqw, cqh, pageWidth, pageCountParView}, num, (pageCountParView === 2 ? pageWidth : 0))
+    console.log('info', cqw - pageWidth, cqw - cqw - pageWidth, viewerPaddingInline, cqw, cqh)
   useEffect(() => {
     const abortController = new AbortController();
 
@@ -213,20 +224,22 @@ export default function ComicViewerCore ({ episodeId, maxHeight }: {episodeId: s
     <Suspense fallback={<div>Loading...</div>}>
       <div style={{ position: 'relative' }} ref={containerRef}>    
         <div
-        className="comic-viewer-core-wrapper" // CSSでのスタイリングを適用するためのクラス名
+        className="comic-viewer-core-wrapper comic-viewer-core" // CSSでのスタイリングを適用するためのクラス名
         style={{
           backgroundColor: 'black',
           cursor: 'grab',
           direction: 'rtl',
           display: 'grid',
-          gridAutoColumns: addUnitIfNeeded(pageWidth),
+          // gridAutoColumns: addUnitIfNeeded(pageWidth),
           gridAutoFlow: 'column',
           gridTemplateRows: 'minmax(auto, 100%)',
           height: '100%',
           overflowX: 'scroll',
           overflowY: 'hidden',
           overscrollBehavior: 'none',
-          paddingInline: addUnitIfNeeded(viewerPaddingInline),
+          // paddingInline: "calc(50% + 12.5vw);",
+          // paddingInline: addUnitIfNeeded(viewerPaddingInline),
+          // paddingLeft: "1000px",
           touchAction: 'none',
         }}
         ref={scrollViewRef}
