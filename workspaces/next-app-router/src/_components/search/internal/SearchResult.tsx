@@ -1,4 +1,4 @@
-import { Suspense, useMemo } from 'react';
+import { useMemo } from 'react';
 
 
 import { useBookList } from '../../../_components/src/features/book/hooks/useBookList';
