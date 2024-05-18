@@ -1,5 +1,8 @@
-const baseURL = 'https://webspeed-api.anpan-playground.com'
+import { API_URL } from "@/_components/apiURL";
+
+const baseURL = API_URL
 // const baseURL = 'http://localhost:8000'
+
 const wraperApiClient = {
   get: async <T>(url: string, query?: Record<string, unknown>):Promise<{data: T}>=> {
     const searchParams = new URLSearchParams();
