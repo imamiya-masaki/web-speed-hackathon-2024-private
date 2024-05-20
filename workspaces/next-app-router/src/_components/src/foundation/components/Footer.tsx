@@ -94,7 +94,7 @@ export const Footer: React.FC = () => {
 
   return (
     <>
-    <dialog  open={isOpen} onClose={closeDialog} style={overlayStyle}>
+    <dialog  open={isOpen} onClose={closeDialog} style={overlayStyle} role="dialog">
       <Wrapper>
         <Button addStyle={{"borderRadius": "50%", "height": "32px", "width": "32px", "position": "absolute", top: `-${Space * 5}px`, left: `-${Space * 1}px`}} onClick={() => {closeDialog();}}>
           <Close />
