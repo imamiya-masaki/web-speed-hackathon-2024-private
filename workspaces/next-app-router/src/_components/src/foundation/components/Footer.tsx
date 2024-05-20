@@ -1,52 +1,55 @@
 "use client"
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, Suspense, useMemo, useState } from 'react';
 
-import { Color, Space } from '../styles/variables';
+import { Color, Space, Typography } from '../styles/variables';
 
 import { Box } from './Box';
 import { Button } from './Button';
 import { Flex } from './Flex';
 
 import NextImage from 'next/image'
+import { Text } from './Text';
+import { Spacer } from './Spacer';
+import { FooterContent } from './FooterContent';
 
 const Close: React.FC = () => {
   return (<NextImage src="/color_set_icon/close_40dp.svg" width={32} height={32} alt="Close" />)
 }
 
+const ContentDom: React.FC<{children: ReactNode, role: string}> = ({role, children}) => {
+  return <section style={{"whiteSpace": "pre-line"}} role={role}>{children}</section>
+}
+
 export const Footer: React.FC = () => {
 
   const [isOpen, setIsOpen] = useState(false);
-  const [iframeSrc, setIframeSrc] = useState<string>("");
+  const [flag, setFlag] = useState<'term' | 'question' | 'overview' | 'contact' | 'company' | 'none'>('none');
+  // const [text, setText] = useState<string>("");
   const openDialog = () => setIsOpen(true);
   const closeDialog = () => setIsOpen(false);
 
   const handleRequestToTermDialogOpen = () => {
-    const origin = window.location.origin;
-    setIframeSrc(`${origin}/footer/term`)
+    setFlag('term')
     openDialog()
   };
 
   const handleRequestToContactDialogOpen = () => {
-    const origin = window.location.origin;
-    setIframeSrc(`${origin}/footer/contact`)
+    setFlag('contact')
     openDialog()
   };
 
   const handleRequestToQuestionDialogOpen = () => {
-    const origin = window.location.origin;
-    setIframeSrc(`${origin}/footer/question`)
+    setFlag('question')
     openDialog()
   };
 
   const handleRequestToCompanyDialogOpen = () => {
-    const origin = window.location.origin;
-    setIframeSrc(`${origin}/footer/company`)
+    setFlag('company')
     openDialog()
   };
 
   const handleRequestToOverviewDialogOpen = () => {
-    const origin = window.location.origin;
-    setIframeSrc(`${origin}/footer/overview`)
+    setFlag('overview')
     openDialog()
   };
 
@@ -97,7 +100,11 @@ export const Footer: React.FC = () => {
           <Close />
           {/* <SvgIcon color={Color.MONO_A} height={32} type="Close" width={32} /> */}
         </Button>
-        <Container> <iframe src={iframeSrc} style={{ width: '100%', height: '100%', overflowY: 'scroll', overflowX: 'hidden'}}></iframe></Container>
+        <Container>
+          <Suspense fallback={null}>
+            <FooterContent flag={flag} />
+          </Suspense>
+          </Container>
       </Wrapper>
     </dialog>
     <Box as="footer" backgroundColor={Color.Background} p={Space * 1}>
