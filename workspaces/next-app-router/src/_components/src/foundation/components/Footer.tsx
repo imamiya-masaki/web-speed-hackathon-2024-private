@@ -72,13 +72,13 @@ export const Footer: React.FC = () => {
     maxWidth: '480px',
     boxShadow: '0 0 8px rgba(0, 0, 0, 0.3)',
   };
-  
+
   const containerStyle: React.CSSProperties = {
     padding: `${Space * 2}px`,
     borderRadius: '4px',
     backgroundColor: Color.MONO_A,
     height: '540px',
-    // overflow: 'scroll', // iframe内部でスクロールさせる
+    overflow: 'scroll',
   };
   const Overlay:React.FC<{children: ReactNode}> = ({ children }) => (
     <div style={overlayStyle}>{children}</div>
@@ -102,7 +102,7 @@ export const Footer: React.FC = () => {
         </Button>
         <Container>
           <Suspense fallback={null}>
-            <FooterContent flag={flag} />
+            <FooterContent flag={flag}/>
           </Suspense>
           </Container>
       </Wrapper>
