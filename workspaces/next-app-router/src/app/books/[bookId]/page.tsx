@@ -62,7 +62,6 @@ const AvatarWrapper: React.FC<{children: React.ReactNode}> = ({ children }) => (
        <BottomNavigator
         bookId={bookId}
         latestEpisodeId={latestEpisode?.id ?? ''}
-        className="separator_line"
       />
       <section aria-label="エピソード一覧">
         <Flex align="center" as="ul" direction="column" justify="center">

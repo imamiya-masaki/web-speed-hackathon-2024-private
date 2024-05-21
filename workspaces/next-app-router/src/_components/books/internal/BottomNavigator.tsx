@@ -1,6 +1,5 @@
 'use client'
-
-import { animated, useSpring } from '@react-spring/web';
+import './bottom_navigator.css'
 import { useCallback } from 'react';
 
 import { Link } from '../../src/foundation/components/Link';
@@ -55,14 +54,10 @@ const ReadLink: React.FC<{to: string, children: React.ReactNode}> = ({ to, child
 type Props = {
   bookId: string;
   latestEpisodeId: string;
-  className: string;
+  className?: string;
 };
 
 export const BottomNavigator: React.FC<Props> = ({ bookId, latestEpisodeId, className }) => {
-  const props = useSpring({
-    from: { transform: 'translateY(100%)' },
-    to: { transform: 'translateY(0)' },
-  });
 
   const [isFavorite, toggleFavorite] = useAtom(FavoriteBookAtomFamily(bookId));
 
@@ -71,13 +66,13 @@ export const BottomNavigator: React.FC<Props> = ({ bookId, latestEpisodeId, clas
   }, [toggleFavorite]);
 
   return (
-    <Wrapper className={className}>
-      <animated.div style={props}>
+    <Wrapper className={className ?? ""}>
+      <div className="slideInDown">
         <Content>
           <FavButton enabled={isFavorite} onClick={handleFavClick} />
           <ReadLink to={`/books/${bookId}/episodes/${latestEpisodeId}`}>最新話を読む</ReadLink>
         </Content>
-      </animated.div>
+      </div>
     </Wrapper>
   );
 };
