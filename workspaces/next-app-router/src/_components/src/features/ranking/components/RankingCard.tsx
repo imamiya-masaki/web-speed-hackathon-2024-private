@@ -7,7 +7,6 @@ import { Link } from '../../../foundation/components/Link';
 import { Spacer } from '../../../foundation/components/Spacer';
 import { Text } from '../../../foundation/components/Text';
 import { Color, Space, Typography } from '../../../foundation/styles/variables';
-import { useBook } from '../../book/hooks/useBook';
 
 import NextImage from 'next/image';
 

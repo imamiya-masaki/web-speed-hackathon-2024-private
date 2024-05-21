@@ -8,8 +8,7 @@ import { Spacer } from '../../../foundation/components/Spacer';
 import { Text } from '../../../foundation/components/Text';
 import { Color, Space, Typography } from '../../../foundation/styles/variables';
 import { useEpisode } from '../hooks/useEpisode';
-import { useMemo, useState } from 'react';
-import React from 'react';
+import type React from 'react';
 
 const WrapperComponent: React.FC<{children: React.ReactNode}> = ({ children }) => (
   <li style={{ width: '100%' }} className='separator_line'>

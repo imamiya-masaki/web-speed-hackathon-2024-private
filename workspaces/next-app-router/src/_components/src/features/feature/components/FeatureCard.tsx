@@ -1,12 +1,10 @@
 import './featurecard.css'
-import { Suspense } from 'react';
 
 import { Flex } from '../../../foundation/components/Flex';
 import { ImageRender } from '../../../foundation/components/Image';
 import { Link } from '../../../foundation/components/Link';
 import { Text } from '../../../foundation/components/Text';
 import { Color, Radius, Space, Typography } from '../../../foundation/styles/variables';
-import { useBook } from '../../book/hooks/useBook';
 
 const WrapperComponent: React.FC<{to: string; children: React.ReactNode}> = ({ to, children }) => (
   <Link to={to} style={{

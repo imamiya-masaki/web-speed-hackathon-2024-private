@@ -12,7 +12,7 @@ type ReleaseApiClient = DomainSpecificApiClientInterface<{
 
 export const releaseApiClient: ReleaseApiClient = {
   fetch: async ({ params }) => {
-    const response = await apiClient.get<GetReleaseResponse>(inject('/api/v1/releases/:dayOfWeek', params));
+    const response = await apiClient.get<GetReleaseResponse>(inject('/api/v1/releases/:dayOfWeek', params), {}, {priority: 'low'});
     return response.data;
   },
   fetch$$key: (options) => ({
