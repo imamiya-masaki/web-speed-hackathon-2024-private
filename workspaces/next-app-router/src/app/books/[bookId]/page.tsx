@@ -117,7 +117,7 @@ export default async function Page ({params}: {params: {bookId: string}}){
         </Flex>
       </HeadingWrapper>
 
-     <Suspense fallback={null}>
+     <Suspense fallback={<div><Spacer strHeight={"100vh"}></Spacer></div>}>
       {/*/ @ts-ignore */}
         <EpisodeListDOM bookId={bookId}/>
      </Suspense>
