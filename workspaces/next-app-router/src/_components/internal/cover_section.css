@@ -5,9 +5,9 @@
     margin-right: -16px;
     margin-top: -16px;
     position: relative;
-  };
+  }
 
-.searchStyle {
+.search-style {
     position: absolute;
     right: 8px;
     top: 0;

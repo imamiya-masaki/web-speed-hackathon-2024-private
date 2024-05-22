@@ -48,7 +48,7 @@ const Wrapper: React.FC<WrapperProps> = ({ children }) => {
 };
 
 const SearchLink: React.FC<SearchLinkProps> = ({ href, children }) => {
-  return <Link href={href} className="searchStyle">{children}</Link>;
+  return <Link href={href} className="search-style">{children}</Link>;
 };
 
 
