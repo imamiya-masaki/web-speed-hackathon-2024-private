@@ -8,20 +8,23 @@ import { Color, Space, Typography } from '../_components/src/foundation/styles/v
 import { CoverSection } from '../_components/internal/CoverSection';
 import { CommonLayout } from '../_components/src/foundation/layouts/CommonLayout';
 
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
+
+import FeatureListComponents from '../_components/src/features/feature/components/FeatureCardList'
+import RankingListComponents from '../_components/src/features/ranking/components/RankingCardList'
+import ReleaseComponents from '../_components/src/features/book/components/BookCardList'
+// @ts-expect-error
+// const FeatureListComponents = dynamic(() => import('../_components/src/features/feature/components/FeatureCardList'))
 
 // @ts-expect-error
-const FeatureListComponents = dynamic(() => import('../_components/src/features/feature/components/FeatureCardList'))
+// const RankingListComponents = dynamic(() => import('../_components/src/features/ranking/components/RankingCardList'), {
+//   loading: () => <Spacer strHeight='calc(100vh - 206px - 244px)'/>
+// })
 
 // @ts-expect-error
-const RankingListComponents = dynamic(() => import('../_components/src/features/ranking/components/RankingCardList'), {
-  loading: () => <Spacer strHeight='calc(100vh - 206px - 244px)'/>
-})
-
-// @ts-expect-error
-const ReleaseComponents = dynamic(() => import('../_components/src/features/book/components/BookCardList'), {
-  loading: () => <Spacer strHeight='244px'></Spacer>
-})
+// const ReleaseComponents = dynamic(() => import('../_components/src/features/book/components/BookCardList'), {
+//   loading: () => <Spacer strHeight='244px'></Spacer>
+// })
 
 export default async function Page() {
 
