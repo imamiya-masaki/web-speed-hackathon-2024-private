@@ -1,7 +1,7 @@
 
 import './bookcard.css'
 
-import { ReactNode, Suspense } from 'react';
+import type { ReactNode } from 'react';
 
 import { Flex } from '../../../foundation/components/Flex';
 import { ImageRender } from '../../../foundation/components/Image';
@@ -52,7 +52,6 @@ const AvatarWrapper: React.FC<{ children: ReactNode}> = ({ children }) => {
 const BookCard: React.FC<Props>= async({ bookId, bookData }) => {
   let book: BookCardInfo;
   if (!bookData) {
-    console.log('BookCard:fetch')
     const data = await useBook({ params: { bookId } });
     book = data.data
   } else {

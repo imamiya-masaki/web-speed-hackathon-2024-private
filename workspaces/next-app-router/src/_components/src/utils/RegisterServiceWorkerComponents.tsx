@@ -8,11 +8,11 @@ export const RegisterServiceWorker:React.FC = function () {
     useEffect(() => 
     {
       (async() => {
-      console.log('RegisterServiceWorker', navigator), 'serviceWorker' in navigator;
+      // console.log('RegisterServiceWorker', navigator), 'serviceWorker' in navigator;
       try {
        await registerServiceWorker()
       } catch(e) {
-        console.error(e)
+        // console.error(e)
       }
       return
     })()

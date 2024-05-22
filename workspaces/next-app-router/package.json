@@ -6,6 +6,7 @@
     "dev:inspect": "NODE_OPTIONS='--inspect' PORT=8080 next dev",
     "dev": "PORT=8080 next dev",
     "build": "PORT=8080 next build",
+    "analyze": "ANALYZE=true PORT=8080 next build",
     "start": "PORT=8080 next start",
     "lint": "PORT=8080 next lint"
   },

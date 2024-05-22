@@ -1,49 +1,50 @@
-import { BookCard } from '../_components/src/features/book/components/BookCard';
 import FeatureCard from '../_components/src/features/feature/components/FeatureCard';
 import { useFeatureList } from '../_components/src/features/feature/hooks/useFeatureList';
-import  RankingCard from '../_components/src/features/ranking/components/RankingCard';
-import { useRankingList } from '../_components/src/features/ranking/hooks/useRankingList';
-import { useRelease } from '../_components/src/features/release/hooks/useRelease';
+
 import { Box } from '../_components/src/foundation/components/Box';
 import { Flex } from '../_components/src/foundation/components/Flex';
 import { Spacer } from '../_components/src/foundation/components/Spacer';
 import { Text } from '../_components/src/foundation/components/Text';
 import { Color, Space, Typography } from '../_components/src/foundation/styles/variables';
-import { getDayOfWeekStr } from '../_components/src/lib/date/getDayOfWeekStr';
 
 import { CoverSection } from '../_components/internal/CoverSection';
 import { CommonLayout } from '../_components/src/foundation/layouts/CommonLayout';
 
 import { Suspense } from 'react';
+import dynamic from 'next/dynamic';
+// import { ReleaseComponents } from '../_components/src/features/book/components/BookCardList';
 
+// @ts-expect-error
+const FeatureListComponents = dynamic(() => import('../_components/src/features/feature/components/FeatureCardList'))
 
-const FeatureListComponents = async() => {
-  const featureList = await useFeatureList({ query: {} });
-  return (<>
-  {featureList.map((feature) => (
-    //@ts-expect-error
-    <FeatureCard key={feature.id} bookId={feature.book.id} bookData={feature.book}/>
-  ))}
-</>)}
+// const FeatureListComponents = async() => {
+//   const featureList = await useFeatureList({ query: {} });
+//   return (<>
+//   {featureList.map((feature) => (
+//     //@ts-expect-error
+//     <FeatureCard key={feature.id} bookId={feature.book.id} bookData={feature.book}/>
+//   ))}
+// </>)}
 
-const RankingListComponents = async() => {
-  const rankingList = await useRankingList({ query: {} });
-  return (<>
-  {rankingList.map((ranking) => (
-    <RankingCard key={ranking.id} bookId={ranking.book.id} bookData={ranking.book}/>
-  ))}
-  </>) 
-}
+// @ts-expect-error
+const RankingListComponents = dynamic(() => import('../_components/src/features/ranking/components/RankingCardList'), {
+  loading: () => <Spacer strHeight='calc(100vh - 206px - 244px)'/>
+})
 
-const ReleaseComponents = async() => {
-  const todayStr = getDayOfWeekStr(new Date());
-  const release = await useRelease({ params: { dayOfWeek: todayStr } });
-  return (<>
-  {release.books.map((book) => (
-                <BookCard key={book.id} bookId={book.id} bookData={book}/>
-              ))}
-  </>) 
-}
+// @ts-expect-error
+const ReleaseComponents = dynamic(() => import('../_components/src/features/book/components/BookCardList'), {
+  loading: () => <Spacer strHeight='244px'></Spacer>
+})
+
+// const ReleaseComponents = async() => {
+//   const todayStr = getDayOfWeekStr(new Date());
+//   const release = await useRelease({ params: { dayOfWeek: todayStr } });
+//   return (<>
+//   {release.books.map((book) => (
+//                 <BookCard key={book.id} bookId={book.id} bookData={book}/>
+//               ))}
+//   </>) 
+// }
 
 export default async function Page() {
 
@@ -66,10 +67,7 @@ export default async function Page() {
           <Box maxWidth="100%" overflowX="scroll" overflowY="hidden">
             {/* レンダリング後は206pxが大体一定？ のため minheightの設定*/}
           <Flex align="stretch" direction="row" gap={Space * 2} justify="flex-start" minHeight="206px">
-            <Suspense fallback={null}>
-              {/*@ts-expect-error */}
               <FeatureListComponents />
-            </Suspense>
           </Flex>
           </Box>
         </Box>
@@ -83,10 +81,7 @@ export default async function Page() {
           <Spacer height={Space * 2} />
           <Box maxWidth="100%" overflowX="hidden" overflowY="hidden">
             <Flex align="center" as="ul" direction="column" justify="center">
-            <Suspense fallback={null}>
-              {/*@ts-expect-error */}
-              <RankingListComponents />
-            </Suspense>
+            <RankingListComponents />
             </Flex>
           </Box>
         </Box>
@@ -100,10 +95,7 @@ export default async function Page() {
           <Spacer height={Space * 2} />
           <Box maxWidth="100%" overflowX="scroll" overflowY="hidden">
             <Flex align="stretch" gap={Space * 2} justify="flex-start">
-              <Suspense fallback={null}>
-                {/*@ts-expect-error */}
-                  <ReleaseComponents />
-              </Suspense>
+                <ReleaseComponents />
             </Flex>
           </Box>
         </Box>
