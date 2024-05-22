@@ -1,11 +1,11 @@
 'use client'
 import "./comicviewercore.css"
 
-import { Suspense, useEffect, useMemo, useState } from 'react';
-import { useInterval, useUpdate } from 'react-use';
+import { Suspense, useEffect, useState } from 'react';
+import { useUpdate } from 'react-use';
 
 import { addUnitIfNeeded } from '../../../lib/css/addUnitIfNeeded';
-import { useEpisode } from '../../episode/hooks/useEpisode';
+import type { useEpisode } from '../../episode/hooks/useEpisode';
 
 import { ComicViewerPage } from './ComicViewerPage';
 
@@ -78,21 +78,14 @@ type Props = {
   episodeId: string;
 };
 
-export default function ComicViewerCore ({ episodeId, maxHeight }: {episodeId: string, maxHeight?: number | string}) {
+type ep =  Awaited<ReturnType<(typeof useEpisode)>>
+export default function ComicViewerCore ({ episodeId, maxHeight, ep }: {episodeId: string, maxHeight?: number | string, ep: ep}) {
   // 画面のリサイズに合わせて再描画する
   const rerender = useUpdate();
   const rerenderCheck = () => {console.log('rerener'); rerender()}
   // useInterval(rerenderCheck, 0);
+  const episode = ep
   
-  const [episode, setEpisode] = useState<Awaited<ReturnType<typeof useEpisode>> | undefined>(undefined);
-
-  useMemo(async() => {
-    const ep = await useEpisode({ params: { episodeId } });
-    setEpisode(ep)
-  }, [])
-  
-
-
   const [container, containerRef] = useState<HTMLDivElement | null>(null);
   const [scrollView, scrollViewRef] = useState<HTMLDivElement | null>(null);
 

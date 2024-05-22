@@ -2,6 +2,7 @@ import "./comicviewer.css"
 
 import ComicViewerCore from '../../../src/features/viewer/components/ComicViewerCore';
 import { addUnitIfNeeded } from '../../../src/lib/css/addUnitIfNeeded';
+import type{ useEpisode } from "@/_components/src/features/episode/hooks/useEpisode";
 
 const IMAGE_WIDTH = 1075 as const;
 const IMAGE_HEIGHT = 1518 as const;
@@ -32,9 +33,10 @@ const Wrapper: React.FC<{children: React.ReactNode;}> = ({ children }) => (
 
 type Props = {
   episodeId: string;
+  ep: Awaited<ReturnType<(typeof useEpisode)>>
 };
 
-export const ComicViewer: React.FC<Props> = ({ episodeId }) => {
+export const ComicViewer: React.FC<Props> = ({ episodeId, ep }) => {
   // 画面のリサイズに合わせて再描画する
 
   // // コンテナの幅
