@@ -1,0 +1,22 @@
+
+.wrapperStyle {
+    width: calc(100% + 32px);
+    margin-left: -16px;
+    margin-right: -16px;
+    margin-top: -16px;
+    position: relative;
+  };
+
+.searchStyle {
+    position: absolute;
+    right: 8px;
+    top: 0;
+    padding:8px 16px;
+    border: 2px solid #FFFFFF;
+    border-radius: 24px;
+    backdrop-filter: blur(12px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(50%);
+  };

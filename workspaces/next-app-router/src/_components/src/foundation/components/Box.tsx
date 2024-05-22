@@ -41,33 +41,6 @@ type Props = {
   width?: number | string;
 };
 
-const addUnits = [
-  'bottom', 
-  'color', 
-  'flex-grow', 
-  'flex-shrink', 
-  'height', 
-  'left', 
-  'margin-bottom', 
-  'margin-left', 
-  'margin-right', 
-  'margin-top', 
-  'margin', 
-  'max-height', 
-  'max-width', 
-  'overflow-x', 
-  'overflow-y', 
-  'padding-bottom', 
-  'padding-left', 
-  'padding-right', 
-  'padding-top', 
-  'padding', 
-  'position', 
-  'right', 
-  'top', 
-  'width'
-]
-
 
 export const Box: React.FC<Props> = (val) => {
   const children = val.children

@@ -1,6 +1,4 @@
 import { type ReactNode } from 'react';
-import { Container } from '../components/Container';
-import { Footer } from '../components/Footer';
 import { Space } from '../styles/variables';
 
 const Content: React.FC<{children: React.ReactNode}> = ({ children }) => (
