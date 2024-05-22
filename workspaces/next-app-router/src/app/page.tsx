@@ -1,5 +1,3 @@
-import FeatureCard from '../_components/src/features/feature/components/FeatureCard';
-import { useFeatureList } from '../_components/src/features/feature/hooks/useFeatureList';
 
 import { Box } from '../_components/src/foundation/components/Box';
 import { Flex } from '../_components/src/foundation/components/Flex';
@@ -10,21 +8,10 @@ import { Color, Space, Typography } from '../_components/src/foundation/styles/v
 import { CoverSection } from '../_components/internal/CoverSection';
 import { CommonLayout } from '../_components/src/foundation/layouts/CommonLayout';
 
-import { Suspense } from 'react';
 import dynamic from 'next/dynamic';
-// import { ReleaseComponents } from '../_components/src/features/book/components/BookCardList';
 
 // @ts-expect-error
 const FeatureListComponents = dynamic(() => import('../_components/src/features/feature/components/FeatureCardList'))
-
-// const FeatureListComponents = async() => {
-//   const featureList = await useFeatureList({ query: {} });
-//   return (<>
-//   {featureList.map((feature) => (
-//     //@ts-expect-error
-//     <FeatureCard key={feature.id} bookId={feature.book.id} bookData={feature.book}/>
-//   ))}
-// </>)}
 
 // @ts-expect-error
 const RankingListComponents = dynamic(() => import('../_components/src/features/ranking/components/RankingCardList'), {
@@ -35,16 +22,6 @@ const RankingListComponents = dynamic(() => import('../_components/src/features/
 const ReleaseComponents = dynamic(() => import('../_components/src/features/book/components/BookCardList'), {
   loading: () => <Spacer strHeight='244px'></Spacer>
 })
-
-// const ReleaseComponents = async() => {
-//   const todayStr = getDayOfWeekStr(new Date());
-//   const release = await useRelease({ params: { dayOfWeek: todayStr } });
-//   return (<>
-//   {release.books.map((book) => (
-//                 <BookCard key={book.id} bookId={book.id} bookData={book}/>
-//               ))}
-//   </>) 
-// }
 
 export default async function Page() {
 
