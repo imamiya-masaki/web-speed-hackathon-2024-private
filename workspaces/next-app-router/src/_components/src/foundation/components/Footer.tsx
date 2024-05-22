@@ -2,14 +2,11 @@
 import React, { ReactNode, Suspense, useMemo, useState } from 'react';
 
 import { Color, Space, Typography } from '../styles/variables';
-
 import { Box } from './Box';
 import { Button } from './Button';
 import { Flex } from './Flex';
 
 import NextImage from 'next/image'
-import { Text } from './Text';
-import { Spacer } from './Spacer';
 import { FooterContent } from './FooterContent';
 
 const Close: React.FC = () => {
@@ -27,7 +24,26 @@ export const Footer: React.FC = () => {
   // const [text, setText] = useState<string>("");
   const openDialog = () => setIsOpen(true);
   const closeDialog = () => setIsOpen(false);
-
+  const title = useMemo(() => {
+    switch(flag) {
+      case 'none':
+            break;
+          case 'company':
+            return "運営会社";
+            break;
+          case 'term':
+            return "利用規約";
+            break;
+          case 'contact':
+            return "お問い合わせ";
+            break;
+          case 'overview':
+            return "Cyber TOONとは";
+            break;
+          case 'question':
+            return "Q&A";
+    }
+  }, [flag])
   const handleRequestToTermDialogOpen = () => {
     setFlag('term')
     openDialog()
@@ -80,10 +96,7 @@ export const Footer: React.FC = () => {
     height: '540px',
     overflow: 'scroll',
   };
-  const Overlay:React.FC<{children: ReactNode}> = ({ children }) => (
-    <div style={overlayStyle}>{children}</div>
-  );
-  
+
   const Wrapper: React.FC<{children: ReactNode}> = ({ children }) => (
     <div style={wrapperStyle}>{children}</div>
   );
@@ -101,15 +114,16 @@ export const Footer: React.FC = () => {
           {/* <SvgIcon color={Color.MONO_A} height={32} type="Close" width={32} /> */}
         </Button>
         <Container>
-          <Suspense fallback={null}>
+        <h2 color={Color.MONO_100} id={"companyDialogA11yId"} style={Typography.NORMAL16}>
+          {title}
+        </h2>
             <FooterContent flag={flag}/>
-          </Suspense>
           </Container>
       </Wrapper>
     </dialog>
     <Box as="footer" backgroundColor={Color.Background} p={Space * 1}>
       <Flex align="flex-start" direction="column" gap={Space * 1} justify="flex-start">
-        <img alt="Cyber TOON" src="/assets/cyber-toon.png" width={189} height={45}/>
+        <NextImage alt="Cyber TOON" src="/assets/cyber-toon.png" width={189} height={45}/>
         <Flex align="start" direction="row" gap={Space * 1.5} justify="center">
           <Button addStyle={{"color": Color.MONO_A}} onClick={handleRequestToTermDialogOpen}>
             利用規約
