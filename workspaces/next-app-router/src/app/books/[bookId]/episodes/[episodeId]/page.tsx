@@ -6,7 +6,7 @@ export default async function Page ({params}: {params: {episodeId: string}}){
   const ep = await useEpisode({ params: { episodeId } })
   return (
     <>
-    <ComicViewer episodeId={episodeId} ep={ep}/>
+    <ComicViewer ep={ep}/>
     </>
   );
 };

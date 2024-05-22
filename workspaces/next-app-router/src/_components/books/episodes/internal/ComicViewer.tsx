@@ -32,11 +32,10 @@ const Wrapper: React.FC<{children: React.ReactNode;}> = ({ children }) => (
 );
 
 type Props = {
-  episodeId: string;
   ep: Awaited<ReturnType<(typeof useEpisode)>>
 };
 
-export const ComicViewer: React.FC<Props> = ({ episodeId, ep }) => {
+export const ComicViewer: React.FC<Props> = ({ ep }) => {
   // 画面のリサイズに合わせて再描画する
 
   // // コンテナの幅
@@ -62,7 +61,7 @@ export const ComicViewer: React.FC<Props> = ({ episodeId, ep }) => {
     <div style={{ position: 'relative' }}>
       <Wrapper>
         {/*/ //@ts-expect-error */}
-        <ComicViewerCore episodeId={episodeId} maxHeight={MAX_VIEWER_HEIGHT}/>
+        <ComicViewerCore ep={ep} maxHeight={MAX_VIEWER_HEIGHT}/>
       </Wrapper>
     </div>
   );

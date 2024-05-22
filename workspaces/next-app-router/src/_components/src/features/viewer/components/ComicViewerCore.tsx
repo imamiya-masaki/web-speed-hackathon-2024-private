@@ -74,12 +74,8 @@ function getScrollToLeft({
   return scrollToLeft;
 }
 
-type Props = {
-  episodeId: string;
-};
-
 type ep =  Awaited<ReturnType<(typeof useEpisode)>>
-export default function ComicViewerCore ({ episodeId, maxHeight, ep }: {episodeId: string, maxHeight?: number | string, ep: ep}) {
+export default function ComicViewerCore ({ ep }: {episodeId: string, maxHeight?: number | string, ep: ep}) {
   // 画面のリサイズに合わせて再描画する
   const rerender = useUpdate();
   const rerenderCheck = () => {console.log('rerener'); rerender()}
